@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cardápio Infalível — Myrnna Gurgel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #EF7C07;
+  --primary-light: #F9A04B;
+  --primary-dark: #C5650A;
+  --sidebar-bg: #FFF8F3;
+  --sidebar-border: #F0E0D0;
+  --sidebar-text: #3A2010;
+  --sidebar-muted: #A07050;
+  --sidebar-active-bg: rgba(239,124,7,0.10);
+  --bg: #FDF8F3;
+  --bg-card: #FFFFFF;
+  --text: #1A110A;
+  --text-muted: #7A5C45;
+  --border: rgba(239,124,7,0.15);
+  --shadow: 0 2px 16px rgba(239,124,7,0.09);
+  --radius: 14px;
+  --topbar-h: 56px;
+  --sidebar-w: 268px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* TOPBAR */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: var(--topbar-h); background: var(--primary);
+  display: flex; align-items: center; gap: 10px; padding: 0 14px;
+  box-shadow: 0 2px 12px rgba(239,124,7,0.35);
+}
+.topbar-menu-btn {
+  background: rgba(255,255,255,0.18); border: none; cursor: pointer;
+  color: #fff; padding: 7px; border-radius: 8px; transition: background 0.2s;
+  display: flex; align-items: center; flex-shrink: 0;
+}
+.topbar-menu-btn:hover { background: rgba(255,255,255,0.28); }
+.topbar-menu-btn svg { width: 20px; height: 20px; }
+.topbar-logo {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 16px; color: white;
+  flex-shrink: 0;
+}
+.topbar-title {
+  flex: 1; min-width: 0;
+  font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: #fff;
+  line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.topbar-title span { display: block; font-size: 10.5px; font-weight: 400; color: rgba(255,255,255,0.78); font-family: 'DM Sans', sans-serif; }
+.lang-toggle {
+  display: flex; align-items: center; gap: 2px;
+  background: rgba(255,255,255,0.18); border-radius: 20px;
+  padding: 3px; border: 1px solid rgba(255,255,255,0.25); flex-shrink: 0;
+}
+.lang-btn {
+  background: none; border: none; cursor: pointer; padding: 3px 9px; border-radius: 16px;
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.75); transition: all 0.2s;
+}
+.lang-btn.active { background: #fff; color: var(--primary); }
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed; top: var(--topbar-h); left: 0; bottom: 0;
+  width: var(--sidebar-w); z-index: 200;
+  background: var(--sidebar-bg); border-right: 1px solid var(--sidebar-border);
+  display: flex; flex-direction: column;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+.sidebar-scroll { flex: 1; overflow-y: auto; padding: 10px 0 8px; scrollbar-width: thin; scrollbar-color: rgba(239,124,7,0.2) transparent; }
+.sidebar-scroll::-webkit-scrollbar { width: 3px; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(239,124,7,0.25); border-radius: 4px; }
+
+.nav-direct {
+  display: flex; align-items: center; gap: 9px; padding: 11px 16px; cursor: pointer;
+  color: var(--sidebar-text); font-size: 13.5px; font-weight: 500; transition: background 0.15s; position: relative;
+}
+.nav-direct:hover { background: rgba(239,124,7,0.06); }
+.nav-direct.active-main { color: var(--primary); background: var(--sidebar-active-bg); }
+.nav-direct.active-main::before { content: ''; position: absolute; left: 0; top: 5px; bottom: 5px; width: 3px; background: var(--primary); border-radius: 0 3px 3px 0; }
+.nav-icon { font-size: 15px; flex-shrink: 0; }
+
+.nav-group-header {
+  display: flex; align-items: center; gap: 9px; padding: 11px 16px; cursor: pointer;
+  color: var(--sidebar-text); font-size: 13.5px; font-weight: 500; transition: background 0.15s; user-select: none;
+}
+.nav-group-header:hover { background: rgba(239,124,7,0.06); }
+.nav-arrow { width: 15px; height: 15px; margin-left: auto; flex-shrink: 0; color: var(--sidebar-muted); transition: transform 0.25s ease; }
+.nav-group.open .nav-arrow { transform: rotate(90deg); }
+.nav-children { overflow: hidden; max-height: 0; transition: max-height 0.35s cubic-bezier(.4,0,.2,1); }
+.nav-group.open .nav-children { max-height: 700px; }
+.nav-child {
+  display: flex; align-items: flex-start; gap: 8px; padding: 8px 16px 8px 40px;
+  color: var(--sidebar-muted); font-size: 12.5px; cursor: pointer; transition: all 0.15s; line-height: 1.35;
+}
+.nav-child:hover { color: var(--sidebar-text); background: rgba(239,124,7,0.05); }
+.nav-child.active-child { color: var(--primary); background: var(--sidebar-active-bg); }
+.nav-child-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; margin-top: 5px; }
+.nav-divider { height: 1px; background: var(--sidebar-border); margin: 6px 14px; }
+
+.sidebar-footer { padding: 10px 12px 18px; display: flex; flex-direction: column; gap: 7px; border-top: 1px solid var(--sidebar-border); }
+.btn-social {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 500;
+  text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; width: 100%;
+}
+.btn-whatsapp { background: #25D366; color: #fff; }
+.btn-whatsapp:hover { background: #1DAE54; }
+.btn-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+.btn-instagram:hover { opacity: 0.88; }
+.btn-social svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 190; }
+.sidebar-overlay.open { display: block; }
+
+/* MAIN */
+.main { margin-left: var(--sidebar-w); padding-top: var(--topbar-h); min-height: 100vh; }
+.content-page { display: none; animation: fadeIn 0.3s ease; }
+.content-page.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+/* Pills */
+.topic-pills { background: #fff; padding: 10px 16px; display: flex; gap: 7px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-bottom: 1px solid var(--border); }
+.topic-pills::-webkit-scrollbar { display: none; }
+.pill { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--primary); background: transparent; color: var(--primary); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.18s; font-family: 'DM Sans', sans-serif; }
+.pill:hover, .pill.active { background: var(--primary); color: #fff; }
+
+/* Content */
+.content-body { padding: 22px 18px 60px; max-width: 800px; }
+
+.page-header { margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+.page-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(239,124,7,0.10); color: var(--primary); padding: 4px 11px; border-radius: 20px; font-size: 11.5px; font-weight: 500; margin-bottom: 10px; border: 1px solid rgba(239,124,7,0.2); }
+.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--text); line-height: 1.2; margin-bottom: 8px; }
+.page-header p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+.content-section { margin-bottom: 36px; scroll-margin-top: 110px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.highlight-card { display: flex; gap: 12px; align-items: flex-start; background: linear-gradient(135deg, rgba(239,124,7,0.07), rgba(239,124,7,0.02)); border: 1px solid rgba(239,124,7,0.22); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px; }
+.highlight-card .hc-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.highlight-card strong { font-size: 13.5px; color: var(--primary-dark); display: block; margin-bottom: 3px; }
+.highlight-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+.stat-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 18px; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 12px; text-align: center; box-shadow: var(--shadow); }
+.stat-card .stat-icon { font-size: 24px; display: block; margin-bottom: 6px; }
+.stat-card h3 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.stat-card p { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
+
+.options-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.option-card { background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); padding: 16px 18px; box-shadow: var(--shadow); transition: transform 0.2s; }
+.option-card:hover { transform: translateY(-2px); }
+.option-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--primary-dark); margin-bottom: 9px; }
+.option-card ul { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+.option-card ul li { font-size: 13px; color: var(--text-muted); display: flex; gap: 7px; align-items: flex-start; }
+.option-card ul li::before { content: '\2014'; color: var(--primary); font-weight: 700; flex-shrink: 0; }
+.prep-mode { font-size: 12px; color: var(--text-muted); line-height: 1.55; padding-top: 9px; border-top: 1px solid var(--border); }
+.prep-mode strong { color: var(--text); }
+.sub-tag { display: inline-block; background: rgba(239,124,7,0.08); color: var(--primary-dark); font-size: 11px; padding: 3px 8px; border-radius: 6px; margin-top: 7px; font-weight: 500; }
+
+.snack-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; margin-bottom: 16px; }
+.snack-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 11px 13px; font-size: 13px; color: var(--text); display: flex; align-items: flex-start; gap: 8px; transition: border-color 0.2s; }
+.snack-card:hover { border-color: var(--primary-light); }
+.snack-card .snack-emoji { font-size: 18px; flex-shrink: 0; }
+.snack-card span { line-height: 1.4; }
+
+.plate-builder { background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow); }
+.plate-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 9px; margin-bottom: 12px; }
+.plate-part { background: rgba(239,124,7,0.05); border-radius: 9px; padding: 11px 13px; border: 1px solid rgba(239,124,7,0.12); }
+.plate-part h5 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+.plate-part p { font-size: 13px; color: var(--text-muted); }
+.plate-tip { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--text-muted); padding: 8px 11px; background: rgba(239,124,7,0.04); border-radius: 8px; margin-bottom: 5px; }
+.plate-tip:last-child { margin-bottom: 0; }
+
+.alert-box { border-radius: 10px; padding: 12px 15px; margin-bottom: 14px; display: flex; gap: 9px; align-items: flex-start; font-size: 13px; line-height: 1.55; }
+.alert-box.warning { background: rgba(239,124,7,0.07); border: 1px solid rgba(239,124,7,0.25); color: var(--primary-dark); }
+.alert-box.success { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.25); color: #166534; }
+.alert-box.info { background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.22); color: #1e40af; }
+.alert-box strong { font-weight: 600; }
+
+.tips-list { display: flex; flex-direction: column; gap: 9px; }
+.tip-item { display: flex; gap: 12px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 13px 14px; transition: border-color 0.2s; }
+.tip-item:hover { border-color: rgba(239,124,7,0.3); }
+.tip-num { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
+.tip-item h4 { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.tip-item p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+.errors-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-bottom: 16px; }
+.error-item { display: flex; align-items: center; gap: 9px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.18); border-radius: 9px; padding: 10px 12px; font-size: 13px; color: #b91c1c; }
+.error-item::before { content: '\2715'; font-weight: 700; color: #ef4444; flex-shrink: 0; }
+
+blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16px; margin: 18px 0; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--text); background: rgba(239,124,7,0.04); border-radius: 0 10px 10px 0; line-height: 1.5; }
+
+.hydration-bar { display: flex; gap: 5px; flex-wrap: wrap; margin: 10px 0 16px; }
+.water-drop { font-size: 22px; cursor: default; transition: transform 0.15s; }
+.water-drop:hover { transform: scale(1.25); }
+
+.video-section { background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 18px; }
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+.video-info { padding: 16px 18px; }
+.video-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; margin-bottom: 7px; }
+.video-info p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.video-topics { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+.video-topics li { display: flex; gap: 7px; font-size: 13px; color: var(--text-muted); }
+.video-topics li::before { content: '\2022'; color: var(--primary); font-weight: 700; flex-shrink: 0; }
+
+.sub-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+.sub-table th { background: rgba(239,124,7,0.08); padding: 9px 12px; text-align: left; font-weight: 600; color: var(--primary-dark); border-bottom: 2px solid rgba(239,124,7,0.2); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+.sub-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+.sub-table tr:last-child td { border-bottom: none; }
+.sub-table tr:hover td { background: rgba(239,124,7,0.03); }
+.sub-table td:first-child { color: var(--text); font-weight: 500; }
+
+.recipe-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 12px; box-shadow: var(--shadow); }
+.recipe-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 11px; }
+.recipe-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.recipe-col h5 { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; margin-bottom: 7px; }
+.recipe-col ul { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+.recipe-col ul li { font-size: 13px; color: var(--text-muted); display: flex; gap: 5px; }
+.recipe-col ul li::before { content: '\00B7'; color: var(--primary); font-weight: 700; }
+.recipe-col p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+.placeholder-section { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 70px 30px; text-align: center; background: var(--bg-card); border-radius: var(--radius); border: 2px dashed rgba(239,124,7,0.22); margin: 24px 18px; }
+.placeholder-icon { font-size: 44px; margin-bottom: 14px; }
+.placeholder-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text-muted); margin-bottom: 6px; }
+.placeholder-section p { font-size: 13.5px; color: var(--text-muted); opacity: 0.7; }
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .content-body { padding: 18px 14px 60px; }
+  .options-grid { grid-template-columns: 1fr; }
+  .recipe-cols { grid-template-columns: 1fr; }
+  .errors-grid { grid-template-columns: 1fr; }
+  .snack-grid { grid-template-columns: 1fr; }
+  .page-header h1 { font-size: 22px; }
+  .section-title { font-size: 19px; }
+  .sub-table { font-size: 12px; }
+  .sub-table th, .sub-table td { padding: 7px 9px; }
+}
+@media (max-width: 380px) {
+  .stat-cards { grid-template-columns: 1fr 1fr; }
+  .plate-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="topbar-menu-btn" id="menuBtn" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="topbar-logo">M</div>
+  <div class="topbar-title">Cardápio Infalível<span>por Myrnna Gurgel</span></div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" id="btnES" onclick="setLang('es')">ES</button>
+  </div>
+</header>
+
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-scroll">
+    <div class="nav-direct active-main" id="nav-main" onclick="showPage('main')">
+      <span class="nav-icon">🥗</span><span id="lbl-nav-main">Cardápio Infalível</span>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-group" id="grp-aplv">
+      <div class="nav-group-header" onclick="toggleGroup('grp-aplv')">
+        <span class="nav-icon">🤱</span><span id="lbl-nav-aplv">Cardápio Infalível APLV</span>
+        <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      </div>
+      <div class="nav-children">
+        <div class="nav-child" onclick="showPage('aplv-cardapio')"><span class="nav-child-dot"></span><span id="lbl-aplv-1">Cardápio Versão APLV</span></div>
+        <div class="nav-child" onclick="showPage('aplv-aula')"><span class="nav-child-dot"></span><span id="lbl-aplv-2">Aula APLV na Prática</span></div>
+        <div class="nav-child" onclick="showPage('aplv-checklist')"><span class="nav-child-dot"></span><span id="lbl-aplv-3">Checklist de Receitas APLV</span></div>
+        <div class="nav-child" onclick="showPage('aplv-leite')"><span class="nav-child-dot"></span><span id="lbl-aplv-4">Aumentar a Produção de Leite</span></div>
+        <div class="nav-child" onclick="showPage('aplv-guia')"><span class="nav-child-dot"></span><span id="lbl-aplv-5">Guia de Alimentação APLV</span></div>
+      </div>
+    </div>
+    <div class="nav-group" id="grp-bonus">
+      <div class="nav-group-header" onclick="toggleGroup('grp-bonus')">
+        <span class="nav-icon">🎁</span><span id="lbl-nav-bonus">Bônus Exclusivos</span>
+        <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      </div>
+      <div class="nav-children">
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Receitas Exclusivas Para Novas Mães</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Emagrecer Durante a Amamentação</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Aumentar a Produção de Leite</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Guia de Hidratação para Mães</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Checklist de Receitas</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Manual Para Ter Mais Disposição</div>
+      </div>
+    </div>
+    <div class="nav-group" id="grp-mentoria">
+      <div class="nav-group-header" onclick="toggleGroup('grp-mentoria')">
+        <span class="nav-icon">🎥</span><span id="lbl-nav-mentoria">Mentoria Com Profissionais</span>
+        <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      </div>
+      <div class="nav-children">
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Sono do Bebê — Thaís Neves</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Pediatra Camila Bastos</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga Rayanny Cavalcanti</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Maquiagem — Júlia Pavanelli</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga Beatriz Rodrigues</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Personal Carol Cavalcanti pt1</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Personal Carol Cavalcanti pt2</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Nutri. Renata Magalhães</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Nutricionista Myrthe Emilyana</div>
+      </div>
+    </div>
+    <div class="nav-group" id="grp-extra">
+      <div class="nav-group-header" onclick="toggleGroup('grp-extra')">
+        <span class="nav-icon">📚</span><span id="lbl-nav-extra">Material Extra</span>
+        <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      </div>
+      <div class="nav-children">
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Lista de Compras Facilitada</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Guia de Substituições Inteligentes</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Chás Emagrecedores Para Lactantes</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Marmitas Inteligentes</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Guia Como Secar -18kg Rápido</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Ritual Noturno Anti-Inchaço</div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-footer">
+    <a href="https://api.whatsapp.com/send?phone=5585992225227&text=Oi%20Myrnna,%20preciso%20de%20ajuda%20com%20o%20App%20do%20Card%C3%A1pio!" target="_blank" class="btn-social btn-whatsapp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span id="lbl-btn-wpp">Suporte no WhatsApp</span>
+    </a>
+    <a href="https://www.instagram.com/myrnnagurgel" target="_blank" class="btn-social btn-instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      <span id="lbl-btn-ig">Seguir no Instagram</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- PAGE MAIN -->
+<div class="content-page active" id="page-main">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('cafe',this)">☀️ Café</button>
+    <button class="pill" onclick="scrollSec('lanche-manha',this)">🍎 Lanche Manhã</button>
+    <button class="pill" onclick="scrollSec('almoco',this)">🍽️ Almoço</button>
+    <button class="pill" onclick="scrollSec('lanche-tarde',this)">🌤️ Lanche Tarde</button>
+    <button class="pill" onclick="scrollSec('jantar',this)">🌙 Jantar</button>
+    <button class="pill" onclick="scrollSec('hidratacao',this)">💧 Hidratação</button>
+    <button class="pill" onclick="scrollSec('erros',this)">⚠️ Erros</button>
+    <button class="pill" onclick="scrollSec('dicas',this)">✨ Dicas</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🥗 Cardápio Principal</div>
+      <h1>Cardápio Infalível para Mães Lactantes</h1>
+      <p>Nova versão atualizada para te ajudar a secar gordura com saúde, manter o leite forte e facilitar sua rotina. Você não precisa passar fome — só precisa comer da forma certa!</p>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card"><span class="stat-icon">🤱</span><h3>Leite Forte</h3><p>Nutrição completa para manter a produção</p></div>
+      <div class="stat-card"><span class="stat-icon">🔥</span><h3>Seca Gordura</h3><p>Resultado sem dietas malucas</p></div>
+      <div class="stat-card"><span class="stat-icon">💚</span><h3>Sem Fome</h3><p>Refeições completas e saciantes</p></div>
+    </div>
+    <div class="content-section" id="cafe">
+      <h2 class="section-title">☀️ Café da Manhã</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">💡</span>
+        <div><strong>Regra de Ouro</strong><p>Combine sempre: 1 Carboidrato + 1 Proteína. Tente consumir pelo menos 20g de proteína. Fruta + Gordura boa são opcionais.</p></div>
+      </div>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🥣 Aveia com Banana + Ovo</h3>
+          <ul><li>4 colheres de aveia</li><li>200ml de leite</li><li>1 banana</li><li>2 ovos (ou 1 + 2 claras)</li></ul>
+          <div class="prep-mode"><strong>Preparo:</strong> Cozinhe a aveia com leite em fogo baixo (3–5 min). Fatie a banana e misture. Mexa o ovo em frigideira antiaderente.</div>
+          <span class="sub-tag">🔄 Aveia→Tapioca · Banana→Maçã · Ovo→Queijo branco</span>
+        </div>
+        <div class="option-card">
+          <h3>🫓 Tapioca com Frango + Abacate</h3>
+          <ul><li>2 colheres de tapioca</li><li>100g de frango desfiado</li><li>2 colheres de abacate</li><li>1 fruta</li></ul>
+          <div class="prep-mode"><strong>Preparo:</strong> Hidrate a goma, espalhe na frigideira, recheie com frango e abacate amassado. Feche e sirva com a fruta.</div>
+          <span class="sub-tag">🔄 Frango→Atum · Abacate→Pasta de amendoim</span>
+        </div>
+        <div class="option-card">
+          <h3>🥗 Iogurte + Granola + Omelete</h3>
+          <ul><li>1 iogurte natural</li><li>2 colheres de granola</li><li>1 colher de chia</li><li>Omelete: 1 ovo + 2 claras</li></ul>
+          <div class="prep-mode"><strong>Preparo:</strong> Misture iogurte, granola e chia. Bata claras com tomate e cozinhe em frigideira antiaderente.</div>
+          <span class="sub-tag">🔄 Granola→Aveia · Omelete→Ovo cozido</span>
+        </div>
+        <div class="option-card">
+          <h3>🍳 Pão Integral com Ovo</h3>
+          <ul><li>1 fatia de pão integral</li><li>2 ovos</li><li>1 fruta</li></ul>
+          <div class="prep-mode"><strong>Preparo:</strong> Torre o pão. Prepare o ovo cozido (8 min) ou mexido com azeite. Sirva sobre o pão com a fruta ao lado.</div>
+          <span class="sub-tag">🔄 Pão→Centeio ou wrap integral</span>
+        </div>
+        <div class="option-card">
+          <h3>🥤 Smoothie Proteico</h3>
+          <ul><li>200ml de leite</li><li>1 banana ou morangos</li><li>1 iogurte</li><li>2 colheres de aveia</li></ul>
+          <div class="prep-mode"><strong>Preparo:</strong> Bata tudo no liquidificador até cremoso. Opcional: 1 scoop de proteína para acelerar o resultado.</div>
+          <span class="sub-tag">🔄 Banana→Maçã+abacaxi · Iogurte→Cottage</span>
+        </div>
+      </div>
+    </div>
+    <div class="content-section" id="lanche-manha">
+      <h2 class="section-title">🍎 Lanche da Manhã</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">⏰</span>
+        <div><strong>Por que é essencial?</strong><p>Mantém a energia estável e evita fome e ansiedade. Escolha 1 opção — pequena pausa, grande diferença.</p></div>
+      </div>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍌</span><span>1 fruta + 1 colher de pasta de amendoim</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥜</span><span>5 castanhas + 5 amêndoas</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫙</span><span>Iogurte + chia</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥕</span><span>Cenoura ou pepino + homus</span></div>
+        <div class="snack-card"><span class="snack-emoji">🧀</span><span>Queijo branco + tomate</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="almoco">
+      <h2 class="section-title">🍽️ Almoço</h2>
+      <div class="plate-builder">
+        <h4 style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:11px">Monte seu prato assim</h4>
+        <div class="plate-grid">
+          <div class="plate-part"><h5>Proteína</h5><p>100–120g</p></div>
+          <div class="plate-part"><h5>Carboidrato</h5><p>1½ xícara</p></div>
+          <div class="plate-part"><h5>Legumes</h5><p>À vontade!</p></div>
+          <div class="plate-part"><h5>Gordura</h5><p>1 col. azeite</p></div>
+        </div>
+        <div class="plate-tip">🍗 Frango + arroz integral + salada</div>
+        <div class="plate-tip">🐟 Peixe + quinoa + legumes</div>
+        <div class="plate-tip">🥩 Carne moída + batata-doce + salada</div>
+        <div class="plate-tip">🍳 Omelete + arroz integral + legumes</div>
+        <div class="plate-tip">🫘 Feijão + arroz + frango + couve</div>
+      </div>
+      <div class="alert-box info"><span>💡</span><div><strong>Ajuste inteligente:</strong> Ainda com fome? Aumente legumes e proteína. Não emagrecendo? Reduza um pouco o carboidrato.</div></div>
+    </div>
+    <div class="content-section" id="lanche-tarde">
+      <h2 class="section-title">🌤️ Lanche da Tarde</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:12px">Mantém a energia estável. Escolha 1 opção:</p>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍌</span><span>Iogurte + aveia + fruta</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥪</span><span>Pão integral + cottage</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥤</span><span>Smoothie de frutas</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥕</span><span>Homus + cenoura</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌰</span><span>Mix de castanhas</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="jantar">
+      <h2 class="section-title">🌙 Jantar</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">🌙</span>
+        <div><strong>Leve, mas suficiente</strong><p>Reduzimos carboidrato, mas sem passar fome. Sentiu fome à noite? Adicione 1 fruta OU um pouquinho de arroz — isso NÃO atrapalha o resultado.</p></div>
+      </div>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍲</span><span>Sopa de legumes + frango</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍳</span><span>Omelete (1 ovo + 2 claras) + salada</span></div>
+        <div class="snack-card"><span class="snack-emoji">🐟</span><span>Peixe + legumes</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥗</span><span>Grão-de-bico + atum + folhas</span></div>
+        <div class="snack-card"><span class="snack-emoji">🎃</span><span>Creme de abóbora + queijo</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="hidratacao">
+      <h2 class="section-title">💧 Hidratação</h2>
+      <blockquote class="brand-quote">Beba 1 copo de água toda vez que amamentar. Ou: 2 a 3 litros por dia.</blockquote>
+      <div class="hydration-bar" id="waterDrops"></div>
+      <div class="stat-cards" style="margin-top:14px">
+        <div class="stat-card"><span class="stat-icon">🤱</span><h3>Produção de Leite</h3><p>Hidratação mantém o leite forte e abundante</p></div>
+        <div class="stat-card"><span class="stat-icon">⚡</span><h3>Emagrecimento</h3><p>Acelera o metabolismo</p></div>
+        <div class="stat-card"><span class="stat-icon">🌟</span><h3>Energia</h3><p>Evita cansaço e mantém o pique</p></div>
+      </div>
+    </div>
+    <div class="content-section" id="erros">
+      <h2 class="section-title">⚠️ Erros que Atrasam o Resultado</h2>
+      <div class="errors-grid">
+        <div class="error-item">Pular refeições</div>
+        <div class="error-item">Não beber água</div>
+        <div class="error-item">Comer pouco demais</div>
+        <div class="error-item">Cortar carboidrato totalmente</div>
+        <div class="error-item">Viver beliscando</div>
+      </div>
+      <div class="alert-box success"><span>✅</span><div><strong>O segredo:</strong> NÃO é comer menos. É comer certo.</div></div>
+    </div>
+    <div class="content-section" id="dicas">
+      <h2 class="section-title">✨ Dicas Finais</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Troque as refeições entre si</h4><p>Adapte conforme sua preferência e rotina — sem neura!</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Use temperos naturais</h4><p>Sabor sem prejudicar a saúde ou o leite.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Prepare com antecedência</h4><p>Organize a semana para facilitar o dia a dia.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Faça o simples bem feito</h4><p>Consistência bate qualquer dieta complicada.</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Você não precisa de dieta restritiva. Você precisa de constância. Seu corpo acabou de gerar uma vida — cuide dele com respeito, não com pressão.</blockquote>
+      <div class="alert-box success" style="margin-top:14px"><span>📸</span><div>Me conta o que você fez! Manda no direct do Instagram. Vou adorar compartilhar no story! <strong>@myrnnagurgel</strong></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE APLV CARDÁPIO -->
+<div class="content-page" id="page-aplv-cardapio">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('aplv-cafe',this)">☀️ Café</button>
+    <button class="pill" onclick="scrollSec('aplv-lm',this)">🍎 L. Manhã</button>
+    <button class="pill" onclick="scrollSec('aplv-alm',this)">🍽️ Almoço</button>
+    <button class="pill" onclick="scrollSec('aplv-lt',this)">🌤️ L. Tarde</button>
+    <button class="pill" onclick="scrollSec('aplv-jan',this)">🌙 Jantar</button>
+    <button class="pill" onclick="scrollSec('aplv-ceia',this)">🌛 Ceia</button>
+    <button class="pill" onclick="scrollSec('aplv-sub',this)">🔄 Substituições</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🤱 APLV</div>
+      <h1>Cardápio Infalível APLV</h1>
+      <p>Cardápio para mães com bebês com Alergia à Proteína do Leite de Vaca. Seguro, nutritivo e prático.</p>
+    </div>
+    <div class="content-section" id="aplv-cafe">
+      <h2 class="section-title">☀️ Café da Manhã</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍞</span><span>Pão integral (sem leite) + margarina vegetal</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌽</span><span>Cuscuz com ovo (flocos de milho + 1 ovo)</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥤</span><span>Vitamina de banana + aveia + bebida vegetal</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫓</span><span>Tapioca com abacate amassado</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍈</span><span>Frutas picadas (mamão, banana) + granola simples</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="aplv-lm">
+      <h2 class="section-title">🍎 Lanche da Manhã</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🥕</span><span>Cenoura em palitos com limão e sal</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍌</span><span>Banana + pasta de amendoim sem açúcar</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍿</span><span>Pipoca simples (sem leite ou manteiga)</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫙</span><span>Bolacha de água e sal + geleia caseira</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍎</span><span>1 maçã média</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="aplv-alm">
+      <h2 class="section-title">🍽️ Almoço</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍗</span><span>Arroz + feijão + frango desfiado com azeite</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍝</span><span>Macarrão de arroz com carne moída refogada</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥔</span><span>Purê de batata com carne de panela desfiada</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌽</span><span>Cuscuz + ovo cozido + salada tomate e alface</span></div>
+        <div class="snack-card"><span class="snack-emoji">🐟</span><span>Arroz + sardinha + legumes cozidos</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="aplv-lt">
+      <h2 class="section-title">🌤️ Lanche da Tarde</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🫓</span><span>Tapioca com margarina vegetal</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥪</span><span>Sanduíche de atum com azeite</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍌</span><span>Banana picada com aveia</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍠</span><span>Batata-doce cozida</span></div>
+        <div class="snack-card"><span class="snack-emoji">🟠</span><span>Suco de laranja natural + bolachas integrais</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="aplv-jan">
+      <h2 class="section-title">🌙 Jantar</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍲</span><span>Sopa de legumes + frango desfiado</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍳</span><span>Arroz + ovo mexido + salada de tomate e pepino</span></div>
+        <div class="snack-card"><span class="snack-emoji">🐟</span><span>Macarrão de arroz com sardinha</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫔</span><span>Panqueca de carne (massa de farinha + água)</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥚</span><span>Batata cozida + ovo cozido + folhas verdes</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="aplv-ceia">
+      <h2 class="section-title">🌛 Ceia</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍵</span><span>Chá de erva-doce + 2 torradas integrais</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍎</span><span>Maçã picada com canela</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍌</span><span>Banana amassada com aveia</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫙</span><span>5 biscoitos integrais simples</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥛</span><span>200ml leite vegetal morno + mel</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="aplv-sub">
+      <h2 class="section-title">🔄 Guia de Substituições</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">⚠️</span>
+        <div><strong>Elimine completamente a proteína do leite de vaca</strong><p>Use estas substituições para manter a nutrição completa sem prejudicar o bebê.</p></div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="sub-table">
+          <thead><tr><th>Grupo</th><th>Substituir</th><th>Opção Segura APLV</th></tr></thead>
+          <tbody>
+            <tr><td>Leites</td><td>Leite de vaca</td><td>Bebida vegetal (aveia, arroz, amêndoas, coco)</td></tr>
+            <tr><td>Gorduras</td><td>Manteiga</td><td>Margarina vegetal, azeite ou óleo de coco</td></tr>
+            <tr><td>Queijos</td><td>Queijo comum</td><td>Tofu temperado ou requeijão vegano</td></tr>
+            <tr><td>Iogurtes</td><td>Iogurte comum</td><td>Iogurte de coco ou de amêndoas</td></tr>
+            <tr><td>Pães</td><td>Pão com leite</td><td>Pão integral simples ou caseiro</td></tr>
+            <tr><td>Proteínas</td><td>Cortes gordos</td><td>Peito de frango, carne moída magra ou tilápia</td></tr>
+            <tr><td>Carboidratos</td><td>Arroz branco</td><td>Arroz integral ou cuscuz de milho</td></tr>
+            <tr><td>Massas</td><td>Macarrão comum</td><td>Macarrão de arroz ou integral</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE APLV AULA -->
+<div class="content-page" id="page-aplv-aula">
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎥 Mentoria</div>
+      <h1>Aula APLV na Prática</h1>
+      <p>Descomplicando a dieta de exclusão na amamentação com a nutricionista Renata Magalhães.</p>
+    </div>
+    <div class="video-section">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/cclqSYFG0P4?si=ewA8C1w1qaWHu8AR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="video-info">
+        <h3>💛 APLV na Prática — Dieta de Exclusão sem Medo</h3>
+        <p>Mentoria leve e acolhedora com a nutricionista materno infantil Renata Magalhães, mostrando como passar por esse processo com mais segurança.</p>
+        <ul class="video-topics">
+          <li>Diferença entre APLV e intolerância à lactose</li>
+          <li>Principais sintomas e sinais de alerta</li>
+          <li>Como funciona a dieta de exclusão na amamentação</li>
+          <li>O que pode e o que não pode consumir</li>
+          <li>Como substituir nutrientes sem prejudicar sua saúde</li>
+          <li>Leitura de rótulos e cuidados com industrializados</li>
+          <li>Mitos e verdades sobre APLV</li>
+          <li>Alimentação leve, nutritiva e prática nesse período</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE APLV CHECKLIST -->
+<div class="content-page" id="page-aplv-checklist">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('ck-intro',this)">📖 Intro</button>
+    <button class="pill" onclick="scrollSec('ck-7d',this)">🗓️ Alimentação 7D</button>
+    <button class="pill" onclick="scrollSec('ck-nutrientes',this)">💊 Nutrientes</button>
+    <button class="pill" onclick="scrollSec('ck-receitas',this)">👩‍🍳 Receitas</button>
+    <button class="pill" onclick="scrollSec('ck-dicas',this)">✨ Dicas</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">✅ Checklist</div>
+      <h1>Checklist de Receitas APLV</h1>
+      <p>Alimentação 7D para secar no pós-parto — para mães lactantes com APLV.</p>
+    </div>
+    <div class="content-section" id="ck-intro">
+      <h2 class="section-title">📖 Introdução</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7">Este guia foi desenvolvido para mães lactantes com APLV se alimentarem de forma nutritiva e saborosa, sem abrir mão dos objetivos de saúde e bem-estar no pós-parto.</p>
+    </div>
+    <div class="content-section" id="ck-7d">
+      <h2 class="section-title">🗓️ Alimentação 7D</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">📋</div><div><h4>Plano Completo</h4><p>7 refeições diárias com nutrientes essenciais para recuperação pós-parto e produção de leite.</p></div></div>
+        <div class="tip-item"><div class="tip-num">⚖️</div><div><h4>Equilíbrio Nutricional</h4><p>Frutas, legumes, proteínas magras, grãos integrais e gorduras saudáveis em variedade.</p></div></div>
+        <div class="tip-item"><div class="tip-num">⚡</div><div><h4>Facilidade e Praticidade</h4><p>Receitas rápidas, adaptáveis à rotina agitada da maternidade, sem comprometer sabor.</p></div></div>
+      </div>
+    </div>
+    <div class="content-section" id="ck-nutrientes">
+      <h2 class="section-title">💊 Nutrientes Essenciais</h2>
+      <div class="options-grid">
+        <div class="option-card"><h3>🥩 Proteína</h3><ul><li>Carne magra e peixe</li><li>Ovo e feijão</li><li>Lentilhas</li></ul></div>
+        <div class="option-card"><h3>🦴 Cálcio</h3><ul><li>Vegetais folhas verdes escuras</li><li>Amêndoas e tofu</li><li>Bebidas vegetais fortificadas</li></ul></div>
+        <div class="option-card"><h3>🩸 Ferro</h3><ul><li>Carne vermelha magra</li><li>Espinafre e feijão</li><li>Leguminosas</li></ul></div>
+        <div class="option-card"><h3>☀️ Vitamina D</h3><ul><li>Peixes gordurosos</li><li>Ovos e cogumelos</li><li>15 min de sol diário</li></ul></div>
+      </div>
+    </div>
+    <div class="content-section" id="ck-receitas">
+      <h2 class="section-title">👩‍🍳 Receitas APLV</h2>
+      <div class="recipe-card">
+        <h3>🥬 Smoothie Verde Detox</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 xíc. espinafre ou couve</li><li>1 banana congelada</li><li>½ kiwi</li><li>½ xíc. leite de coco</li><li>1 col. chia</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Bata todos os ingredientes no liquidificador até cremoso. Sirva gelado.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🥑 Salada de Quinoa e Abacate</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 xíc. quinoa cozida</li><li>1 abacate em cubos</li><li>½ xíc. tomate cereja</li><li>¼ xíc. cebola roxa</li><li>Limão, azeite, sal</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Misture tudo, tempere com sal, limão e azeite. Sirva gelada.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🐟 Salmão Grelhado com Brócolis</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 filé de salmão</li><li>1 xíc. brócolis</li><li>Azeite, sal e pimenta</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Grelhe o salmão 5 min de cada lado. Cozinhe brócolis no vapor 5 min.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🥞 Panquecas de Aveia</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 xíc. aveia fina</li><li>1 ovo</li><li>½ xíc. leite de amêndoas</li><li>Fermento, sal, mel</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Misture tudo. Despeje 1/4 xíc. por panqueca em frigideira untada. Cozinhe 2 min de cada lado.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🍛 Curry de Legumes + Arroz Integral</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 xíc. grão de bico cozido</li><li>1 xíc. lentilha cozida</li><li>Couve-flor, cenoura, espinafre</li><li>Curry, cominho, gengibre</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Refogue cebola com as especiarias. Adicione legumes e cozinhe 10 min. Junte espinafre por 5 min. Sirva sobre arroz integral.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🫐 Pudim de Chia e Frutas Vermelhas</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1/4 xíc. sementes de chia</li><li>1 xíc. leite de amêndoas</li><li>1 col. mel</li><li>1/2 xíc. frutas vermelhas</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Misture chia, leite e mel. Geladeira por 4h+. Adicione as frutas antes de servir.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="content-section" id="ck-dicas">
+      <h2 class="section-title">✨ Dicas de Preparo</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Planejamento</h4><p>Cardápio semanal com antecedência garante ingredientes e tempo.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Cozinhe em Massa</h4><p>Porções maiores e congele as sobras para facilitar a semana.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Aproveite as Sobras</h4><p>Saladas, sopas ou sanduíches com o que sobrou.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Hidratação</h4><p>Beba bastante água, especialmente durante a amamentação.</p></div></div>
+      </div>
+      <div class="alert-box success" style="margin-top:16px"><span>📸</span><div>Fez alguma receita? Poste no story do Instagram e me marca! <strong>@myrnnagurgel</strong></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE APLV LEITE -->
+<div class="content-page" id="page-aplv-leite">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('lt-intro',this)">📖 Intro</button>
+    <button class="pill" onclick="scrollSec('lt-estrategias',this)">💪 Estratégias</button>
+    <button class="pill" onclick="scrollSec('lt-alimentacao',this)">🥗 Alimentação</button>
+    <button class="pill" onclick="scrollSec('lt-suplementos',this)">🌿 Suplementos</button>
+    <button class="pill" onclick="scrollSec('lt-rotina',this)">✨ Rotina</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🤱 APLV</div>
+      <h1>Aumentar a Produção de Leite</h1>
+      <p>Manual completo com estratégias para mães lactantes com APLV manterem o leite forte e em quantidade suficiente.</p>
+    </div>
+    <div class="content-section" id="lt-intro">
+      <h2 class="section-title">📖 Por que o Aleitamento é Fundamental</h2>
+      <div class="stat-cards">
+        <div class="stat-card"><span class="stat-icon">🛡️</span><h3>Imunidade</h3><p>Anticorpos e proteção contra doenças</p></div>
+        <div class="stat-card"><span class="stat-icon">🧠</span><h3>Desenvolvimento</h3><p>Nutrientes para crescimento saudável</p></div>
+        <div class="stat-card"><span class="stat-icon">💛</span><h3>Vínculo</h3><p>Fortalece a conexão mãe e filho</p></div>
+      </div>
+      <p style="font-size:13.5px;color:var(--text-muted);line-height:1.7;margin-top:14px">Para bebês com APLV, o leite materno é a principal fonte de nutrição. Amamentação exclusiva recomendada até os 6 meses, com introdução alimentar orientada pelo pediatra.</p>
+    </div>
+    <div class="content-section" id="lt-estrategias">
+      <h2 class="section-title">💪 Estratégias</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Amamentação Frequente</h4><p>O estímulo da sucção é o principal fator. Ofereça o peito sempre que o bebê demonstrar sinais de fome.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Técnica Correta</h4><p>Boca bem aberta cobrindo mamilo e aréola, queixo encostado no peito, sucção e deglutição sincronizadas.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Alimentação Saudável</h4><p>Dieta rica em proteínas, vitaminas e minerais é fundamental para o leite de qualidade.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Hidratação</h4><p>Minimo 2 litros de água por dia. Desidratação pode reduzir a produção.</p></div></div>
+        <div class="tip-item"><div class="tip-num">5</div><div><h4>Ordenha Manual</h4><p>Estimula a produção e permite armazenamento. Geladeira: até 5 dias. Congelado: até 6 meses.</p></div></div>
+        <div class="tip-item"><div class="tip-num">6</div><div><h4>Redução do Estresse</h4><p>Estresse afeta diretamente a produção. Pratique meditação, yoga ou respiração profunda.</p></div></div>
+      </div>
+    </div>
+    <div class="content-section" id="lt-alimentacao">
+      <h2 class="section-title">🥗 Alimentação Materna</h2>
+      <div class="options-grid">
+        <div class="option-card"><h3>🥩 Proteínas</h3><ul><li>Carne magra e peixe</li><li>Ovos, feijão e lentilhas</li></ul></div>
+        <div class="option-card"><h3>🥦 Vitaminas</h3><ul><li>Frutas e legumes variados</li><li>Vitamina C: laranja, brócolis</li></ul></div>
+        <div class="option-card"><h3>🚫 Evite</h3><ul><li>Alimentos processados</li><li>Excesso de cafeína e álcool</li></ul></div>
+      </div>
+    </div>
+    <div class="content-section" id="lt-suplementos">
+      <h2 class="section-title">🌿 Suplementos Galactogênicos</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">⚠️</span>
+        <div><strong>Consulte um profissional antes de usar suplementos</strong><p>Verifique a segurança para você e o bebê com seu médico ou nutricionista.</p></div>
+      </div>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🌱</span><span>Feno grego — cápsulas ou chá</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌿</span><span>Alcaçuz — cápsulas ou chá</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌺</span><span>Chá de hibisco (rico em vitamina C)</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌻</span><span>Banana, aveia, semente de girassol e cenoura</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="lt-rotina">
+      <h2 class="section-title">✨ Rotina Diária</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">⏰</div><div><h4>Organize seu tempo</h4><p>Tempo para amamentar e descansar. Sono é fundamental para a produção de leite.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🧘</div><div><h4>Ambiente tranquilo</h4><p>Espaço relaxante para amamentar. Estresse inibe a liberação de ocitocina.</p></div></div>
+        <div class="tip-item"><div class="tip-num">👩‍⚕️</div><div><h4>Apoio profissional</h4><p>Consultora de lactação, médico ou nutricionista para suporte individualizado.</p></div></div>
+        <div class="tip-item"><div class="tip-num">💛</div><div><h4>Apoio emocional</h4><p>Converse com pessoas próximas e grupos de apoio para mães lactantes.</p></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE APLV GUIA -->
+<div class="content-page" id="page-aplv-guia">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('guia-imp',this)">🌟 Importância</button>
+    <button class="pill" onclick="scrollSec('guia-restrict',this)">🚫 Restrições</button>
+    <button class="pill" onclick="scrollSec('guia-dieta',this)">🥗 Dieta</button>
+    <button class="pill" onclick="scrollSec('guia-calcio',this)">💊 Cálcio</button>
+    <button class="pill" onclick="scrollSec('guia-dicas',this)">✨ Dicas</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">📗 Guia</div>
+      <h1>Guia de Alimentação Saudável APLV</h1>
+      <p>Para mães lactantes com APLV que querem emagrecer com saúde no pós-parto.</p>
+    </div>
+    <div class="content-section" id="guia-imp">
+      <h2 class="section-title">🌟 Importância no Pós-Parto</h2>
+      <div class="stat-cards">
+        <div class="stat-card"><span class="stat-icon">💪</span><h3>Recuperação</h3><p>Nutrientes essenciais para recuperar o corpo</p></div>
+        <div class="stat-card"><span class="stat-icon">🤱</span><h3>Leite Materno</h3><p>Alimentação equilibrada garante leite de qualidade</p></div>
+        <div class="stat-card"><span class="stat-icon">🧠</span><h3>Bem-Estar</h3><p>Reduz estresse e ansiedade no pós-parto</p></div>
+      </div>
+    </div>
+    <div class="content-section" id="guia-restrict">
+      <h2 class="section-title">🚫 O que Evitar com APLV</h2>
+      <div class="alert-box warning"><span>⚠️</span><div><strong>Leia sempre os rótulos!</strong> Industrializados como pão, biscoitos e embutidos podem conter traços de leite de vaca.</div></div>
+      <div class="errors-grid">
+        <div class="error-item">Leite integral, desnatado e em pó</div>
+        <div class="error-item">Iogurte e queijo</div>
+        <div class="error-item">Manteiga e creme de leite</div>
+        <div class="error-item">Sorvetes e sobremesas lácteas</div>
+        <div class="error-item">Achocolatados e requeijão</div>
+        <div class="error-item">Ricota</div>
+      </div>
+    </div>
+    <div class="content-section" id="guia-dieta">
+      <h2 class="section-title">🥗 Dieta Equilibrada</h2>
+      <div class="options-grid">
+        <div class="option-card"><h3>🥦 Frutas e Vegetais</h3><ul><li>Vitaminas, minerais e fibras</li><li>Variedade de cores</li></ul></div>
+        <div class="option-card"><h3>🌾 Grãos Integrais</h3><ul><li>Arroz integral e quinoa</li><li>Pão integral simples</li></ul></div>
+        <div class="option-card"><h3>🥩 Proteínas</h3><ul><li>Carnes magras, aves e peixes</li><li>Ovos e leguminosas</li></ul></div>
+        <div class="option-card"><h3>🫒 Gorduras Saudáveis</h3><ul><li>Azeite de oliva</li><li>Abacate e oleaginosas</li></ul></div>
+      </div>
+    </div>
+    <div class="content-section" id="guia-calcio">
+      <h2 class="section-title">💊 Cálcio e Vitamina D sem Leite de Vaca</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🥛</span><span>Leite de amêndoas — fortificado com cálcio e vitamina D</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥬</span><span>Couve — rica em cálcio e vitamina K</span></div>
+        <div class="snack-card"><span class="snack-emoji">🐟</span><span>Salmão — vitamina D e ômega 3</span></div>
+        <div class="snack-card"><span class="snack-emoji">☀️</span><span>Sol — 15 min diários produzem vitamina D</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥦</span><span>Brócolis — cálcio e vitamina C</span></div>
+      </div>
+    </div>
+    <div class="content-section" id="guia-dicas">
+      <h2 class="section-title">✨ Dicas para Emagrecer com Saúde</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Alimentação equilibrada</h4><p>Evite processados, açúcar e gordura. Priorize alimentos naturais.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Hidratação</h4><p>2 litros de água por dia evitam retenção e aceleram o metabolismo.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Exercícios seguros</h4><p>Caminhadas leves, yoga e pilates. Consulte seu médico antes de começar.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Paciência e persistência</h4><p>Emagrecimento é gradual. Seja consistente — os resultados vêm.</p></div></div>
+        <div class="tip-item"><div class="tip-num">👩‍⚕️</div><div><h4>Acompanhamento profissional</h4><p>Nutricionista e pediatra garantem que você e o bebê tenham tudo que precisam.</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Com alimentação saudável, exercícios e acompanhamento profissional, você cuidará da sua saúde e do seu bebê com mais leveza e bem-estar.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE PLACEHOLDER -->
+<div class="content-page" id="page-placeholder">
+  <div class="placeholder-section">
+    <div class="placeholder-icon">🔜</div>
+    <h3>Conteúdo em breve</h3>
+    <p>Este material está sendo preparado e será adicionado em breve.</p>
+  </div>
+</div>
+
+</main>
+
+<script>
+(function() {
+  var LABELS = {
+    pt: { 'lbl-nav-main':'Cardápio Infalível','lbl-nav-aplv':'Cardápio Infalível APLV','lbl-aplv-1':'Cardápio Versão APLV','lbl-aplv-2':'Aula APLV na Prática','lbl-aplv-3':'Checklist de Receitas APLV','lbl-aplv-4':'Aumentar a Produção de Leite','lbl-aplv-5':'Guia de Alimentação APLV','lbl-nav-bonus':'Bônus Exclusivos','lbl-nav-mentoria':'Mentoria Com Profissionais','lbl-nav-extra':'Material Extra','lbl-btn-wpp':'Suporte no WhatsApp','lbl-btn-ig':'Seguir no Instagram' },
+    es: { 'lbl-nav-main':'Menú Infalible','lbl-nav-aplv':'Menú Infalible APLV','lbl-aplv-1':'Menú Versión APLV','lbl-aplv-2':'Clase APLV en la Práctica','lbl-aplv-3':'Checklist de Recetas APLV','lbl-aplv-4':'Aumentar la Producción de Leche','lbl-aplv-5':'Guía de Alimentación APLV','lbl-nav-bonus':'Bonos Exclusivos','lbl-nav-mentoria':'Mentoría Con Profesionales','lbl-nav-extra':'Material Extra','lbl-btn-wpp':'Soporte en WhatsApp','lbl-btn-ig':'Seguir en Instagram' }
+  };
+  var lang = localStorage.getItem('ci_lang') || 'pt';
+
+  function setLang(l) {
+    lang = l;
+    localStorage.setItem('ci_lang', l);
+    document.getElementById('btnPT').classList.toggle('active', l === 'pt');
+    document.getElementById('btnES').classList.toggle('active', l === 'es');
+    var d = LABELS[l];
+    Object.keys(d).forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = d[id];
+    });
+  }
+
+  function showPage(id) {
+    document.querySelectorAll('.content-page').forEach(function(p) { p.classList.remove('active'); });
+    var page = document.getElementById('page-' + id) || document.getElementById('page-placeholder');
+    if (page) page.classList.add('active');
+    document.getElementById('nav-main').classList.toggle('active-main', id === 'main');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeSidebar();
+  }
+
+  function toggleGroup(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function scrollSec(sId, btn) {
+    var el = document.getElementById(sId);
+    if (!el) return;
+    var pills = document.querySelector('.content-page.active .topic-pills');
+    var offset = (document.querySelector('.topbar').offsetHeight || 56) + (pills ? pills.offsetHeight : 0) + 8;
+    var top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    if (btn) {
+      var bar = btn.closest('.topic-pills');
+      if (bar) { bar.querySelectorAll('.pill').forEach(function(p) { p.classList.remove('active'); }); btn.classList.add('active'); }
+    }
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  document.getElementById('menuBtn').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+  });
+
+  (function buildDrops() {
+    var c = document.getElementById('waterDrops');
+    if (!c) return;
+    for (var i = 0; i < 10; i++) {
+      var d = document.createElement('span');
+      d.className = 'water-drop';
+      d.textContent = '\uD83D\uDCA7';
+      c.appendChild(d);
+    }
+  })();
+
+  window.setLang = setLang;
+  window.showPage = showPage;
+  window.toggleGroup = toggleGroup;
+  window.scrollSec = scrollSec;
+  window.closeSidebar = closeSidebar;
+
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
