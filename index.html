@@ -112,14 +112,19 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 500;
   text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; width: 100%;
 }
-.btn-whatsapp { background: #25D366; color: #fff; }
-.btn-whatsapp:hover { background: #1DAE54; }
+.btn-whatsapp { background: #25D366; color: #fff; animation: pulse-wpp 2.5s infinite; }
+.btn-whatsapp:hover { background: #1DAE54; animation: none; }
+@keyframes pulse-wpp {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+  50% { box-shadow: 0 0 0 7px rgba(37,211,102,0); }
+}
 .btn-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
 .btn-instagram:hover { opacity: 0.88; }
 .btn-copylink { background: #2563EB; color: #fff; border: none; transition: background 0.3s, transform 0.15s; }
 .btn-copylink:hover { background: #1d4ed8; }
 .btn-copylink.copied { background: #22c55e; }
-.copy-link-block { background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.18); border-radius: 10px; padding: 12px 13px; }
+.copy-link-block { background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.18); border-radius: 10px; padding: 12px 13px; overflow: hidden; max-height: 300px; transition: max-height 0.35s cubic-bezier(.4,0,.2,1), opacity 0.3s, padding 0.3s; opacity: 1; }
+.copy-link-block.collapsed { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; border-color: transparent; }
 .copy-link-msg { font-size: 12px; color: var(--sidebar-text); line-height: 1.55; margin-bottom: 10px; }
 .copy-link-msg strong { color: #2563EB; }
 .copy-link-hint { font-size: 11px; color: var(--sidebar-muted); line-height: 1.45; margin-top: 8px; text-align: center; font-style: italic; }
@@ -306,12 +311,12 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
         <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
       </div>
       <div class="nav-children">
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Receitas Exclusivas Para Novas Mães</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Emagrecer Durante a Amamentação</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Aumentar a Produção de Leite</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Guia de Hidratação para Mães</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Checklist de Receitas</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Manual Para Ter Mais Disposição</div>
+        <div class="nav-child" onclick="showPage('bonus-receitas')"><span class="nav-child-dot"></span>Receitas Exclusivas Para Novas Mães</div>
+        <div class="nav-child" onclick="showPage('bonus-emagrecer')"><span class="nav-child-dot"></span>Emagrecer Durante a Amamentação</div>
+        <div class="nav-child" onclick="showPage('bonus-leite')"><span class="nav-child-dot"></span>Aumentar a Produção de Leite</div>
+        <div class="nav-child" onclick="showPage('bonus-hidratacao')"><span class="nav-child-dot"></span>Guia de Hidratação para Mães</div>
+        <div class="nav-child" onclick="showPage('bonus-checklist')"><span class="nav-child-dot"></span>Checklist Alimentação 7D</div>
+        <div class="nav-child" onclick="showPage('bonus-disposicao')"><span class="nav-child-dot"></span>Manual Para Ter Mais Disposição</div>
       </div>
     </div>
     <div class="nav-group" id="grp-mentoria">
@@ -357,9 +362,9 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       <p class="copy-link-hint">Você pode criar um atalho para ficar aparecendo na tela de início do seu celular!</p>
     </div>
     <div class="sidebar-social-divider"></div>
-    <a href="https://api.whatsapp.com/send?phone=5585992225227&text=Oi%20Myrnna,%20preciso%20de%20ajuda%20com%20o%20App%20do%20Card%C3%A1pio!" target="_blank" class="btn-social btn-whatsapp">
+    <a href="https://api.whatsapp.com/send?phone=5585992225227&text=Oi%20Myrnna,%20entrei%20no%20app%20do%20Card%C3%A1pio%20e%20quero%20meu%20brinde!" target="_blank" class="btn-social btn-whatsapp">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      <span id="lbl-btn-wpp">Suporte no WhatsApp</span>
+      <span id="lbl-btn-wpp">Resgatar meu brinde no WhatsApp</span>
     </a>
     <a href="https://www.instagram.com/myrnnagurgel" target="_blank" class="btn-social btn-instagram">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -886,6 +891,578 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   </div>
 </div>
 
+<!-- PAGE BONUS RECEITAS -->
+<div class="content-page" id="page-bonus-receitas">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('br-intro',this)">📖 Intro</button>
+    <button class="pill" onclick="scrollSec('br-cafe',this)">☀️ Café & Lanches</button>
+    <button class="pill" onclick="scrollSec('br-almoco',this)">🍽️ Almoço & Jantar</button>
+    <button class="pill" onclick="scrollSec('br-dicas',this)">✨ Dicas</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎁 Bônus Exclusivo</div>
+      <h1>Receitas Exclusivas Para Novas Mães</h1>
+      <p>Guia de emagrecimento pós-parto com receitas saudáveis. Emagreça até 2kg por semana mantendo energia para cuidar de você e do seu bebê.</p>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card"><span class="stat-icon">⚡</span><h3>Metabolismo</h3><p>Receitas que aceleram naturalmente</p></div>
+      <div class="stat-card"><span class="stat-icon">💪</span><h3>Proteínas</h3><p>Saciedade e recuperação muscular</p></div>
+      <div class="stat-card"><span class="stat-icon">🌿</span><h3>Nutritivo</h3><p>Equilibrado para mãe e bebê</p></div>
+    </div>
+
+    <div class="content-section" id="br-intro">
+      <h2 class="section-title">📖 Como Funciona o Plano</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Refeições Equilibradas</h4><p>Ricas em proteínas, fibras e nutrientes essenciais, com baixo teor de carboidratos ruins e gorduras saturadas.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Aceleração do Metabolismo</h4><p>Receitas pensadas para acelerar o metabolismo e controlar o apetite naturalmente.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Energia para Mães</h4><p>Fornecem a energia necessária para a rotina agitada de uma nova mãe.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Perda de Peso Saudável</h4><p>Respeitando o tempo e o corpo da nova mãe, sem dietas restritivas.</p></div></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="br-cafe">
+      <h2 class="section-title">☀️ Café da Manhã e Lanches</h2>
+      <div class="recipe-card">
+        <h3>🥚 Omelete de Claras com Espinafre e Tomate</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>4 claras de ovo</li><li>1 xíc. de espinafre picado</li><li>1 tomate picado</li><li>1 col. chá de azeite</li><li>Sal e pimenta</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Aqueça o azeite, refogue espinafre e tomate por 2 min. Adicione as claras batidas e cozinhe até firmar.</p><p style="margin-top:8px;font-size:12px;color:var(--primary-dark)">✅ Rico em proteínas e baixo em calorias — mantém saciedade.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🥤 Smoothie Verde Detox</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 xíc. de couve</li><li>1 maçã verde</li><li>1 fatia de gengibre</li><li>Suco de 1 limão</li><li>200ml de água de coco</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Bata tudo no liquidificador até ficar homogêneo. Sirva gelado.</p><p style="margin-top:8px;font-size:12px;color:var(--primary-dark)">✅ Elimina toxinas e acelera o metabolismo.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🥞 Panqueca de Aveia com Banana e Canela</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>2 col. sopa de aveia</li><li>1 banana madura</li><li>2 claras de ovo</li><li>1 col. chá de canela</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Amasse a banana, misture os ingredientes e cozinhe em frigideira antiaderente até dourar.</p><p style="margin-top:8px;font-size:12px;color:var(--primary-dark)">✅ Rica em fibras para energia estável.</p></div>
+        </div>
+      </div>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🫙 Iogurte Grego com Chia</h3>
+          <ul><li>Iogurte grego (proteína)</li><li>Sementes de chia (fibras e ômega-3)</li><li>Frutas vermelhas (antioxidantes)</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🥕 Palitinhos com Hummus</h3>
+          <ul><li>Cenoura (betacaroteno)</li><li>Pepino (hidratante)</li><li>Hummus (proteína vegetal)</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🧁 Muffin Proteico de Ovo</h3>
+          <ul><li>Bata ovos com legumes e queijo</li><li>Asse a 180°C por 20 minutos</li><li>Fácil de preparar em lote</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="br-almoco">
+      <h2 class="section-title">🍽️ Almoço e Jantar</h2>
+      <div class="recipe-card">
+        <h3>🥗 Salada de Quinoa com Frango e Abacate</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>Quinoa cozida</li><li>Peito de frango grelhado</li><li>Abacate picado</li><li>Tomate cereja</li></ul></div>
+          <div class="recipe-col"><h5>Tempero</h5><p>Azeite de oliva, suco de limão, sal e pimenta a gosto.</p><p style="margin-top:8px;font-size:12px;color:var(--primary-dark)">✅ Rica em proteínas e gorduras saudáveis.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🐟 Peixe Grelhado com Legumes Assados</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Preparo</h5><p>Preaqueça o forno a 200°C. Asse os legumes por 20 min e grelhe o peixe até dourar dos dois lados.</p></div>
+          <div class="recipe-col"><h5>Dica</h5><p>Tempere os legumes com azeite, alho e ervas frescas antes de assar para mais sabor.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🫔 Wrap Integral de Atum com Abacate</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>Wrap integral</li><li>Atum em lata (água)</li><li>Abacate amassado</li><li>Iogurte natural, alface, tomate</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Misture o atum, abacate e iogurte. Adicione os vegetais e enrole firmemente.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🎃 Sopa Cremosa de Abóbora com Gengibre</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Preparo</h5><p>Refogue cebola, alho e gengibre no azeite. Cozinhe a abóbora com caldo de legumes até ficar macia e bata no liquidificador.</p></div>
+          <div class="recipe-col"><h5>Dica</h5><p>Sirva com torradas integrais e uma fio de azeite por cima. Pode ser congelada em porções.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🍛 Frango ao Curry com Leite de Coco</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>Frango em cubos</li><li>Cebola, alho, curry</li><li>Leite de coco light</li><li>Brócolis</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Refogue os temperos e o frango. Cozinhe com o leite de coco até encorpar o molho.</p></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <h3>🍝 Espaguete de Abobrinha com Almôndegas de Peru</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Preparo</h5><p>Faça as almôndegas com carne de peru temperada. Cozinhe com molho de tomate pelado.</p></div>
+          <div class="recipe-col"><h5>Finalização</h5><p>Sirva sobre o espaguete de abobrinha (use um espirilizador ou descascador). Nutritivo e leve!</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="br-dicas">
+      <h2 class="section-title">✨ Dicas para o Sucesso</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">📋</div><div><h4>Planejamento</h4><p>Prepare as refeições com antecedência. Cozinhar em lote no domingo economiza muito tempo na semana.</p></div></div>
+        <div class="tip-item"><div class="tip-num">💧</div><div><h4>Hidratação</h4><p>Beba bastante água para auxiliar no emagrecimento e na produção de leite.</p></div></div>
+        <div class="tip-item"><div class="tip-num">⏳</div><div><h4>Consistência e Paciência</h4><p>O emagrecimento saudável leva tempo. Mantenha a rotina alimentar sem se cobrar demais.</p></div></div>
+        <div class="tip-item"><div class="tip-num">👩‍⚕️</div><div><h4>Acompanhamento Profissional</h4><p>Consulte regularmente seu médico e nutricionista para ajustes personalizados.</p></div></div>
+      </div>
+      <div class="alert-box success" style="margin-top:16px"><span>💪</span><div>Obtenha liberação médica antes de iniciar exercícios físicos. Comece de forma gradual e respeite seu corpo!</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BONUS EMAGRECER -->
+<div class="content-page" id="page-bonus-emagrecer">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('em-intro',this)">🌟 Intro</button>
+    <button class="pill" onclick="scrollSec('em-cafe',this)">☀️ Café</button>
+    <button class="pill" onclick="scrollSec('em-almoco',this)">🍽️ Almoço</button>
+    <button class="pill" onclick="scrollSec('em-lanches',this)">🍎 Lanches</button>
+    <button class="pill" onclick="scrollSec('em-exercicios',this)">🏃 Exercícios</button>
+    <button class="pill" onclick="scrollSec('em-estresse',this)">🧘 Estresse</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎁 Bônus Exclusivo</div>
+      <h1>Emagrecer de Forma Saudável Durante a Amamentação</h1>
+      <p>Emagrecer durante a amamentação é possível! Aqui está o guia para fazer isso de forma cuidadosa, garantindo que mãe e bebê recebam todos os nutrientes necessários.</p>
+    </div>
+
+    <div class="content-section" id="em-intro">
+      <h2 class="section-title">🌟 Alimentação Balanceada</h2>
+      <div class="stat-cards">
+        <div class="stat-card"><span class="stat-icon">🥛</span><h3>Leite de Qualidade</h3><p>Nutrição adequada garante leite materno saudável</p></div>
+        <div class="stat-card"><span class="stat-icon">⚡</span><h3>Energia</h3><p>Refeições nutritivas para cuidar do bebê</p></div>
+        <div class="stat-card"><span class="stat-icon">🌱</span><h3>Saúde Duradoura</h3><p>Hábitos que se mantêm a longo prazo</p></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="em-cafe">
+      <h2 class="section-title">☀️ Cafés da Manhã Deliciosos</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🌙</span><span><strong>Overnight Oats</strong> — Aveia de molho com frutas, nozes e canela</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥞</span><span><strong>Panquecas Integrais</strong> — Com ovos, banana e canela, servidas com mel</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥤</span><span><strong>Smoothie Energético</strong> — Frutas, vegetais, proteína e leite vegetal</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥑</span><span><strong>Torrada com Abacate</strong> — Com ovo cozido e tomate cereja</span></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="em-almoco">
+      <h2 class="section-title">🍽️ Almoços Rápidos e Práticos</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🌾</span><span><strong>Salada de Grãos</strong> — Quinoa, lentilha ou feijão com vegetais frescos</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫔</span><span><strong>Wrap Vegetariano</strong> — Com hummus, legumes grelhados e folhas verdes</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍲</span><span><strong>Sopa Nutritiva</strong> — Vegetais com acompanhamento de pão integral</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍗</span><span><strong>Frango Grelhado</strong> — Com arroz integral e vegetais salteados</span></div>
+      </div>
+      <div class="highlight-card" style="margin-top:14px">
+        <span class="hc-icon">🌙</span>
+        <div><strong>Jantares Leves e Equilibrados</strong><p>Proteína magra (carnes brancas, peixes ou leguminosas) + carboidratos integrais (arroz, quinoa ou batata-doce) + vegetais variados.</p></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="em-lanches">
+      <h2 class="section-title">🍎 Lanches Saudáveis</h2>
+      <div class="options-grid">
+        <div class="option-card"><h3>🍎 Maçã</h3><ul><li>Rica em fibras e vitaminas</li><li>Ajuda a saciar a fome</li><li>Prática para levar</li></ul></div>
+        <div class="option-card"><h3>🥜 Amendoim</h3><ul><li>Proteínas e gorduras saudáveis</li><li>Mantém a energia por mais tempo</li><li>Fácil de ter em casa</li></ul></div>
+        <div class="option-card"><h3>🥕 Cenoura</h3><ul><li>Rica em vitamina A</li><li>Ótima para olhos e pele</li><li>Combina com hummus</li></ul></div>
+        <div class="option-card"><h3>🫙 Iogurte</h3><ul><li>Rico em probióticos</li><li>Melhora a digestão</li><li>Fortalece a imunidade</li></ul></div>
+      </div>
+      <div class="highlight-card">
+        <span class="hc-icon">💧</span>
+        <div><strong>Hidratação Adequada</strong><p>Pelo menos 2 litros de água por dia. Chás de ervas e frutas também contam. Sucos naturais são ótimas opções nutritivas.</p></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="em-exercicios">
+      <h2 class="section-title">🏃 Exercícios Leves e Adaptados</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">🚶</div><div><h4>Caminhadas</h4><p>Atividade física leve e acessível, fortalece o coração e pode ser feita com o carrinho do bebê.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🧘</div><div><h4>Yoga Suave</h4><p>Práticas com movimentos lentos e posturas adaptadas ao pós-parto. Reduz o estresse e melhora a flexibilidade.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🏊</div><div><h4>Exercícios Aquáticos</h4><p>Natação ou hidroginástica — baixo impacto nas articulações, excelente para o pós-parto.</p></div></div>
+      </div>
+      <div class="alert-box warning" style="margin-top:14px"><span>⚠️</span><div><strong>Importante:</strong> Sempre obtenha liberação médica antes de iniciar qualquer atividade física no pós-parto.</div></div>
+    </div>
+
+    <div class="content-section" id="em-estresse">
+      <h2 class="section-title">🧘 Dicas para Evitar o Estresse</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🧘</span><span><strong>Meditação</strong> — Alguns minutos diários ajudam a reduzir o estresse</span></div>
+        <div class="snack-card"><span class="snack-emoji">🎨</span><span><strong>Atividades Prazerosas</strong> — Reserve tempo para o que a relaxa</span></div>
+        <div class="snack-card"><span class="snack-emoji">👨‍👩‍👧</span><span><strong>Apoio Social</strong> — Peça ajuda a familiares e amigos</span></div>
+        <div class="snack-card"><span class="snack-emoji">😴</span><span><strong>Sono Adequado</strong> — 7–9 horas por noite para mais disposição</span></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Com uma abordagem equilibrada, você conseguirá emagrecer de forma saudável durante a amamentação. Seja paciente, consistente — você consegue!</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BONUS LEITE -->
+<div class="content-page" id="page-bonus-leite">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('bl-intro',this)">📖 Intro</button>
+    <button class="pill" onclick="scrollSec('bl-entenda',this)">🔬 Como Funciona</button>
+    <button class="pill" onclick="scrollSec('bl-dicas',this)">💡 Dicas</button>
+    <button class="pill" onclick="scrollSec('bl-ajuda',this)">👩‍⚕️ Ajuda Profissional</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎁 Bônus Exclusivo</div>
+      <h1>Aumentar a Produção de Leite Materno</h1>
+      <p>Manual completo com estratégias práticas e eficazes para garantir que seu bebê receba a nutrição necessária para um crescimento saudável.</p>
+    </div>
+
+    <div class="content-section" id="bl-intro">
+      <h2 class="section-title">📖 A Importância da Amamentação</h2>
+      <div class="stat-cards">
+        <div class="stat-card"><span class="stat-icon">🥛</span><h3>Nutrição Natural</h3><p>Todos os nutrientes que o bebê precisa</p></div>
+        <div class="stat-card"><span class="stat-icon">💛</span><h3>Vínculo</h3><p>Fortalece a conexão emocional única</p></div>
+        <div class="stat-card"><span class="stat-icon">🛡️</span><h3>Proteção</h3><p>Imunidade e prevenção de doenças</p></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="bl-entenda">
+      <h2 class="section-title">🔬 Entenda a Produção de Leite</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Estímulo</h4><p>A sucção do bebê estimula os nervos na mama, enviando sinais ao cérebro.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Liberação Hormonal</h4><p>O cérebro libera prolactina e ocitocina em resposta ao estímulo da sucção.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Produção de Leite</h4><p>A prolactina estimula a produção de leite nas glândulas mamárias.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Ejeção do Leite</h4><p>A ocitocina contrai as células musculares ao redor das glândulas, liberando o leite.</p></div></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="bl-dicas">
+      <h2 class="section-title">💡 Dicas para Aumentar a Produção</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🤱 Amamentação Frequente</h3>
+          <ul><li>Em livre demanda, a cada 2–3h</li><li>Incluindo durante a noite</li><li>Troque de mama durante a mamada</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>✋ Pega e Posição Corretas</h3>
+          <ul><li>Boca cobrindo mamilo e aréola</li><li>Queixo encostado no peito</li><li>Experimente diferentes posições</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>💧 Hidratação e Alimentação</h3>
+          <ul><li>Mínimo 2 litros de água/dia</li><li>Dieta rica em nutrientes</li><li>Alimentos galactogogos</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🫸 Ordenha Frequente</h3>
+          <ul><li>Manual ou com bomba</li><li>Esvazia completamente as mamas</li><li>Estimula maior produção</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>😌 Autocuidado</h3>
+          <ul><li>Priorize o descanso</li><li>Massagens nas mamas</li><li>Reduza o estresse</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🌿 Suplementos Naturais</h3>
+          <ul><li>Feno grego e alcaçuz</li><li>Banana, aveia, cenoura</li><li>Consulte um profissional antes</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="bl-ajuda">
+      <h2 class="section-title">👩‍⚕️ Quando Procurar Ajuda Profissional</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">⚠️</div><div><h4>Produção Persistentemente Baixa</h4><p>Se mesmo após seguir as dicas a produção continua baixa, busque ajuda especializada.</p></div></div>
+        <div class="tip-item"><div class="tip-num">👩‍⚕️</div><div><h4>Consulta Especializada</h4><p>Consultora de amamentação, pediatra ou obstetra podem avaliar se há algum problema subjacente.</p></div></div>
+        <div class="tip-item"><div class="tip-num">📋</div><div><h4>Orientações Personalizadas</h4><p>Profissionais de saúde oferecem orientações adaptadas às suas necessidades específicas.</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Aumentar a produção de leite é um processo que requer paciência e persistência. Confie no seu corpo e na sua capacidade de nutrir seu bebê.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BONUS HIDRATAÇÃO -->
+<div class="content-page" id="page-bonus-hidratacao">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('hid-intro',this)">💧 Intro</button>
+    <button class="pill" onclick="scrollSec('hid-importancia',this)">🌟 Importância</button>
+    <button class="pill" onclick="scrollSec('hid-fontes',this)">🥤 Fontes</button>
+    <button class="pill" onclick="scrollSec('hid-dicas',this)">✨ Dicas</button>
+    <button class="pill" onclick="scrollSec('hid-mitos',this)">❓ Mitos</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎁 Bônus Exclusivo</div>
+      <h1>Guia de Hidratação para Mães Lactantes</h1>
+      <p>A hidratação é fundamental para mães que amamentam. Entenda sua importância e como se manter hidratada durante a amamentação.</p>
+    </div>
+
+    <div class="content-section" id="hid-intro">
+      <h2 class="section-title">💧 Por que Hidratação é Essencial</h2>
+      <div class="stat-cards">
+        <div class="stat-card"><span class="stat-icon">💪</span><h3>Saúde</h3><p>Mantém a mãe saudável e energizada</p></div>
+        <div class="stat-card"><span class="stat-icon">🥛</span><h3>Qualidade do Leite</h3><p>Garante produção abundante e de qualidade</p></div>
+        <div class="stat-card"><span class="stat-icon">😊</span><h3>Bem-Estar</h3><p>Contribui para o bem-estar de mãe e bebê</p></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="hid-importancia">
+      <h2 class="section-title">🌟 Importância Durante a Amamentação</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">🥛</div><div><h4>Produção de Leite</h4><p>O leite materno é 88% água. A hidratação garante produção constante e de qualidade para o bebê.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🌸</div><div><h4>Recuperação Pós-Parto</h4><p>Ajuda na regulação hormonal, cicatrização e combate à fadiga do pós-parto.</p></div></div>
+        <div class="tip-item"><div class="tip-num">⚡</div><div><h4>Energia e Digestão</h4><p>Mantém níveis de energia elevados e facilita a digestão ao longo do dia.</p></div></div>
+      </div>
+      <div class="highlight-card" style="margin-top:16px">
+        <span class="hc-icon">📏</span>
+        <div><strong>Quantidade Diária Recomendada</strong><p>Mães lactantes devem consumir entre <strong>3 a 3,5 litros</strong> de líquidos por dia, incluindo água, sucos naturais e chás sem cafeína.</p></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="hid-fontes">
+      <h2 class="section-title">🥤 Melhores Fontes de Hidratação</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>💧 Água</h3>
+          <ul><li>Principal fonte de hidratação</li><li>Mantenha uma garrafa sempre à mão</li><li>Beba um copo ao amamentar</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🥥 Água de Coco</h3>
+          <ul><li>Rica em eletrólitos naturais</li><li>Repõe minerais importantes</li><li>Saborosa e nutritiva</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🍵 Chás de Ervas</h3>
+          <ul><li>Camomila e hortelã hidratam e acalmam</li><li>Evite os com cafeína</li><li>Opção quentinha para a madrugada</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🍊 Sucos Naturais</h3>
+          <ul><li>Ricos em vitaminas</li><li>Prefira sem açúcar adicionado</li><li>Contribuem para a hidratação</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="hid-dicas">
+      <h2 class="section-title">✨ Dicas para Beber Mais Água</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">🍶</div><div><h4>Garrafa Reutilizável</h4><p>Tenha sempre uma garrafa à mão — visível é mais fácil de lembrar de beber.</p></div></div>
+        <div class="tip-item"><div class="tip-num">⏰</div><div><h4>Rotina de Hidratação</h4><p>Beba ao acordar, antes das refeições, ao amamentar e ao dormir.</p></div></div>
+        <div class="tip-item"><div class="tip-num">📱</div><div><h4>Aplicativos</h4><p>Use apps para monitorar e receber lembretes de beber água ao longo do dia.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🌈</div><div><h4>Variedade</h4><p>Alterne entre água, chás e sucos naturais para não enjoar e manter a hidratação.</p></div></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="hid-mitos">
+      <h2 class="section-title">❓ Mitos e Verdades</h2>
+      <div class="snack-grid">
+        <div class="snack-card" style="border-color:rgba(239,68,68,0.25);background:rgba(239,68,68,0.04)"><span class="snack-emoji">❌</span><span><strong>MITO:</strong> Beber muita água aumenta a produção de leite</span></div>
+        <div class="snack-card" style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.05)"><span class="snack-emoji">✅</span><span><strong>VERDADE:</strong> Hidratação adequada mantém — beber em excesso não aumenta</span></div>
+        <div class="snack-card" style="border-color:rgba(239,68,68,0.25);background:rgba(239,68,68,0.04)"><span class="snack-emoji">❌</span><span><strong>MITO:</strong> Somente a água conta para a hidratação</span></div>
+        <div class="snack-card" style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.05)"><span class="snack-emoji">✅</span><span><strong>VERDADE:</strong> Limite cafeína e evite álcool — afetam o leite</span></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">A hidratação é vital para mães lactantes. Beba água regularmente, mesmo antes da sede. Seu bem-estar é essencial para uma amamentação saudável.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BONUS CHECKLIST 7D -->
+<div class="content-page" id="page-bonus-checklist">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('7d-intro',this)">📖 Intro</button>
+    <button class="pill" onclick="scrollSec('7d-macros',this)">💊 Nutrição</button>
+    <button class="pill" onclick="scrollSec('7d-dias',this)">📅 Os 7 Dias</button>
+    <button class="pill" onclick="scrollSec('7d-desafios',this)">💪 Desafios</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎁 Bônus Exclusivo</div>
+      <h1>Checklist — Alimentação 7D Para Secar</h1>
+      <p>O segredo não revelado da alimentação 7D para secar no pós-parto. Um plano de 7 dias com refeições estratégicas para emagrecer rápido e com saúde.</p>
+    </div>
+
+    <div class="content-section" id="7d-intro">
+      <h2 class="section-title">📖 Por que a Alimentação é Crucial no Pós-Parto</h2>
+      <div class="stat-cards">
+        <div class="stat-card"><span class="stat-icon">⚡</span><h3>Energia</h3><p>Para cuidar do bebê e recuperar as forças</p></div>
+        <div class="stat-card"><span class="stat-icon">🥛</span><h3>Leite de Qualidade</h3><p>Vitaminas e minerais para um leite nutritivo</p></div>
+        <div class="stat-card"><span class="stat-icon">🧠</span><h3>Saúde Mental</h3><p>Dieta equilibrada combate estresse e ansiedade</p></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="7d-macros">
+      <h2 class="section-title">💊 Macros e Micros Essenciais</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🥩 Proteínas</h3>
+          <ul><li>Reforço muscular e saciedade</li><li>Produção de leite de qualidade</li><li>Carnes magras, ovos, leguminosas</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🌾 Carboidratos</h3>
+          <ul><li>Energia para o corpo e produção de leite</li><li>Frutas, grãos integrais, batata-doce</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🫒 Gorduras Boas</h3>
+          <ul><li>Regulação hormonal</li><li>Absorção de vitaminas</li><li>Azeite, abacate, oleaginosas, peixes</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="7d-dias">
+      <h2 class="section-title">📅 Os 7 Dias Mágicos</h2>
+      <div class="tips-list">
+        <div class="tip-item">
+          <div class="tip-num" style="background:#7C3AED;min-width:42px;font-size:10px">DIA 1</div>
+          <div><h4>Desintoxicação — A Grande Limpeza</h4><p>Alimentos ricos em fibras e água. Sucos verdes, chás detox, elimine processados. Beba 2L de água com limão ou hortelã.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#DC2626;min-width:42px;font-size:10px">DIA 2</div>
+          <div><h4>Festival das Proteínas Magras</h4><p>Frango magro grelhado, peixes como salmão e tilápia, ou tofu para proteínas vegetais. Foco em recuperação e saciedade.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#059669;min-width:42px;font-size:10px">DIA 3</div>
+          <div><h4>Energia Imunológica — Gorduras Elegantes</h4><p>Abacate, nozes, óleo de coco, azeite extra-virgem e peixes com ômega-3 para fortalecer a imunidade.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#D97706;min-width:42px;font-size:10px">DIA 4</div>
+          <div><h4>Queima de Gordura — Carboidratos Complexos</h4><p>Substitua pão e massas brancos por integrais. Aposte em quinoa e batata-doce para energia estável.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#DB2777;min-width:42px;font-size:10px">DIA 5</div>
+          <div><h4>Equilíbrio Hormonal</h4><p>Alimentos ricos em fibras e proteínas para regular e estabilizar os níveis hormonais pós-parto.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#2563EB;min-width:42px;font-size:10px">DIA 6</div>
+          <div><h4>Reforço Metabólico</h4><p>Aumente o consumo de alimentos estratégicos ricos em proteínas e fibras para manter o metabolismo ativo.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#0F766E;min-width:42px;font-size:10px">DIA 7</div>
+          <div><h4>Manutenção — Serenata do Descanso Digestivo</h4><p>Sopas e saladas leves à noite. Faça a última refeição um pouco mais cedo para o corpo processar antes do sono.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="7d-desafios">
+      <h2 class="section-title">💪 Superando Desafios</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">🍳</div><div><h4>Para Refeições Saudáveis</h4><p>Planeje e cozinhe com antecedência. Cozinhe em casa com ingredientes frescos, controlando sal, açúcar e gordura.</p></div></div>
+        <div class="tip-item"><div class="tip-num">💧</div><div><h4>Contra Retenção de Líquidos</h4><p>Consuma banana, abacate, espinafre e melancia (ricos em potássio). Retome exercícios conforme liberação médica.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🎯</div><div><h4>Mantendo a Motivação</h4><p>Crie uma rotina fixa, busque apoio e comemore suas pequenas vitórias. Foque nos resultados a longo prazo!</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">A alimentação 7D é uma ferramenta poderosa para a sua recuperação. Priorize a saúde, respeite o tempo do seu corpo e celebre cada passo em direção à sua melhor versão!</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BONUS DISPOSIÇÃO -->
+<div class="content-page" id="page-bonus-disposicao">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('dis-intro',this)">💌 Intro</button>
+    <button class="pill" onclick="scrollSec('dis-tempo',this)">⏰ Tempo</button>
+    <button class="pill" onclick="scrollSec('dis-descanso',this)">😴 Descanso</button>
+    <button class="pill" onclick="scrollSec('dis-pausas',this)">✨ Pausas</button>
+    <button class="pill" onclick="scrollSec('dis-ferramentas',this)">📱 Ferramentas</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎁 Bônus Exclusivo</div>
+      <h1>Manual Para Ter Mais Disposição e Tempo</h1>
+      <p>Seu guia secreto para desbloquear uma versão sua ainda mais incrível — com estratégias para gerenciar tempo, recarregar as baterias e aproveitar cada momento com seu bebê.</p>
+    </div>
+
+    <div class="content-section" id="dis-intro">
+      <h2 class="section-title">💌 Uma Carta Para Você</h2>
+      <blockquote class="brand-quote">Para cuidar do seu bebê com amor incondicional, primeiro você precisa encher seu próprio copo de energia, saúde e alegria.</blockquote>
+      <div class="stat-cards" style="margin-top:16px">
+        <div class="stat-card"><span class="stat-icon">⚡</span><h3>Mais Energia</h3><p>Estratégias para recarregar mais rápido</p></div>
+        <div class="stat-card"><span class="stat-icon">⏰</span><h3>Mais Tempo</h3><p>Organização que faz a diferença</p></div>
+        <div class="stat-card"><span class="stat-icon">😊</span><h3>Mais Alegria</h3><p>Aproveitar cada momento precioso</p></div>
+      </div>
+    </div>
+
+    <div class="content-section" id="dis-tempo">
+      <h2 class="section-title">⏰ Gerenciamento de Tempo</h2>
+      <div class="tips-list">
+        <div class="tip-item">
+          <div class="tip-num">📋</div>
+          <div><h4>Lista de Tarefas Inteligente</h4><p>Divida em <strong>"Urgente"</strong>, <strong>"Importante"</strong> e <strong>"Se o Bebê Permitir"</strong>. Isso ajuda a focar no que realmente precisa ser feito.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">⚡</div>
+          <div><h4>A Regra dos 5 Minutos</h4><p>Se uma tarefa pode ser feita em 5 minutos ou menos, faça imediatamente. Trocar roupa do bebê? Check! Responder mensagem rápida? Check!</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">🔄</div>
+          <div><h4>Rotina Sincronizada com o Bebê</h4><p>Enquanto ele dorme, reserve tempo para você — um cochilo, uma xícara de chá ou algo que te recarregue.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">🎵</div>
+          <div><h4>Blocos de Tempo Flexíveis</h4><p>Divida o dia em blocos para bebê, autocuidado e tarefas domésticas. Lembre: a flexibilidade é sua melhor amiga!</p></div>
+        </div>
+      </div>
+      <div class="alert-box info" style="margin-top:14px">
+        <span>💡</span>
+        <div><strong>O Poder do Não:</strong> Aprenda a dizer "não" sem culpa. Delegar ao parceiro, familiares ou amigos não diminui seus superpoderes de mãe — multiplica o amor!</div>
+      </div>
+    </div>
+
+    <div class="content-section" id="dis-descanso">
+      <h2 class="section-title">😴 Descanso de Qualidade</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">💤</span>
+        <div><strong>O Sono é um Superalimento</strong><p>Mesmo picado, existem formas de maximizar essas preciosas horas. Cada momento de descanso é um presente precioso.</p></div>
+      </div>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">🌬️</div><div><h4>Respiração Profunda</h4><p>Inspire contando até 4, segure por 4, expire por 4. É como um botão de reset para o seu sistema nervoso.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🧘</div><div><h4>Meditação de 5 Minutos</h4><p>Apps como Headspace ou Calm têm sessões curtas — podem ser feitas até durante a amamentação.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🍵</div><div><h4>Ritual Noturno</h4><p>Chá de camomila, uma página de livro ou um alongamento rápido sinalizam ao corpo que é hora de desacelerar.</p></div></div>
+        <div class="tip-item"><div class="tip-num">💤</div><div><h4>Sono Polifásico</h4><p>Sincronize pequenos cochilos com as sonecas do bebê. Mesmo períodos curtos são revigorantes se você relaxar completamente.</p></div></div>
+      </div>
+      <div class="options-grid" style="margin-top:14px">
+        <div class="option-card">
+          <h3>🙏 Gratidão em 3 Respirações</h3>
+          <ul><li>Faça 3 respirações profundas</li><li>Pense em 3 coisas pelas quais é grata</li><li>A gratidão traz paz instantânea</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🤱 Mindfulness com o Bebê</h3>
+          <ul><li>Amamentar como prática de atenção plena</li><li>Estar plenamente presente no momento</li><li>Absorver a conexão com seu bebê</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="dis-pausas">
+      <h2 class="section-title">✨ Maximizando Pequenos Momentos</h2>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px;line-height:1.65">Você pode ser mestre ninja do autocuidado mesmo com o cronograma mais caótico!</p>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">📔</span><span><strong>Diário de Gratidão Relâmpago</strong> — 1 minutinho anotando algo pelo qual é grata hoje</span></div>
+        <div class="snack-card"><span class="snack-emoji">💄</span><span><strong>Sessão de Beleza de 1 Minuto</strong> — Hidratante, escova rápida ou batom = renovação!</span></div>
+        <div class="snack-card"><span class="snack-emoji">👁️</span><span><strong>Meditação "Olho Fechado"</strong> — Apenas contar até 10 faz maravilhas</span></div>
+        <div class="snack-card"><span class="snack-emoji">🚶</span><span><strong>Passeio com o Carrinho</strong> — Exercício + ar fresco + mudança de cenário</span></div>
+      </div>
+      <div class="alert-box success" style="margin-top:14px"><span>🦸</span><div>Cada segundo de autocuidado conta! Esses micro momentos são poções mágicas espalhadas ao longo do dia. Cuidar de si mesma não é luxo — é sua super armadura.</div></div>
+    </div>
+
+    <div class="content-section" id="dis-ferramentas">
+      <h2 class="section-title">📱 Ferramentas e Inspiração</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>📱 Aplicativos</h3>
+          <ul><li><strong>Headspace</strong> — Meditações curtas e sono</li><li><strong>Calm</strong> — Relaxamento e mindfulness</li><li>Sessões de 5 min que cabem na rotina</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>📚 Leituras</h3>
+          <ul><li><strong>"A Maternidade e o Encontro com a Própria Sombra"</strong> — Laura Gutman</li><li><strong>"O Poder do Agora"</strong> — Eckhart Tolle</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🎙️ Podcasts</h3>
+          <ul><li><strong>"Sinuca de Bicos"</strong> — Maternidade real com humor</li><li><strong>"Tricô de Pais"</strong> — Parentalidade com especialistas</li></ul>
+        </div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Você é incrível, capaz e nunca está sozinha. A comunidade de novas mães é um universo de apoio e compreensão — conectadas pelo amor incondicional pelos nossos pequenos. 💛</blockquote>
+      <div class="alert-box success" style="margin-top:14px"><span>📸</span><div>Quer um presente especial? Envie a palavra <strong>"SuperMãe"</strong> no direct do Instagram para a Myrnna! <strong>@myrnnagurgel</strong></div></div>
+    </div>
+  </div>
+</div>
+
 <!-- PAGE PLACEHOLDER -->
 <div class="content-page" id="page-placeholder">
   <div class="placeholder-section">
@@ -927,7 +1504,13 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   }
 
   function toggleGroup(id) {
-    document.getElementById(id).classList.toggle('open');
+    var grp = document.getElementById(id);
+    var wasOpen = grp.classList.contains('open');
+    grp.classList.toggle('open');
+    // Collapse copy-link block when any group is open, expand when all closed
+    var anyOpen = document.querySelectorAll('.nav-group.open').length > 0;
+    var block = document.querySelector('.copy-link-block');
+    if (block) block.classList.toggle('collapsed', anyOpen);
   }
 
   function scrollSec(sId, btn) {
