@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HGP6BH14H5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HGP6BH14H5');
+</script>
 <title>Cardápio Infalível Myrnna Gurgel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1338,10 +1346,10 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
 <!-- PAGE BONUS CHECKLIST 7D -->
 <div class="content-page" id="page-bonus-checklist">
   <div class="topic-pills">
-    <button class="pill active" onclick="scrollSec('7d-intro',this)">📖 Intro</button>
-    <button class="pill" onclick="scrollSec('7d-macros',this)">💊 Nutrição</button>
-    <button class="pill" onclick="scrollSec('7d-dias',this)">📅 Os 7 Dias</button>
-    <button class="pill" onclick="scrollSec('7d-desafios',this)">💪 Desafios</button>
+    <button class="pill active" onclick="scrollSec('sd-intro',this)">📖 Intro</button>
+    <button class="pill" onclick="scrollSec('sd-macros',this)">💊 Nutrição</button>
+    <button class="pill" onclick="scrollSec('sd-dias',this)">📅 Os 7 Dias</button>
+    <button class="pill" onclick="scrollSec('sd-desafios',this)">💪 Desafios</button>
   </div>
   <div class="content-body">
     <div class="page-header">
@@ -1350,7 +1358,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       <p>O segredo não revelado da alimentação 7D para secar no pós-parto. Um plano de 7 dias com refeições estratégicas para emagrecer rápido e com saúde.</p>
     </div>
 
-    <div class="content-section" id="7d-intro">
+    <div class="content-section" id="sd-intro">
       <h2 class="section-title">📖 Por que a Alimentação é Crucial no Pós-Parto</h2>
       <div class="stat-cards">
         <div class="stat-card"><span class="stat-icon">⚡</span><h3>Energia</h3><p>Para cuidar do bebê e recuperar as forças</p></div>
@@ -1359,7 +1367,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
     </div>
 
-    <div class="content-section" id="7d-macros">
+    <div class="content-section" id="sd-macros">
       <h2 class="section-title">💊 Macros e Micros Essenciais</h2>
       <div class="options-grid">
         <div class="option-card">
@@ -1377,7 +1385,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
     </div>
 
-    <div class="content-section" id="7d-dias">
+    <div class="content-section" id="sd-dias">
       <h2 class="section-title">📅 Os 7 Dias Mágicos</h2>
       <div class="tips-list">
         <div class="tip-item">
@@ -1411,7 +1419,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
     </div>
 
-    <div class="content-section" id="7d-desafios">
+    <div class="content-section" id="sd-desafios">
       <h2 class="section-title">💪 Superando Desafios</h2>
       <div class="tips-list">
         <div class="tip-item"><div class="tip-num">🍳</div><div><h4>Para Refeições Saudáveis</h4><p>Planeje e cozinhe com antecedência. Cozinhe em casa com ingredientes frescos, controlando sal, açúcar e gordura.</p></div></div>
@@ -1666,6 +1674,13 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   }
 
   function showPage(id) {
+    // Track page view in Google Analytics
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'page_view', {
+        page_title: id,
+        page_location: window.location.href + '#' + id
+      });
+    }
     document.querySelectorAll('.content-page').forEach(function(p) { p.classList.remove('active'); });
     var page = document.getElementById('page-' + id) || document.getElementById('page-placeholder');
     if (page) page.classList.add('active');
