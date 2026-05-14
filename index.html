@@ -245,6 +245,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
 
 .placeholder-section { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 70px 30px; text-align: center; background: var(--bg-card); border-radius: var(--radius); border: 2px dashed rgba(239,124,7,0.22); margin: 24px 18px; }
 .placeholder-icon { font-size: 44px; margin-bottom: 14px; }
+.page-footer { text-align: center; padding: 24px 18px 40px; font-size: 12px; color: var(--text-muted); opacity: 0.5; letter-spacing: 0.03em; }
 .placeholder-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text-muted); margin-bottom: 6px; }
 .placeholder-section p { font-size: 13.5px; color: var(--text-muted); opacity: 0.7; }
 
@@ -328,7 +329,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Sono do Bebê — Thaís Neves</div>
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Pediatra Camila Bastos</div>
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga Rayanny Cavalcanti</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga</div>
+        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga Beatriz Rodrigues</div>
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Maquiagem — Júlia Pavanelli</div>
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga Beatriz Rodrigues</div>
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Personal Carol Cavalcanti pt1</div>
@@ -1466,9 +1467,9 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
 <!-- PAGE PLACEHOLDER -->
 <div class="content-page" id="page-placeholder">
   <div class="placeholder-section">
-    <div class="placeholder-icon">🔜</div>
-    <h3>Conteúdo em breve</h3>
-    <p>Este material está sendo preparado e será adicionado em breve.</p>
+    <div class="placeholder-icon">🔒</div>
+    <h3>Aguarde!</h3>
+    <p>Esse conteúdo vai ser liberado amanhã para você, enquanto isso aproveite os materiais que já estão liberados!</p>
   </div>
 </div>
 
@@ -1586,6 +1587,14 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       document.body.removeChild(ta);
     }
   };
+
+  // Add footer to all content pages
+  document.querySelectorAll('.content-body, .placeholder-section').forEach(function(el) {
+    var footer = document.createElement('div');
+    footer.className = 'page-footer';
+    footer.innerHTML = 'Criado com ❤️ by Myrnna Gurgel';
+    el.appendChild(footer);
+  });
 
   setLang(lang);
 })();
