@@ -246,6 +246,58 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
 .placeholder-section { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 70px 30px; text-align: center; background: var(--bg-card); border-radius: var(--radius); border: 2px dashed rgba(239,124,7,0.22); margin: 24px 18px; }
 .placeholder-icon { font-size: 44px; margin-bottom: 14px; }
 .page-footer { text-align: center; padding: 24px 18px 40px; font-size: 12px; color: var(--text-muted); opacity: 0.5; letter-spacing: 0.03em; }
+
+.btn-pdf {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #fff; border: 1.5px solid var(--border);
+  color: var(--text-muted); font-size: 11.5px; font-weight: 500;
+  padding: 5px 12px; border-radius: 20px; cursor: pointer;
+  transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); float: right;
+  margin-top: 4px;
+}
+.btn-pdf:hover { border-color: var(--primary); color: var(--primary); background: rgba(239,124,7,0.04); }
+.btn-pdf svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+@media print {
+  .topbar, .sidebar, .sidebar-overlay, .topic-pills, .btn-pdf, .copy-link-block, .sidebar-footer { display: none !important; }
+  .main { margin-left: 0 !important; padding-top: 0 !important; }
+  .content-page { display: block !important; }
+  .content-page:not(.active) { display: none !important; }
+  .content-body { padding: 28px 32px !important; max-width: 100% !important; }
+  body { background: #FDF8F3 !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Watermark on every page */
+  @page {
+    margin: 20mm 15mm 25mm 15mm;
+  }
+  body::after {
+    content: '@myrnnagurgel';
+    position: fixed;
+    bottom: 8mm; right: 10mm;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; color: rgba(239,124,7,0.35);
+    letter-spacing: 0.05em; font-weight: 500;
+    pointer-events: none;
+  }
+
+  /* Cream background */
+  .content-body, body, .main { background: #FDF8F3 !important; }
+  .option-card, .snack-card, .tip-item, .recipe-card, .stat-card, .recipe-card, .highlight-card, .alert-box, .plate-builder, .plate-part { break-inside: avoid; background: #FFFFFF !important; }
+  .stat-cards { grid-template-columns: repeat(3,1fr) !important; }
+  .options-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .snack-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .errors-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .page-header { border-bottom: 2px solid rgba(239,124,7,0.3) !important; margin-bottom: 20px !important; }
+  .section-title { border-bottom: 1px solid rgba(239,124,7,0.2) !important; padding-bottom: 6px !important; }
+  .section-title::after { display: none !important; }
+  blockquote.brand-quote { border-left: 3px solid #EF7C07 !important; background: rgba(239,124,7,0.06) !important; }
+  .page-badge { background: rgba(239,124,7,0.12) !important; border: 1px solid rgba(239,124,7,0.3) !important; }
+  .tip-num { background: #EF7C07 !important; color: white !important; }
+  h1, h2, h3, h4 { color: #1A110A !important; }
+  p, li, span { color: #7A5C45 !important; }
+}
 .placeholder-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text-muted); margin-bottom: 6px; }
 .placeholder-section p { font-size: 13.5px; color: var(--text-muted); opacity: 0.7; }
 
@@ -326,7 +378,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
         <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
       </div>
       <div class="nav-children">
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Sono do Bebê — Thaís Neves</div>
+        <div class="nav-child" onclick="showPage('mentoria-thais')"><span class="nav-child-dot"></span>Sono do Bebê — Thaís Neves</div>
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Pediatra Camila Bastos</div>
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga Rayanny Cavalcanti</div>
         <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga Beatriz Rodrigues</div>
@@ -1464,6 +1516,60 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   </div>
 </div>
 
+<!-- PAGE MENTORIA THAÍS NEVES -->
+<div class="content-page" id="page-mentoria-thais">
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎥 Mentoria</div>
+      <h1>O Segredo para o Bebê Dormir a Noite Toda</h1>
+      <p>Sem choro desamparado e sem desespero — com a especialista em sono e desenvolvimento infantil <strong>Thaís Neves</strong>.</p>
+    </div>
+
+    <div class="video-section">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/HKV6cPtLTLU?si=e0v03TVYVNtCUKkK" title="Sono do Bebê com Thaís Neves" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="video-info">
+        <h3>🔥 O Segredo para o Bebê Dormir a Noite Toda</h3>
+        <p>Myrnna recebe a especialista Thaís Neves para destrinchar o que realmente funciona na hora de fazer o bebê dormir. Rotina previsível, papel do pai, quebras de rotina e os 3 maiores erros que deixam bebês exaustos e mães sem dormir.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-title">📝 Sobre essa Mentoria</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7">Um material essencial para quem quer noites mais tranquilas e saúde para toda a família, ajustando associações fortes como o peito e o ninar de forma respeitosa.</p>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-title">⏱️ Principais Tópicos</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">00:14</div><div><h4>O caso real do Noah</h4><p>Como ele passou a dormir a noite toda no próprio quarto em apenas 3 dias.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">05:03</div><div><h4>Conheça a Thaís Neves</h4><p>Como a privação de sono afeta a vida da mãe e da família inteira.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">07:36</div><div><h4>Existe uma rotina ideal?</h4><p>A partir de qual idade é seguro aplicar o sono noturno contínuo — a mágica do 4º mês.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">11:46</div><div><h4>O poder da previsibilidade</h4><p>Como criar um ritual noturno que "aperta o botão do sono" no cérebro do bebê.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">18:51</div><div><h4>O papel fundamental do PAI</h4><p>A figura de autonomia e a regra dos 15 minutos de presença plena na rotina de sono.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">26:38</div><div><h4>Sono durante viagens e festas</h4><p>Como manter o sono ajustado quando a rotina quebra ou o pai trabalha viajando.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">31:21</div><div><h4>❌ Erro #1 — Sinais de sono ignorados</h4><p>Não identificar os sinais de sono e deixar o bebê passar do ponto — pico de cortisol.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">35:21</div><div><h4>❌ Erro #2 — Associações insustentáveis</h4><p>Fazer de tudo no desespero e criar associações de ninar e cama compartilhada não planejada.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">38:21</div><div><h4>Qual o melhor lugar para dormir?</h4><p>A transição para a cama montessoriana e como garantir segurança nessa fase.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">41:29</div><div><h4>Educar o sono sem choro</h4><p>É possível treinar o sono do bebê sem deixá-lo chorando sozinho no berço?</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">43:51</div><div><h4>❌ Erro #3 — Falta de consistência</h4><p>Tentar aplicar várias dicas soltas da internet ao mesmo tempo sem um método claro.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">45:00</div><div><h4>💬 Sessão de Q&A</h4><p>Como tirar a associação do ninar, ajustar sonecas do dia, desmame noturno, ciúmes do irmão recém-nascido e despertares na madrugada.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">1:14:09</div><div><h4>Plano de sono passo a passo</h4><p>Como ter acesso ao curso e suporte completo da Thaís Neves.</p></div></div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-title">🎯 Siga a Especialista</h2>
+      <div class="alert-box success">
+        <span>📱</span>
+        <div>Gostou dessa mentoria? Siga a especialista <strong>Thaís Neves</strong> no Instagram para dicas práticas, reais e sem julgamentos sobre as fases do seu filho e rotinas de sono que funcionam de verdade.<br><br><strong>@soumaeurso</strong></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- PAGE PLACEHOLDER -->
 <div class="content-page" id="page-placeholder">
   <div class="placeholder-section">
@@ -1587,6 +1693,19 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       document.body.removeChild(ta);
     }
   };
+
+  // Add PDF button next to badge (skip video pages)
+  document.querySelectorAll('.content-body').forEach(function(el) {
+    var page = el.closest('.content-page');
+    if (page && page.id === 'page-aplv-aula') return;
+    var badge = el.querySelector('.page-badge');
+    if (!badge) return;
+    var btn = document.createElement('button');
+    btn.className = 'btn-pdf';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Baixar PDF';
+    btn.onclick = function() { window.print(); };
+    badge.parentNode.insertBefore(btn, badge.nextSibling);
+  });
 
   // Add footer to all content pages
   document.querySelectorAll('.content-body, .placeholder-section').forEach(function(el) {
