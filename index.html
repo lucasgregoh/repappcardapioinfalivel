@@ -309,6 +309,60 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
 .placeholder-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text-muted); margin-bottom: 6px; }
 .placeholder-section p { font-size: 13.5px; color: var(--text-muted); opacity: 0.7; }
 
+/* CTA Quiz */
+.cta-quiz-block {
+  background: linear-gradient(135deg, #0D1117 0%, #161B25 100%);
+  border-radius: 18px; padding: 28px 22px 24px;
+  text-align: center; margin: 28px 0 8px;
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(160,120,196,0.2);
+}
+.cta-quiz-block::before {
+  content: '😴💤'; font-size: 80px; opacity: 0.06;
+  position: absolute; top: -10px; right: -10px; line-height: 1;
+  pointer-events: none;
+}
+.cta-quiz-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(160,120,196,0.15); color: #A078C4;
+  border: 1px solid rgba(160,120,196,0.35); border-radius: 20px;
+  font-size: 11.5px; font-weight: 600; padding: 4px 12px;
+  margin-bottom: 14px; letter-spacing: 0.04em;
+}
+.cta-quiz-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 600; color: #fff;
+  line-height: 1.25; margin-bottom: 12px;
+}
+.cta-quiz-sub {
+  font-size: 14px; color: rgba(255,255,255,0.65);
+  line-height: 1.6; margin-bottom: 14px;
+}
+.cta-quiz-sub strong { color: #C8A96E; }
+.cta-quiz-tag {
+  display: inline-block;
+  background: rgba(200,169,110,0.12); color: #C8A96E;
+  border: 1px solid rgba(200,169,110,0.3); border-radius: 20px;
+  font-size: 12px; font-weight: 500; padding: 5px 14px;
+  margin-bottom: 20px;
+}
+.cta-quiz-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: linear-gradient(135deg, #A078C4, #7B52A0);
+  color: #fff; border-radius: 12px; padding: 15px 20px;
+  font-size: 13.5px; font-weight: 600; text-decoration: none;
+  line-height: 1.4; transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(160,120,196,0.4);
+  animation: pulse-cta 2.5s infinite;
+}
+.cta-quiz-btn:hover { background: linear-gradient(135deg, #B088D4, #8B62B0); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(160,120,196,0.55); animation: none; }
+.cta-quiz-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+@keyframes pulse-cta {
+  0%, 100% { box-shadow: 0 4px 20px rgba(160,120,196,0.4); }
+  50% { box-shadow: 0 4px 28px rgba(160,120,196,0.65); }
+}
+.cta-quiz-hint { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
 @media (max-width: 768px) {
   .sidebar { transform: translateX(-100%); }
   .sidebar.open { transform: translateX(0); }
@@ -1637,6 +1691,19 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
         <span>📱</span>
         <div>Gostou dessa mentoria? Siga a especialista <strong>Thaís Neves</strong> no Instagram para dicas práticas, reais e sem julgamentos sobre as fases do seu filho e rotinas de sono que funcionam de verdade.<br><br><strong>@soumaeurso</strong></div>
       </div>
+    </div>
+
+    <!-- CTA QUIZ SONO -->
+    <div class="cta-quiz-block">
+      <div class="cta-quiz-badge">🔍 Diagnóstico Gratuito</div>
+      <h2 class="cta-quiz-title">Por que seu bebê não dorme sozinho e como resolver em 3 dias</h2>
+      <p class="cta-quiz-sub">Responda 8 perguntas rápidas e receba um diagnóstico personalizado para a situação do <strong>SEU</strong> bebê</p>
+      <div class="cta-quiz-tag">✅ Funciona para bebês de 0 a 3 anos</div>
+      <a href="https://quizsono.gregoh.com.br/" target="_blank" class="cta-quiz-btn">
+        <span>Responda 8 perguntas rápidas e receba um diagnóstico personalizado para a situação do SEU bebê</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <p class="cta-quiz-hint">💛 É rápido, gratuito e vai mudar as suas noites para sempre</p>
     </div>
 
   </div>
