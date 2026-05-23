@@ -387,6 +387,37 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   .plate-grid { grid-template-columns: 1fr; }
 }
 </style>
+<!-- OneSignal Web Push -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "f4edf53f-e9a8-4db6-8c56-6d05588a8518",
+      safari_web_id: "web.onesignal.auto.f4edf53f-e9a8-4db6-8c56-6d05588a8518",
+      notifyButton: { enable: false },
+      promptOptions: {
+        slidedown: {
+          prompts: [
+            {
+              type: "push",
+              autoPrompt: true,
+              text: {
+                actionMessage: "Ative para saber o dia das mentorias ao vivo e atualizações do Cardápio! 🔔",
+                acceptButton: "Sim, quero!",
+                cancelButton: "Agora não"
+              },
+              delay: {
+                pageViews: 1,
+                timeDelay: 10
+              }
+            }
+          ]
+        }
+      }
+    });
+  });
+</script>
 </head>
 <body>
 
@@ -409,7 +440,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
 <nav class="sidebar" id="sidebar">
   <div class="sidebar-scroll">
     <div class="nav-direct active-main" id="nav-main" onclick="showPage('main')">
-      <span class="nav-icon"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg></span><span id="lbl-nav-main">Cardápio Infalível</span>
+      <span class="nav-icon"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></span><span id="lbl-nav-main">Cardápio Infalível</span>
     </div>
     <div class="nav-divider"></div>
     <div class="nav-group" id="grp-aplv">
@@ -448,12 +479,12 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
         <div class="nav-child" onclick="showPage('mentoria-thais')"><span class="nav-child-dot"></span>Sono do Bebê Thaís Neves</div>
         <div class="nav-child" onclick="showPage('mentoria-camila')"><span class="nav-child-dot"></span>Pediatra Camila Bastos</div>
         <div class="nav-child" onclick="showPage('mentoria-rayanny')"><span class="nav-child-dot"></span>Psicóloga Rayanny Cavalcanti</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Psicóloga Beatriz Rodrigues</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Maquiagem Júlia Pavanelli</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Personal Carol Cavalcanti pt1</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Personal Carol Cavalcanti pt2</div>
+        <div class="nav-child" onclick="showPage('mentoria-beatriz')"><span class="nav-child-dot"></span>Psicóloga Beatriz Rodrigues</div>
+        <div class="nav-child" onclick="showPage('mentoria-julia')"><span class="nav-child-dot"></span>Maquiagem Júlia Pavanelli</div>
+        <div class="nav-child" onclick="showPage('mentoria-carol1')"><span class="nav-child-dot"></span>Personal Carol Cavalcanti pt1</div>
+        <div class="nav-child" onclick="showPage('mentoria-carol2')"><span class="nav-child-dot"></span>Personal Carol Cavalcanti pt2</div>
         <div class="nav-child" onclick="showPage('mentoria-renata')"><span class="nav-child-dot"></span>Nutri. Renata Magalhães</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Nutricionista Myrthe Emilyana</div>
+        <div class="nav-child" onclick="showPage('mentoria-myrthe')"><span class="nav-child-dot"></span>Nutricionista Myrthe Emilyana</div>
       </div>
     </div>
     <div class="nav-group" id="grp-extra">
@@ -508,12 +539,12 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   </div>
   <div class="content-body">
     <div class="page-header">
-      <div class="page-badge"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg> Cardápio Principal</div>
+      <div class="page-badge"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg> Cardápio Principal</div>
       <h1>Cardápio Infalível para Mães Lactantes</h1>
       <p>Nova versão atualizada para te ajudar a secar gordura com saúde, manter o leite forte e facilitar sua rotina. Você não precisa passar fome só precisa comer da forma certa!</p>
     </div>
     <div class="stat-cards">
-      <div class="stat-card"><span class="stat-icon"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M8 21v-4a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v4"/><path d="M6 13l2-2"/></svg></span><h3>Leite Forte</h3><p>Nutrição completa para manter a produção</p></div>
+      <div class="stat-card"><span class="stat-icon">🤱</span><h3>Leite Forte</h3><p>Nutrição completa para manter a produção</p></div>
       <div class="stat-card"><span class="stat-icon">🔥</span><h3>Seca Gordura</h3><p>Resultado sem dietas malucas</p></div>
       <div class="stat-card"><span class="stat-icon">💚</span><h3>Sem Fome</h3><p>Refeições completas e saciantes</p></div>
     </div>
@@ -537,7 +568,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
           <span class="sub-tag">🔄 Frango→Atum · Abacate→Pasta de amendoim</span>
         </div>
         <div class="option-card">
-          <h3><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg> Iogurte + Granola + Omelete</h3>
+          <h3>🥗 Iogurte + Granola + Omelete</h3>
           <ul><li>1 iogurte natural</li><li>2 colheres de granola</li><li>1 colher de chia</li><li>Omelete: 1 ovo + 2 claras</li></ul>
           <div class="prep-mode"><strong>Preparo:</strong> Misture iogurte, granola e chia. Bata claras com tomate e cozinhe em frigideira antiaderente.</div>
           <span class="sub-tag">🔄 Granola→Aveia · Omelete→Ovo cozido</span>
@@ -609,7 +640,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
         <div class="snack-card"><span class="snack-emoji">🍲</span><span>Sopa de legumes + frango</span></div>
         <div class="snack-card"><span class="snack-emoji">🍳</span><span>Omelete (1 ovo + 2 claras) + salada</span></div>
         <div class="snack-card"><span class="snack-emoji">🐟</span><span>Peixe + legumes</span></div>
-        <div class="snack-card"><span class="snack-emoji"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg></span><span>Grão-de-bico + atum + folhas</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥗</span><span>Grão-de-bico + atum + folhas</span></div>
         <div class="snack-card"><span class="snack-emoji">🎃</span><span>Creme de abóbora + queijo</span></div>
       </div>
     </div>
@@ -896,7 +927,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   <div class="topic-pills">
     <button class="pill active" onclick="scrollSec('lt-intro',this)">📖 Intro</button>
     <button class="pill" onclick="scrollSec('lt-estrategias',this)">💪 Estratégias</button>
-    <button class="pill" onclick="scrollSec('lt-alimentacao',this)"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg> Alimentação</button>
+    <button class="pill" onclick="scrollSec('lt-alimentacao',this)">🥗 Alimentação</button>
     <button class="pill" onclick="scrollSec('lt-suplementos',this)">🌿 Suplementos</button>
     <button class="pill" onclick="scrollSec('lt-rotina',this)">✨ Rotina</button>
   </div>
@@ -927,7 +958,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
     </div>
     <div class="content-section" id="lt-alimentacao">
-      <h2 class="section-title"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg> Alimentação Materna</h2>
+      <h2 class="section-title">🥗 Alimentação Materna</h2>
       <div class="options-grid">
         <div class="option-card"><h3>🥩 Proteínas</h3><ul><li>Carne magra e peixe</li><li>Ovos, feijão e lentilhas</li></ul></div>
         <div class="option-card"><h3>🥦 Vitaminas</h3><ul><li>Frutas e legumes variados</li><li>Vitamina C: laranja, brócolis</li></ul></div>
@@ -964,7 +995,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   <div class="topic-pills">
     <button class="pill active" onclick="scrollSec('guia-imp',this)">🌟 Importância</button>
     <button class="pill" onclick="scrollSec('guia-restrict',this)">🚫 Restrições</button>
-    <button class="pill" onclick="scrollSec('guia-dieta',this)"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg> Dieta</button>
+    <button class="pill" onclick="scrollSec('guia-dieta',this)">🥗 Dieta</button>
     <button class="pill" onclick="scrollSec('guia-calcio',this)">💊 Cálcio</button>
     <button class="pill" onclick="scrollSec('guia-dicas',this)">✨ Dicas</button>
   </div>
@@ -995,7 +1026,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
     </div>
     <div class="content-section" id="guia-dieta">
-      <h2 class="section-title"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg> Dieta Equilibrada</h2>
+      <h2 class="section-title">🥗 Dieta Equilibrada</h2>
       <div class="options-grid">
         <div class="option-card"><h3>🥦 Frutas e Vegetais</h3><ul><li>Vitaminas, minerais e fibras</li><li>Variedade de cores</li></ul></div>
         <div class="option-card"><h3>🌾 Grãos Integrais</h3><ul><li>Arroz integral e quinoa</li><li>Pão integral simples</li></ul></div>
@@ -1099,7 +1130,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
     <div class="content-section" id="br-almoco">
       <h2 class="section-title">🍽️ Almoço e Jantar</h2>
       <div class="recipe-card">
-        <h3><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-4 2-7 5-8.5M2 12c0 4 2 7 5 8.5M22 12c0-4-2-7-5-8.5M22 12c0 4-2 7-5 8.5M12 2v20"/></svg> Salada de Quinoa com Frango e Abacate</h3>
+        <h3>🥗 Salada de Quinoa com Frango e Abacate</h3>
         <div class="recipe-cols">
           <div class="recipe-col"><h5>Ingredientes</h5><ul><li>Quinoa cozida</li><li>Peito de frango grelhado</li><li>Abacate picado</li><li>Tomate cereja</li></ul></div>
           <div class="recipe-col"><h5>Tempero</h5><p>Azeite de oliva, suco de limão, sal e pimenta a gosto.</p><p style="margin-top:8px;font-size:12px;color:var(--primary-dark)">✅ Rica em proteínas e gorduras saudáveis.</p></div>
@@ -1802,6 +1833,201 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       <p class="cta-quiz-hint">💛 É rápido, gratuito e vai mudar as suas noites para sempre</p>
     </div>
 
+  </div>
+</div>
+
+<!-- PAGE MENTORIA BEATRIZ RODRIGUES -->
+<div class="content-page" id="page-mentoria-beatriz">
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎥 Mentoria</div>
+      <h1>O Fim da Culpa Materna</h1>
+      <p>Como parar de carregar tudo sozinha e ter uma maternidade mais leve com a psicóloga clínica <strong>Beatriz Rodrigues</strong>.</p>
+    </div>
+    <div class="video-section"><div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/Yv55qW3lIoA" title="O Fim da Culpa Materna" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div><div class="video-info">
+      <h3>O Fim da Culpa Materna: Como Parar de Carregar Tudo Sozinha</h3>
+      <p>Desconstruindo a ideia de que pedir ajuda te faz "menos mãe". Exaustão, ansiedade de separação, volta ao trabalho e o peso dos palpites alheios.</p>
+    </div></div>
+    <div class="content-section"><h2 class="section-title">Principais Tópicos</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">00:06</div><div><h4>Introdução</h4><p>O medo de Myrnna de delegar os cuidados do Noah e a pressão de querer controlar tudo.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DB2777">10:29</div><div><h4>A História de Alice</h4><p>Por que é tão fácil ser empática com outras mães, mas tão dura com você mesma?</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">20:20</div><div><h4>O Mito dos Pratos Equilibrados</h4><p>Você precisa dar conta de tudo ou aprender a soltar alguns pratos?</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">24:38</div><div><h4>A raiz da sobrecarga</h4><p>A dificuldade de pedir ajuda já existia antes da maternidade?</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">36:04</div><div><h4>Cuidar também é compartilhar</h4><p>Como permitir que o pai e a rede de apoio assumam responsabilidades com o bebê.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">39:45</div><div><h4>Ansiedade de separação</h4><p>Por que a criança se beneficia da convivência com outros adultos de confiança.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">48:11</div><div><h4>O erro de sair escondida</h4><p>Como passar segurança emocional para o bebê na hora de sair para trabalhar ou descansar.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">51:19</div><div><h4>O fantasma da creche</h4><p>Como lidar com a culpa da volta ao trabalho e a quebra das expectativas sociais.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">57:12</div><div><h4>A verdade sobre os palpites</h4><p>Por que eles doem? Geralmente confirmam nossas próprias cobranças internas.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">1:06:41</div><div><h4>Reflexão final</h4><p>"Ser mãe não é sobre perfeição, é sobre presença" — inclusive com você mesma.</p></div></div>
+      </div>
+    </div>
+    <div class="content-section"><h2 class="section-title">Siga a Especialista</h2>
+      <div class="alert-box success"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Siga a psicóloga <strong>Beatriz Rodrigues</strong> para reflexões, acolhimento e ferramentas práticas. Agenda aberta para acompanhamento individual!<br><br><strong>@psi.beatrizrodrigues</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE MENTORIA JULIA PAVANELLI -->
+<div class="content-page" id="page-mentoria-julia">
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎥 Mentoria</div>
+      <h1>Automaquiagem Prática: Autoestima em 10 Minutos</h1>
+      <p>Sem base e sem horas no espelho com a especialista em beleza <strong>Julia Pavanelli</strong>.</p>
+    </div>
+    <div class="video-section"><div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/_JIqvdpLjm8" title="Automaquiagem com Julia Pavanelli" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div><div class="video-info">
+      <h3>Automaquiagem Prática: Como Resgatar Sua Autoestima em 10 Minutos (Sem Base!)</h3>
+      <p>Identifique seu tipo de pele, desvende os mitos da hidratação e domine o passo a passo de uma maquiagem rápida à prova de suor usando apenas corretivo.</p>
+    </div></div>
+    <div class="content-section"><h2 class="section-title">Principais Tópicos</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">00:03</div><div><h4>Introdução</h4><p>Os desafios de autoestima no pós-parto e a maquiagem como uma virada rápida de energia.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">07:29</div><div><h4>Remoção e limpeza</h4><p>Água Micelar vs. Demaquilante e por que fugir de produtos bifásicos com pele oleosa.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">11:17</div><div><h4>Skincare essencial</h4><p>O mito de que "pele oleosa não precisa de hidratante" e dicas para peles com psoríase.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">17:28</div><div><h4>Identifique seu tipo de pele</h4><p>Oleosa, Mista, Seca, Sensível ou Madura apenas observando poros e textura.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">20:14</div><div><h4>A Preparação de Milhões</h4><p>Ordem correta: Tônico, Hidratante, Protetor Solar e o segredo da "Blindagem".</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">28:02</div><div><h4>Pele perfeita só com corretivo</h4><p>Onde aplicar e por que NUNCA colocar corretivo direto no nariz.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">35:38</div><div><h4>Pó Solto vs. Compacto</h4><p>Como selar o rosto sem marcar o bigode chinês nem as linhas de expressão.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">43:17</div><div><h4>O milagre da Bruma Fixadora</h4><p>O segredo para tirar o aspecto pesado de "cara cheia de pó".</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">47:20</div><div><h4>Contorno sem mistério</h4><p>O truque da altura da orelha para criar luz, sombra e afinar o nariz.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">57:25</div><div><h4>Blush e Iluminador</h4><p>A regra dos "dois dedinhos" e o efeito natural de bronzeado de sol.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">1:03:33</div><div><h4>O truque de ouro do rímel</h4><p>Como nunca borrar mais e como limpar facilmente sem estragar a pele.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">1:14:51</div><div><h4>Curso completo com desconto</h4><p>Como acessar o curso completo de automaquiagem com desconto especial para alunas.</p></div></div>
+      </div>
+    </div>
+    <div class="content-section"><h2 class="section-title">Siga a Especialista</h2>
+      <div class="alert-box success"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Siga <strong>Julia Pavanelli</strong> para dicas de beleza e autocuidado na rotina real de mãe!<br><br><strong>@juliapavanelli</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE MENTORIA CAROL PT1 -->
+<div class="content-page" id="page-mentoria-carol1">
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎥 Mentoria</div>
+      <h1>O Caminho Real para Recuperar o Corpo no Pós-Parto</h1>
+      <p>Sem dietas malucas e treinos intermináveis com a Personal Trainer <strong>Carol Cavalcante</strong> — Parte 1.</p>
+    </div>
+    <div class="video-section"><div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/I3wER20VFkE" title="Personal Carol pt1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div><div class="video-info">
+      <h3>O Caminho Real para Recuperar o Corpo no Pós-Parto</h3>
+      <p>Myrnna recebe a Personal Trainer Carol Cavalcante para desvendar o processo de emagrecimento após a gravidez. A verdade sobre diástase, treinos adaptados, os perigos do efeito rebote e a diferença vital entre motivação e constância. Um papo direto para mães que querem resultados reais respeitando a fisiologia do próprio corpo.</p>
+    </div></div>
+    <div class="content-section"><h2 class="section-title">Principais Tópicos</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">00:00</div><div><h4>Introdução</h4><p>A história real de Myrnna: como eliminou 23kg da gestação e recuperou a autoestima com treinos curtos.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">04:14</div><div><h4>É possível voltar ao corpo de antes?</h4><p>Entenda a retenção de líquido, o inchaço uterino e a importância da rede de apoio.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">06:39</div><div><h4>Sem tempo para academia?</h4><p>Como adaptar os treinos para a realidade exaustiva de quem acabou de ser mãe.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">09:51</div><div><h4>O fantasma da Diástase</h4><p>O que é, como fazer o teste em casa para identificar e como fechar a musculatura do abdômen.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">16:03</div><div><h4>Fui mãe há mais de 10 anos</h4><p>Ainda é possível recuperar a barriga? A influência da idade e a perda de massa muscular após os 30.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">20:46</div><div><h4>Treinos no Puerpério</h4><p>Por que evitar exercícios de impacto como pular corda logo após o parto para proteger o períneo.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">23:16</div><div><h4>Em quanto tempo aparecem os resultados?</h4><p>Alívio imediato nas dores nas costas e estética a partir de 15 dias.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">26:29</div><div><h4>A importância do sono reparador</h4><p>O papel do sono no processo de queima de gordura.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">28:30</div><div><h4>Liberação médica</h4><p>O tempo certo para voltar aos treinos no Parto Normal vs. Cesárea.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">29:11</div><div><h4>O Efeito Platô</h4><p>O que fazer quando o corpo estagna e a balança para de descer após os primeiros meses.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">33:23</div><div><h4>O perigo das dietas extremas e remédios</h4><p>Efeito rebote e como identificar Fome Física vs. Fome Emocional.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">37:58</div><div><h4>O mito da amamentação</h4><p>Dar de mamar realmente emagrece ou dá mais fome?</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">39:55</div><div><h4>Motivação vs. Constância</h4><p>Por que você nunca vai acordar motivada todos os dias e o poder de registrar a evolução por fotos.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">52:13</div><div><h4>Consultoria Online da Carol</h4><p>Como funciona e as oportunidades exclusivas do Guia.</p></div></div>
+      </div>
+    </div>
+    <div class="content-section"><h2 class="section-title">Siga a Especialista</h2>
+      <div class="alert-box success"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Quer treinar de forma inteligente para secar e fortalecer sem perder horas na academia? Siga a Personal Trainer <strong>Carol Cavalcante</strong> para rotinas eficientes, dicas de organização e muita realidade. Não espere a motivação chegar, dê o primeiro passo hoje!<br><br><strong>@carolcavalcantefit</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE MENTORIA CAROL PT2 -->
+<div class="content-page" id="page-mentoria-carol2">
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎥 Mentoria</div>
+      <h1>Do Cansaço ao Corpo dos Sonhos: Os Bastidores do Emagrecimento</h1>
+      <p>Um papo honesto e sem rodeios com a Personal Trainer <strong>Carol Cavalcante</strong> — Parte 2.</p>
+    </div>
+    <div class="video-section"><div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/qvi822EYTD8" title="Personal Carol pt2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div><div class="video-info">
+      <h3>Do Cansaço ao Corpo dos Sonhos: Os Bastidores do Emagrecimento</h3>
+      <p>Myrnna mostra como eliminou 28kg do pós-parto e recuperou sua energia. Descubra por que treinar igual a uma "louca" quase arruinou sua recuperação, como funciona a flacidez muscular e aprenda a técnica de respiração que afina a cintura. Uma aula indispensável sobre o que realmente funciona após a maternidade.</p>
+    </div></div>
+    <div class="content-section"><h2 class="section-title">Principais Tópicos</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">00:00</div><div><h4>Introdução</h4><p>Os erros de Myrnna ao voltar a treinar no pós-parto e a frustração de não ver resultados antes do acompanhamento profissional.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">11:23</div><div><h4>O método em 3 fases</h4><p>Mobilidade e Consciência Corporal, Fortalecimento do Core e Força.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">15:10</div><div><h4>O relato da Personal</h4><p>Como Carol lidou com sua própria incontinência urinária e diástase umbilical após o segundo parto na pandemia.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">18:43</div><div><h4>O mito da cinta modeladora</h4><p>Por que fortalecer o "cinturão natural" é mais eficaz e saudável do que depender de cintas.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">24:53</div><div><h4>Amamentar emagrece?</h4><p>A verdade sobre por que algumas mães secam rapidamente enquanto outras ganham peso amamentando.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">27:53</div><div><h4>O temido efeito rebote</h4><p>O que acontece no corpo quando paramos de amamentar e como evitar o ganho de peso repentino.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">36:00</div><div><h4>O ato de amor-próprio</h4><p>Por que encontrar tempo para se cuidar é o maior presente que você pode dar à sua família.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">39:15</div><div><h4>A técnica de respiração</h4><p>A diferença entre "puxar a barriga" (vácuo) e a respiração ativada que fortalece a diástase.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">40:39</div><div><h4>Dores no joelho e costas</h4><p>Por que alongar e fortalecer os glúteos. Eles não são só estética, são estabilizadores do corpo!</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">46:26</div><div><h4>A prova do antes e depois</h4><p>Análise detalhada da evolução e da impressionante melhora postural de Myrnna com fotos.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">55:39</div><div><h4>Flacidez Muscular vs. Flacidez de Pele</h4><p>Como identificar seu caso e o que os exercícios podem e não podem resolver.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">1:07:36</div><div><h4>Aula Prática</h4><p>Passo a passo ao vivo da respiração, liberação do diafragma e alinhamento da postura em pé.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">1:13:46</div><div><h4>Abdominal é proibido?</h4><p>Por que não fazer abdominais tradicionais antes de recuperar o Core e a linha do abdômen.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">1:31:43</div><div><h4>Caminhar faz mal para a diástase?</h4><p>Desmistificando o que significa "aumento da pressão intra-abdominal" e como agachamentos mal executados empurram a barriga para frente.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">1:37:57</div><div><h4>Oportunidade</h4><p>Carol apresenta seu modelo de consultoria personalizada e lança um bônus especial para as mães da mentoria.</p></div></div>
+      </div>
+    </div>
+    <div class="content-section"><h2 class="section-title">Siga a Especialista</h2>
+      <div class="alert-box success"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Quer um acompanhamento 100% focado no seu corpo, sua postura e sua rotina? Siga <strong>Carol Cavalcante</strong>, participe do grupo no Telegram ou pergunte sobre as vagas da consultoria. Cuidar de si mesma é o primeiro passo para cuidar bem da sua família!<br><br><strong>@carolcavalcantefit</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE MENTORIA MYRTHE EMILYANA -->
+<div class="content-page" id="page-mentoria-myrthe">
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">🎥 Mentoria</div>
+      <h1>Como Secar no Pós-Parto sem Afetar a Amamentação</h1>
+      <p>Sem dieta maluca com a Nutricionista <strong>Myrthe Emilyana</strong>.</p>
+    </div>
+    <div class="video-section"><div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/XNAkGXtSfMY" title="Nutricionista Myrthe Emilyana" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div><div class="video-info">
+      <h3>Como Secar no Pós-Parto sem Afetar a Amamentação (e sem Dieta Maluca!)</h3>
+      <p>Bateu o desespero com o novo corpo no pós-parto e a falta de tempo não deixa você se cuidar? Myrnna conversa com a Nutricionista Myrthe Emilyana sobre como perder gordura de forma saudável e prática, sem prejudicar a produção de leite. Uma aula libertadora para quem quer resgatar a autoestima comendo comida de verdade!</p>
+    </div></div>
+    <div class="content-section"><h2 class="section-title">Principais Tópicos</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">00:03</div><div><h4>Introdução</h4><p>O desespero com o corpo no pós-parto e o acolhimento para tirar as angústias da cabeça.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">01:21</div><div><h4>Conheça a Nutricionista Myrthe</h4><p>A experiência real da Myrnna que eliminou 23kg com o direcionamento correto.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">04:26</div><div><h4>Sem tempo para comer</h4><p>A estratégia prática de levar a comida até o ambiente onde você amamenta.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">07:12</div><div><h4>Os perigos do jejum prolongado</h4><p>Por que ficar sem comer deixa o metabolismo lento e faz perder massa magra em vez de gordura.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">08:18</div><div><h4>Snacks rápidos e nutritivos</h4><p>O que toda mãe deve ter à mão: frutas, castanhas e suco de uva integral.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">10:19</div><div><h4>É possível emagrecer amamentando?</h4><p>O perigo das dietas extremas que acabam secando a produção de leite.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">12:10</div><div><h4>O verdadeiro emagrecimento</h4><p>Por que o foco deve ser a perda de gordura e não apenas o número na balança.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">14:02</div><div><h4>As 3 Regras de Ouro</h4><p>Água (mínimo 3L/dia), Frutas (3 a 4 porções) e o "Top 4" de Proteínas para acelerar o metabolismo.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">18:21</div><div><h4>Suplementação salva a rotina</h4><p>Como usar Polivitamínicos, Creatina e Whey Protein quando falta tempo para preparar refeições.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">21:23</div><div><h4>Virada de chave</h4><p>Troque a palavra "dieta" (que gera bloqueio) por reeducação alimentar com equilíbrio.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">23:59</div><div><h4>Restrições reais na amamentação</h4><p>O impacto de ultraprocessados, excesso de açúcar e cafeína no sono e agitação do bebê.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">28:36</div><div><h4>A estratégia do "Passe Livre"</h4><p>Como manter a constância e comer o doce favorito sem culpa e sem chutar o balde.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">32:07</div><div><h4>Atendimentos da Nutri Myrthe</h4><p>Como funcionam os atendimentos online e presencial focados em mães e tentantes.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">35:23</div><div><h4>O Guia Completo</h4><p>Myrnna explica o material exclusivo: Planner, Checklist, Diário e o valioso Manual do Sono.</p></div></div>
+      </div>
+    </div>
+    <div class="content-section"><h2 class="section-title">Siga a Especialista</h2>
+      <div class="alert-box success"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Quer emagrecer de forma leve, respeitando o seu corpo e nutrindo o bebê com qualidade? Siga a Nutricionista <strong>Myrthe Emilyana</strong> para dicas nutricionais de ouro, sem terrorismo e com a realidade da maternidade.<br><br><strong>@myrtheemilyana.nutri</strong></div>
+      </div>
+    </div>
   </div>
 </div>
 
