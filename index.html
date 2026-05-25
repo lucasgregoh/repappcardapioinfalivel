@@ -119,6 +119,22 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .nav-child-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; margin-top: 5px; }
 .nav-divider { height: 1px; background: var(--sidebar-border); margin: 6px 14px; }
 
+.cta-upsell-block {
+  cursor: pointer; margin: 28px 0 8px;
+  background: linear-gradient(135deg, #1C1008, #2A1A0A);
+  border: 1px solid rgba(255,210,0,0.2);
+  border-radius: 14px; padding: 16px 18px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-upsell-block:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255,210,0,0.15); border-color: rgba(255,210,0,0.4); }
+.cta-upsell-inner { display: flex; align-items: flex-start; gap: 12px; }
+.cta-upsell-emoji { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.cta-upsell-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 8px; }
+.cta-upsell-text strong { color: #FFD700; }
+.cta-upsell-btn {
+  display: inline-block; font-size: 12px; font-weight: 600;
+  color: #FFD700; letter-spacing: 0.02em;
+}
 .sidebar-upsell { padding: 12px 12px 4px; }
 .sidebar-footer { padding: 14px 12px 22px; display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--sidebar-border); margin-top: 4px; }
 .btn-upsell {
@@ -1198,7 +1214,17 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
       <div class="alert-box success" style="margin-top:16px"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg></span><div>Obtenha liberação médica antes de iniciar exercícios físicos. Comece de forma gradual e respeite seu corpo!</div></div>
     </div>
-  </div>
+  
+    <div class="cta-upsell-block" onclick="showPage('upsell-ritual')">
+      <div class="cta-upsell-inner">
+        <span class="cta-upsell-emoji">🌙</span>
+        <div>
+          <p class="cta-upsell-text">Quer turbinar ainda mais os seus resultados? Tem um segredo que mães do Cardápio estão usando <strong>toda noite</strong> para acordar até 1kg mais leve.</p>
+          <span class="cta-upsell-btn">Assistir o vídeo secreto →</span>
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 
 <!-- PAGE BONUS EMAGRECER -->
@@ -1285,7 +1311,17 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
       <blockquote class="brand-quote" style="margin-top:20px">Com uma abordagem equilibrada, você conseguirá emagrecer de forma saudável durante a amamentação. Seja paciente, consistente você consegue!</blockquote>
     </div>
-  </div>
+  
+    <div class="cta-upsell-block" onclick="showPage('upsell-ritual')">
+      <div class="cta-upsell-inner">
+        <span class="cta-upsell-emoji">✨</span>
+        <div>
+          <p class="cta-upsell-text">E se você pudesse continuar secando <strong>enquanto dorme</strong>? Descubra o ritual que mães do Cardápio estão fazendo antes de dormir para acordar mais leve.</p>
+          <span class="cta-upsell-btn">Quero descobrir esse ritual →</span>
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 
 <!-- PAGE BONUS LEITE -->
@@ -1361,7 +1397,17 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
       <blockquote class="brand-quote" style="margin-top:20px">Aumentar a produção de leite é um processo que requer paciência e persistência. Confie no seu corpo e na sua capacidade de nutrir seu bebê.</blockquote>
     </div>
-  </div>
+  
+    <div class="cta-upsell-block" onclick="showPage('upsell-ritual')">
+      <div class="cta-upsell-inner">
+        <span class="cta-upsell-emoji">💛</span>
+        <div>
+          <p class="cta-upsell-text">Leite forte e barriga murchando ao mesmo tempo? Sim, é possível! Assista esse vídeo rápido e veja o ritual noturno que está ajudando milhares de mães.</p>
+          <span class="cta-upsell-btn">Ver o vídeo agora →</span>
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 
 <!-- PAGE BONUS HIDRATAÇÃO -->
@@ -1444,7 +1490,17 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
       <blockquote class="brand-quote" style="margin-top:20px">A hidratação é vital para mães lactantes. Beba água regularmente, mesmo antes da sede. Seu bem-estar é essencial para uma amamentação saudável.</blockquote>
     </div>
-  </div>
+  
+    <div class="cta-upsell-block" onclick="showPage('upsell-ritual')">
+      <div class="cta-upsell-inner">
+        <span class="cta-upsell-emoji">🌙</span>
+        <div>
+          <p class="cta-upsell-text">Você já sabe a importância de se hidratar. Mas sabia que existe um <strong>ritual noturno</strong> que, combinado com a hidratação, faz o inchaço sumir enquanto você dorme?</p>
+          <span class="cta-upsell-btn">Descobrir o ritual →</span>
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 
 <!-- PAGE BONUS CHECKLIST 7D -->
@@ -1532,7 +1588,17 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       </div>
       <blockquote class="brand-quote" style="margin-top:20px">A alimentação 7D é uma ferramenta poderosa para a sua recuperação. Priorize a saúde, respeite o tempo do seu corpo e celebre cada passo em direção à sua melhor versão!</blockquote>
     </div>
-  </div>
+  
+    <div class="cta-upsell-block" onclick="showPage('upsell-ritual')">
+      <div class="cta-upsell-inner">
+        <span class="cta-upsell-emoji">⭐</span>
+        <div>
+          <p class="cta-upsell-text">Você está aplicando a alimentação 7D. Agora imagine combinar isso com um <strong>ritual de 10 minutos antes de dormir</strong> para acordar ainda mais leve amanhã.</p>
+          <span class="cta-upsell-btn">Assistir e conhecer o ritual →</span>
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 
 <!-- PAGE BONUS DISPOSIÇÃO -->
@@ -1642,7 +1708,17 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       <blockquote class="brand-quote" style="margin-top:20px">Você é incrível, capaz e nunca está sozinha. A comunidade de novas mães é um universo de apoio e compreensão conectadas pelo amor incondicional pelos nossos pequenos. 💛</blockquote>
       <div class="alert-box success" style="margin-top:14px"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><div>Quer um presente especial? Envie a palavra <strong>"SuperMãe"</strong> no direct do Instagram para a Myrnna! <strong>@myrnnagurgel</strong></div></div>
     </div>
-  </div>
+  
+    <div class="cta-upsell-block" onclick="showPage('upsell-ritual')">
+      <div class="cta-upsell-inner">
+        <span class="cta-upsell-emoji">🔥</span>
+        <div>
+          <p class="cta-upsell-text">Mais disposição começa também na noite anterior. Tem um <strong>ritual noturno simples</strong> que reduz o inchaço, melhora o sono e você acorda até 1kg mais leve.</p>
+          <span class="cta-upsell-btn">Ver o ritual em vídeo →</span>
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 
 <!-- PAGE MENTORIA RENATA (mesmo conteúdo que aplv-aula) -->
