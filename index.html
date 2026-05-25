@@ -119,10 +119,25 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .nav-child-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; margin-top: 5px; }
 .nav-divider { height: 1px; background: var(--sidebar-border); margin: 6px 14px; }
 
-.sidebar-footer { padding: 10px 12px 18px; display: flex; flex-direction: column; gap: 7px; border-top: 1px solid var(--sidebar-border); }
+.sidebar-upsell { padding: 12px 12px 4px; }
+.sidebar-footer { padding: 14px 12px 22px; display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--sidebar-border); margin-top: 4px; }
+.btn-upsell {
+  width: 100%; padding: 13px 16px; border: none; border-radius: 12px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
+  background: linear-gradient(135deg, #FFD700, #FFC200, #FFB800);
+  color: #1A110A; text-align: center; line-height: 1.35;
+  box-shadow: 0 4px 16px rgba(255,210,0,0.45);
+  animation: pulse-upsell 2.2s infinite;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-upsell:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(255,210,0,0.6); animation: none; }
+@keyframes pulse-upsell {
+  0%, 100% { box-shadow: 0 4px 16px rgba(255,210,0,0.45); }
+  50% { box-shadow: 0 4px 24px rgba(255,210,0,0.75); }
+}
 .btn-social {
   display: flex; align-items: center; justify-content: center; gap: 7px;
-  padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 500;
+  padding: 11px 10px; border-radius: 10px; font-size: 13px; font-weight: 500;
   text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; width: 100%;
 }
 .btn-whatsapp { background: #25D366; color: #fff; animation: pulse-wpp 2.5s infinite; text-align: center; line-height: 1.35; font-size: 12.5px; }
@@ -133,15 +148,15 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 }
 .btn-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
 .btn-instagram:hover { opacity: 0.88; }
-.btn-copylink { background: #2563EB; color: #fff; border: none; transition: background 0.3s, transform 0.15s; }
-.btn-copylink:hover { background: #1d4ed8; }
-.btn-copylink.copied { background: #22c55e; }
-.copy-link-block { background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.18); border-radius: 10px; padding: 12px 13px; overflow: hidden; max-height: 300px; transition: max-height 0.35s cubic-bezier(.4,0,.2,1), opacity 0.3s, padding 0.3s; opacity: 1; }
-.copy-link-block.collapsed { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; border-color: transparent; }
-.copy-link-msg { font-size: 12px; color: var(--sidebar-text); line-height: 1.55; margin-bottom: 10px; }
+
+
+
+
+
+
 .copy-link-msg strong { color: #2563EB; }
-.copy-link-hint { font-size: 11px; color: var(--sidebar-muted); line-height: 1.45; margin-top: 8px; text-align: center; font-style: italic; }
-.sidebar-social-divider { height: 1px; background: var(--sidebar-border); margin: 10px 0; }
+
+
 .btn-social svg { width: 16px; height: 16px; flex-shrink: 0; }
 
 .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 190; }
@@ -493,25 +508,25 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
         <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
       </div>
       <div class="nav-children">
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Lista de Compras Facilitada</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Guia de Substituições Inteligentes</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Chás Emagrecedores Para Lactantes</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Marmitas Inteligentes</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Guia Como Secar -18kg Rápido</div>
-        <div class="nav-child" onclick="showPage('placeholder')"><span class="nav-child-dot"></span>Ritual Noturno Anti-Inchaço</div>
+        <div class="nav-child" onclick="showPage('extra-lista')"><span class="nav-child-dot"></span>Lista de Compras Facilitada</div>
+        <div class="nav-child" onclick="showPage('extra-substituicoes')"><span class="nav-child-dot"></span>Guia de Substituições Inteligentes</div>
+        <div class="nav-child" onclick="showPage('extra-chas')"><span class="nav-child-dot"></span>Chás Saborosos Para Lactantes</div>
+        <div class="nav-child" onclick="showPage('extra-marmitas')"><span class="nav-child-dot"></span>Marmitas Inteligentes</div>
+        <div class="nav-child" onclick="showPage('extra-18kg')"><span class="nav-child-dot"></span>Guia Como Secar -18kg Rápido</div>
+        <div class="nav-child" onclick="showPage('extra-whey')"><span class="nav-child-dot"></span>Lista de Wheys Seguros</div>
       </div>
     </div>
+
+    <!-- UPSELL BUTTON -->
+    <div class="sidebar-upsell">
+      <p style="font-size:11.5px;color:var(--sidebar-muted);text-align:center;margin-bottom:7px;font-weight:500">Clique no botão e assista o vídeo:</p>
+      <button onclick="showPage('upsell-ritual')" class="btn-upsell">
+        🌙 Acordar 1kg Mais Leve
+      </button>
+    </div>
+
   </div>
   <div class="sidebar-footer">
-    <div class="copy-link-block">
-      <p class="copy-link-msg">📲 <strong>Faça isso agora!</strong> Clique no botão abaixo para copiar o link do app e salve em um bloco de notas ou na nossa conversa do WhatsApp para você conseguir acessar novamente:</p>
-      <button onclick="copyLink()" class="btn-social btn-copylink" id="btnCopyLink">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        <span id="lbl-copy">Copiar Link do App</span>
-      </button>
-      <p class="copy-link-hint">Você pode criar um atalho para ficar aparecendo na tela de início do seu celular!</p>
-    </div>
-    <div class="sidebar-social-divider"></div>
     <a href="https://www.myrnnagurgel.com.br/app-card-wpp" target="_blank" class="btn-social btn-whatsapp">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       <span id="lbl-btn-wpp">Resgatar meu brinde no WhatsApp</span>
@@ -1861,7 +1876,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
         <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#DC2626">48:11</div><div><h4>O erro de sair escondida</h4><p>Como passar segurança emocional para o bebê na hora de sair para trabalhar ou descansar.</p></div></div>
         <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#7C3AED">51:19</div><div><h4>O fantasma da creche</h4><p>Como lidar com a culpa da volta ao trabalho e a quebra das expectativas sociais.</p></div></div>
         <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#D97706">57:12</div><div><h4>A verdade sobre os palpites</h4><p>Por que eles doem? Geralmente confirmam nossas próprias cobranças internas.</p></div></div>
-        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">1:06:41</div><div><h4>Reflexão final</h4><p>"Ser mãe não é sobre perfeição, é sobre presença" — inclusive com você mesma.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="font-size:10px;min-width:46px;background:#059669">1:06:41</div><div><h4>Reflexão final</h4><p>"Ser mãe não é sobre perfeição, é sobre presença" inclusive com você mesma.</p></div></div>
       </div>
     </div>
     <div class="content-section"><h2 class="section-title">Siga a Especialista</h2>
@@ -1916,7 +1931,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
     <div class="page-header">
       <div class="page-badge">🎥 Mentoria</div>
       <h1>O Caminho Real para Recuperar o Corpo no Pós-Parto</h1>
-      <p>Sem dietas malucas e treinos intermináveis com a Personal Trainer <strong>Carol Cavalcante</strong> — Parte 1.</p>
+      <p>Sem dietas malucas e treinos intermináveis com a Personal Trainer <strong>Carol Cavalcante</strong> Parte 1.</p>
     </div>
     <div class="video-section"><div class="video-wrapper">
       <iframe src="https://www.youtube.com/embed/I3wER20VFkE" title="Personal Carol pt1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -1956,7 +1971,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
     <div class="page-header">
       <div class="page-badge">🎥 Mentoria</div>
       <h1>Do Cansaço ao Corpo dos Sonhos: Os Bastidores do Emagrecimento</h1>
-      <p>Um papo honesto e sem rodeios com a Personal Trainer <strong>Carol Cavalcante</strong> — Parte 2.</p>
+      <p>Um papo honesto e sem rodeios com a Personal Trainer <strong>Carol Cavalcante</strong> Parte 2.</p>
     </div>
     <div class="video-section"><div class="video-wrapper">
       <iframe src="https://www.youtube.com/embed/qvi822EYTD8" title="Personal Carol pt2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -2031,6 +2046,1179 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   </div>
 </div>
 
+<!-- PAGE EXTRA MARMITAS -->
+<div class="content-page" id="page-extra-marmitas">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('mar-intro',this)">👋 Intro</button>
+    <button class="pill" onclick="scrollSec('mar-poder',this)">💡 O Sistema</button>
+    <button class="pill" onclick="scrollSec('mar-nutricao',this)">🥗 Nutrição</button>
+    <button class="pill" onclick="scrollSec('mar-cardapio',this)">🍽️ Cardápio</button>
+    <button class="pill" onclick="scrollSec('mar-lista',this)">🛒 Lista</button>
+    <button class="pill" onclick="scrollSec('mar-receitas',this)">👩‍🍳 Receitas</button>
+    <button class="pill" onclick="scrollSec('mar-erros',this)">⚠️ Erros</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">📚 Material Extra</div>
+      <h1>Marmitas Inteligentes para Mães Lactantes</h1>
+      <p>30 refeições práticas, nutritivas e deliciosas em menos de 2 horas por semana. Sem dieta restritiva, sem passar fome só comer da forma certa!</p>
+    </div>
+
+    <div class="stat-cards">
+      <div class="stat-card"><span class="stat-icon">⏱️</span><h3>2 Horas</h3><p>Por semana para preparar 30 refeições</p></div>
+      <div class="stat-card"><span class="stat-icon">🍱</span><h3>30 Refeições</h3><p>Prontas, nutritivas e organizadas</p></div>
+      <div class="stat-card"><span class="stat-icon">🔥</span><h3>15 Minutos</h3><p>Por receita no máximo</p></div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="content-section" id="mar-intro">
+      <h2 class="section-title">👋 Boas-vindas</h2>
+      <blockquote class="brand-quote">O segredo NÃO é comer menos. É comer certo! Você não precisa passar fome você só precisa de um sistema inteligente.</blockquote>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-top:14px">Entre uma mamada e outra, fraldas voando e aquele chorinho que você já reconhece a quilômetros de distância, você ainda consegue perder peso de forma constante, manter a produção de leite firme e forte, e ter energia para a montanha-russa da maternidade. Este sistema foi criado especialmente para mães ocupadas, cansadas, mas cheias de força de vontade!</p>
+    </div>
+
+    <!-- O SISTEMA -->
+    <div class="content-section" id="mar-poder">
+      <h2 class="section-title">💡 O Poder das Marmitas Inteligentes</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">🍱</span>
+        <div>
+          <strong>O que são Marmitas Inteligentes?</strong>
+          <p>Refeições preparadas em lote (batch cooking), com ingredientes cuidadosamente escolhidos para apoiar a perda de peso saudável e manter sua produção de leite. Só 2 horas na semana para preparar tudo depois é só aquecer e comer!</p>
+        </div>
+      </div>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>⏰ Economia de Tempo</h3>
+          <ul><li>Ganhe horas do seu dia</li><li>Sem pensar no que cozinhar a cada refeição</li><li>Mais tempo com seu bebê</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🎯 Controle Total</h3>
+          <ul><li>Sabe exatamente o que está comendo</li><li>Porções certas, sem exageros</li><li>Sem improvisos que sabotem o resultado</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>💚 Saúde Garantida</h3>
+          <ul><li>Refeições balanceadas para você e o bebê</li><li>Sem dietas malucas</li><li>Leite materno nutritivo e abundante</li></ul>
+        </div>
+        <div class="option-card">
+          <h3>🔥 Perda de Peso Segura</h3>
+          <ul><li>Equilíbrio perfeito de nutrientes</li><li>Barriguinha diminuindo de forma constante</li><li>Sem sacrificar a saúde do bebê</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- NUTRIÇÃO -->
+    <div class="content-section" id="mar-nutricao">
+      <h2 class="section-title">🥗 Nutrição de Ouro</h2>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-bottom:12px;color:var(--text)">Alimentos que Aumentam a Produção de Leite</h3>
+      <div class="snack-grid" style="margin-bottom:20px">
+        <div class="snack-card"><span class="snack-emoji">🌾</span><span><strong>Aveia</strong> Rica em ferro e fibras, campeã na produção de leite e saciedade</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌱</span><span><strong>Chia e Linhaça</strong> Ricas em ômega-3, enriquecem o leite materno</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫘</span><span><strong>Grão-de-bico</strong> Proteína vegetal que mantém a energia e a produção</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥜</span><span><strong>Amêndoas</strong> Proteínas e cálcio para dar força extra na amamentação</span></div>
+      </div>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-bottom:12px;color:var(--text)">Alimentos que Aceleram a Perda de Peso</h3>
+      <div class="snack-grid" style="margin-bottom:20px">
+        <div class="snack-card"><span class="snack-emoji">🍗</span><span><strong>Frango e Peixes Magros</strong> Proteínas que aceleram o metabolismo e mantêm saciedade</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍠</span><span><strong>Batata-doce e Arroz Integral</strong> Energia de longa duração sem desregular o açúcar</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥦</span><span><strong>Brócolis e Espinafre</strong> Fibras e antioxidantes aliados na digestão e perda de peso</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫒</span><span><strong>Azeite Extra Virgem</strong> Gordura boa, anti-inflamatório e dá sabor sem culpa</span></div>
+      </div>
+
+      <div class="highlight-card">
+        <span class="hc-icon">💧</span>
+        <div>
+          <strong>Regra de Ouro da Hidratação</strong>
+          <p>Beba 1 copo de água toda vez que amamentar. Ou mire em 2 a 3 litros por dia. A água acelera o metabolismo, elimina gordura e mantém o leite forte e abundante.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARDÁPIO -->
+    <div class="content-section" id="mar-cardapio">
+      <h2 class="section-title">🍽️ Estrutura do Cardápio Infalível</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px;line-height:1.6">Para ter resultados constantes, siga a estrutura abaixo. Você pode trocar as refeições de mesmo tipo conforme sua rotina!</p>
+
+      <div class="plate-builder">
+        <h4 style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:11px">☀️ Café da Manhã Regra Obrigatória</h4>
+        <div class="plate-grid">
+          <div class="plate-part"><h5>Carboidrato</h5><p>Obrigatório</p></div>
+          <div class="plate-part"><h5>Proteína</h5><p>Obrigatório (20g+)</p></div>
+          <div class="plate-part"><h5>Fruta</h5><p>Opcional</p></div>
+          <div class="plate-part"><h5>Gordura Boa</h5><p>Opcional</p></div>
+        </div>
+        <div class="plate-tip">🥣 Aveia com Banana + Ovo (4 col. aveia + 200ml leite + 1 banana + 2 ovos)</div>
+        <div class="plate-tip">🫓 Tapioca com Frango + Abacate (2 col. tapioca + 100g frango + 2 col. abacate)</div>
+        <div class="plate-tip">🥗 Iogurte + Granola + Omelete (iogurte + 2 col. granola + 1 col. chia + omelete)</div>
+        <div class="plate-tip">🍳 Pão Integral com Ovo (1 fatia pão integral + 2 ovos + 1 fruta)</div>
+        <div class="plate-tip">🥤 Smoothie Proteico (200ml leite + banana + iogurte + 2 col. aveia)</div>
+      </div>
+
+      <div class="plate-builder" style="margin-top:14px">
+        <h4 style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:11px">🍎 Lanche da Manhã Escolha 1</h4>
+        <div class="plate-tip">🍌 Fruta + 1 col. pasta de amendoim</div>
+        <div class="plate-tip">🥜 5 castanhas + 5 amêndoas</div>
+        <div class="plate-tip">🫙 Iogurte natural + chia</div>
+        <div class="plate-tip">🥕 Palitos de cenoura ou pepino + homus</div>
+        <div class="plate-tip">🧀 1 fatia queijo branco + tomate picado</div>
+      </div>
+
+      <div class="plate-builder" style="margin-top:14px">
+        <h4 style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:11px">🍽️ Almoço Proporção Exata</h4>
+        <div class="plate-grid">
+          <div class="plate-part"><h5>Proteína</h5><p>100-120g</p></div>
+          <div class="plate-part"><h5>Carboidrato</h5><p>1½ xícara</p></div>
+          <div class="plate-part"><h5>Legumes</h5><p>À vontade!</p></div>
+          <div class="plate-part"><h5>Azeite</h5><p>1 col. chá</p></div>
+        </div>
+        <div class="alert-box info" style="margin-top:10px">
+          <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <div><strong>Ajuste inteligente:</strong> Ainda com fome? Aumente legumes e proteína. Travou o emagrecimento? Reduza um pouco o carboidrato.</div>
+        </div>
+      </div>
+
+      <div class="plate-builder" style="margin-top:14px">
+        <h4 style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:11px">🌤️ Lanche da Tarde Escolha 1</h4>
+        <div class="plate-tip">🍌 Iogurte + aveia + fruta</div>
+        <div class="plate-tip">🥪 Pão integral + queijo cottage</div>
+        <div class="plate-tip">🥤 Smoothie de frutas tradicional</div>
+        <div class="plate-tip">🥕 Homus + cenoura em palitos</div>
+        <div class="plate-tip">🌰 Mix de castanhas e amêndoas</div>
+      </div>
+
+      <div class="plate-builder" style="margin-top:14px">
+        <h4 style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:11px">🌙 Jantar Leve mas Suficiente</h4>
+        <div class="plate-tip">🍲 Sopa de legumes caseira + frango desfiado</div>
+        <div class="plate-tip">🍳 Omelete (1 ovo + 2 claras) + salada de folhas verdes</div>
+        <div class="plate-tip">🐟 Filé de peixe grelhado + legumes no vapor</div>
+        <div class="plate-tip">🥗 Salada de grão-de-bico + atum + folhas</div>
+        <div class="plate-tip">🎃 Creme de abóbora + cubos de queijo branco</div>
+        <div class="alert-box success" style="margin-top:10px">
+          <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <div>Sentiu fome à noite? Adicione 1 fruta OU uma pequena porção de arroz. Isso NÃO atrapalha o resultado evita a compulsão na madrugada!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LISTA DE COMPRAS -->
+    <div class="content-section" id="mar-lista">
+      <h2 class="section-title">🛒 Lista de Compras Otimizada</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:14px">Tudo que você precisa para 30 refeições balanceadas da semana:</p>
+
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🥩 Proteínas</h3>
+          <ul>
+            <li>1kg de peito de frango</li>
+            <li>500g de carne moída magra</li>
+            <li>400g de filé de tilápia</li>
+            <li>1 pacote de grão-de-bico (500g)</li>
+            <li>2 a 3 dúzias de ovos</li>
+            <li>Atum em lata (conserva em água)</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>🌾 Carboidratos Bons</h3>
+          <ul>
+            <li>1kg de batata-doce ou inhame</li>
+            <li>500g de quinoa</li>
+            <li>1kg de arroz integral</li>
+            <li>500g de aveia em flocos</li>
+            <li>Pão integral ou wrap integral</li>
+            <li>Goma de tapioca</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>🥦 Vegetais e Legumes</h3>
+          <ul>
+            <li>2 brócolis inteiros</li>
+            <li>4 cenouras grandes e 2 abobrinhas</li>
+            <li>Espinafre e couve (1 maço cada)</li>
+            <li>Tomate e pepino para saladas</li>
+            <li>1 pacote ervilhas congeladas</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>🫒 Gorduras e Extras</h3>
+          <ul>
+            <li>Sementes de chia e granola sem açúcar</li>
+            <li>Castanhas e amêndoas</li>
+            <li>Pasta de amendoim integral</li>
+            <li>Azeite de oliva extra virgem</li>
+            <li>Iogurte natural ou grego</li>
+            <li>Queijo branco ou cottage</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:19px;margin:20px 0 12px;color:var(--text)">Passo a Passo do Preparo em 2 Horas</h3>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Comece pelos lentos</h4><p>Coloque o arroz integral, a quinoa e as batatas-doces no fogo primeiro.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Prepare as proteínas principais</h4><p>Enquanto os carboidratos cozinham, grelhe frango e peixe. Refogue a carne moída com alho, cebola e cúrcuma.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Faça os vegetais al dente</h4><p>Cozinhe brócolis, cenoura e abobrinha no vapor. Levemente firmes para manter a textura após o descongelamento.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Monte as combinações</h4><p>Frango + Batata-doce + Brócolis / Carne Moída + Quinoa + Espinafre / Peixe + Arroz Integral + Cenoura.</p></div></div>
+        <div class="tip-item"><div class="tip-num">5</div><div><h4>Deixe os lanches pré-montados</h4><p>Potinhos de iogurte com chia, saquinhos de mix de castanhas e porções de frutas prontos para a semana.</p></div></div>
+      </div>
+    </div>
+
+    <!-- RECEITAS -->
+    <div class="content-section" id="mar-receitas">
+      <h2 class="section-title">👩‍🍳 Receitas de 15 Minutos</h2>
+
+      <div class="recipe-card">
+        <h3>🍗 Frango Grelhado com Batata-Doce e Brócolis</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>150g de peito de frango</li><li>100g de batata-doce</li><li>½ xíc. brócolis no vapor</li><li>1 col. chá de azeite</li><li>Sal, pimenta, alho</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Tempere o frango e grelhe 5 min de cada lado. Cozinhe a batata e o brócolis no vapor. Monte a marmita e finalize com o fio de azeite.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Dica: Asse bastante batata-doce de uma vez para usar em várias marmitas.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🥩 Carne Moída com Quinoa e Espinafre</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>100g de carne moída magra</li><li>½ xíc. quinoa cozida</li><li>1 xíc. espinafre fresco</li><li>Alho, sal, cúrcuma</li><li>1 col. chá de azeite</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Refogue a carne com alho, sal e cúrcuma até dourar. Cozinhe a quinoa. Refogue o espinafre no azeite por 2 minutos. Monte combinando os três.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Dica: Cozinhe bastante quinoa de uma vez para usar em várias receitas.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🐟 Tilápia Assada com Arroz Integral e Cenoura</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>150g de filé de tilápia</li><li>½ xíc. arroz integral cozido</li><li>1 cenoura média em rodelas</li><li>Limão, sal, pimenta-do-reino</li><li>1 col. chá de azeite</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Tempere o peixe com limão, sal e pimenta. Asse a 180°C por 15 minutos. Cozinhe o arroz e a cenoura em água e sal. Monte a marmita.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🫘 Salada Quente de Grão-de-Bico com Frango e Brócolis</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>100g de frango desfiado</li><li>½ xíc. grão-de-bico cozido</li><li>½ xíc. brócolis no vapor</li><li>Alho, sal, páprica doce</li><li>1 col. chá de azeite</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Refogue o frango com alho e sal. Misture o grão-de-bico, o frango e o brócolis na marmita. Tempere com o azeite e salpique páprica doce.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🥑 Salada Saciativa de Quinoa, Abacate e Chia</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>½ xíc. quinoa cozida</li><li>½ abacate em cubos</li><li>1 col. sopa de chia</li><li>Folhas verdes (alface/rúcula)</li><li>Suco de ½ limão, azeite, sal</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Excelente para consumo imediato ou montagem fresca. Misture a quinoa fria com as folhas, os cubos de abacate e a chia. Tempere com limão, azeite e sal na hora.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERROS -->
+    <div class="content-section" id="mar-erros">
+      <h2 class="section-title">⚠️ Erros para Evitar</h2>
+      <div class="errors-grid">
+        <div class="error-item">Pular refeições desregula hormônios e gera picos de fome</div>
+        <div class="error-item">Não beber água bloqueia queima de gordura e reduz o leite</div>
+        <div class="error-item">Comer pouco demais metabolismo lento e cansaço extremo</div>
+        <div class="error-item">Cortar o carboidrato totalmente reduz energia e prejudica o leite</div>
+        <div class="error-item">Viver beliscando estraga o déficit sem trazer nutrição real</div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:24px">✨ Dicas Finais para o Sucesso</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Use temperos naturais</h4><p>Alho, cebola, ervas, cúrcuma e páprica dão sabor incrível sem calorias vazias ou sódio em excesso.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Faça o simples bem feito</h4><p>Consistência e simplicidade são muito mais poderosas do que qualquer dieta complicada.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Respeite seu tempo</h4><p>Seu corpo acabou de gerar uma vida. Cuide dele com respeito e nutrição, não com pressão. O resultado estético é a consequência natural da constância.</p></div></div>
+      </div>
+
+      <blockquote class="brand-quote" style="margin-top:20px">Eu quero ver suas marmitas prontas na geladeira! Tira uma foto e me manda no Direct do Instagram. Vou adorar compartilhar no meu Story para inspirar outras supermães!</blockquote>
+      <div class="alert-box success" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Siga e manda seu resultado no Instagram! <strong>@myrnnagurgel</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE EXTRA CHÁS -->
+<div class="content-page" id="page-extra-chas">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('cha-intro',this)">👋 Intro</button>
+    <button class="pill" onclick="scrollSec('cha-quentes',this)">☕ Quentes</button>
+    <button class="pill" onclick="scrollSec('cha-gelados',this)">🧊 Gelados</button>
+    <button class="pill" onclick="scrollSec('cha-guia',this)">🌿 Guia de Ervas</button>
+    <button class="pill" onclick="scrollSec('cha-dicas',this)">✨ Dicas Finais</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">📚 Material Extra</div>
+      <h1>Chás Saborosos, Práticos e Seguros para Mães Lactantes</h1>
+      <p>Receitas deliciosas e 100% seguras para você e seu bebê. Sem comprometer a produção de leite pelo contrário, muitos vão até ajudar!</p>
+    </div>
+
+    <div class="stat-cards">
+      <div class="stat-card"><span class="stat-icon">🫖</span><h3>8 Receitas</h3><p>Quentes e geladas para todos os momentos</p></div>
+      <div class="stat-card"><span class="stat-icon">✅</span><h3>100% Seguras</h3><p>Aprovadas para quem amamenta</p></div>
+      <div class="stat-card"><span class="stat-icon">💧</span><h3>Hidratação</h3><p>Aliadas poderosas da água pura</p></div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="content-section" id="cha-intro">
+      <h2 class="section-title">👋 Boas-vindas</h2>
+      <blockquote class="brand-quote">Escolha o seu favorito, tire uns minutinhos para você e aproveite. Você está fazendo um trabalho incrível.</blockquote>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-top:14px">Como mãe lactante, a sua alimentação é o combustível duplo da casa: nutre você e garante que o seu leite tenha tudo o que o bebê precisa. Dietas restritivas não são bem-vindas o segredo é uma alimentação equilibrada e uma hidratação poderosa. Os chás aqui selecionados ajudam a desinchar, melhoram a digestão, trazem calma e mantêm seu corpo hidratado.</p>
+    </div>
+
+    <!-- QUENTES -->
+    <div class="content-section" id="cha-quentes">
+      <h2 class="section-title">☕ Para Aquecer e Acolher</h2>
+
+      <div class="recipe-card">
+        <h3>🫚 Chá de Gengibre e Limão</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>2 fatias finas de gengibre fresco</li><li>Suco de ½ limão</li><li>1 xícara de água quente</li><li>1 col. chá de mel (opcional)</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Coloque o gengibre na água quente e abafe por 5 minutos. Adicione o suco do limão e adoce se desejar.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Ajuda na digestão, dá empurrão no metabolismo e fortalece a imunidade.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🌸 Chá de Erva-Doce e Mel</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 col. chá de sementes de erva-doce</li><li>1 xícara de água quente</li><li>1 col. chá de mel</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Despeje a água quente sobre as sementes. Deixe em infusão por 10 minutos. Coe e misture o mel.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">O queridinho das maternidades! Abraça o estômago e traz tranquilidade.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🍊 Chá de Funcho com Laranja</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 col. chá de sementes de funcho</li><li>2 rodelas de laranja com casca (bem lavada)</li><li>1 xícara de água quente</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Coloque os ingredientes na água recém-fervida. Abafe por 8 minutos e coe.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Reduz o inchaço abdominal e estimula a lactação de forma segura.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🍎 Chá de Capim-Cidreira e Maçã</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 col. sopa de folhas de capim-cidreira</li><li>¼ de maçã em cubinhos</li><li>1 xícara de água quente</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Misture na água quente, tampe por 10 minutos e beba sentindo o aroma.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Perfeito para o fim da tarde. Reduz a ansiedade e melhora o sono.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🌿 Infusão de Alecrim e Limão</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>1 raminho pequeno de alecrim fresco</li><li>Suco de ½ limão</li><li>1 xícara de água quente</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Coloque o alecrim na água por apenas 3 a 5 minutos. Retire, adicione o limão e beba.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Traz foco e energia para os dias mais cansativos.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GELADOS -->
+    <div class="content-section" id="cha-gelados">
+      <h2 class="section-title">🧊 Para Refrescar e Hidratar</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">💡</span>
+        <div>
+          <strong>Dica de Hidratação</strong>
+          <p>Ter uma jarra de chá gelado na geladeira é uma estratégia perfeita para se manter hidratada e variar da água pura durante a amamentação!</p>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🍑 Iced Tea de Camomila, Pêssego e Limão</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>2 sachês de camomila (ou 2 col. flores secas)</li><li>1 pêssego maduro picado</li><li>Suco de 1 limão</li><li>500ml de água</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Faça o chá em 200ml de água quente e deixe esfriar. Bata no liquidificador com a água gelada restante, o pêssego e o limão. Coe se preferir, adicione gelo e sirva.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🍎 Mate Falso de Maçã e Gengibre</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>Cascas de 2 maçãs vermelhas</li><li>3 fatias de gengibre</li><li>500ml de água</li><li>Gelo a gosto</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Ferva as cascas de maçã e o gengibre por 10 minutos. Desligue, espere esfriar e leve à geladeira. Sirva com bastante gelo.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Tem a cor e o frescor do chá mate, mas é 100% seguro para quem amamenta!</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🍓 Refresco de Frutas Vermelhas com Capim-Cidreira</h3>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul><li>200ml de chá de capim-cidreira forte (frio)</li><li>½ xíc. morangos ou framboesas picadas</li><li>300ml de água gelada</li></ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Misture o chá frio com a água gelada. Adicione as frutas na jarra. Deixe na geladeira por 1 hora antes de servir com gelo.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Explosão de antioxidantes que ajuda a controlar a vontade de doces!</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA DE ERVAS -->
+    <div class="content-section" id="cha-guia">
+      <h2 class="section-title">🌿 Guia Rápido de Ervas na Lactação</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Salve esta listinha! Nem tudo que é natural é seguro para quem amamenta.</p>
+
+      <div class="alert-box success">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div><strong>Sinal Verde Seguras e amigas da amamentação:</strong></div>
+      </div>
+      <div class="snack-grid" style="margin-bottom:20px">
+        <div class="snack-card"><span class="snack-emoji">🌸</span><span><strong>Erva-doce e Funcho</strong> Ótimos para digestão e auxiliam na produção de leite</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌼</span><span><strong>Camomila e Capim-cidreira</strong> Acalmam mãe e bebê, melhoram o sono</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫚</span><span><strong>Gengibre</strong> Seguro em doses culinárias (1 a 2 xícaras/dia), ótimo para imunidade</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍎</span><span><strong>Frutas em geral</strong> Maçã, frutas vermelhas, pêssego e maracujá são excelentes opções</span></div>
+      </div>
+
+      <div class="alert-box warning">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <div><strong>Sinal Vermelho Evite durante a amamentação:</strong></div>
+      </div>
+      <div class="errors-grid">
+        <div class="error-item">Hortelã e Menta podem diminuir drasticamente a produção de leite</div>
+        <div class="error-item">Cavalinha, Hibisco forte e Chá de Sene diuréticos que desidratam e reduzem o leite</div>
+        <div class="error-item">Chá Verde, Preto, Mate e Branco cafeína que passa para o leite e agita o bebê</div>
+        <div class="error-item">Sálvia e Salsa em chá assim como a hortelã, têm potencial para secar o leite</div>
+      </div>
+    </div>
+
+    <!-- DICAS FINAIS -->
+    <div class="content-section" id="cha-dicas">
+      <h2 class="section-title">✨ Considerações Finais</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Moderação é a chave</h4><p>Recomendamos 2 a 3 xícaras por dia. O excesso de qualquer erva pode sobrecarregar o organismo delicado do bebê. Variedade é a melhor estratégia!</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Água é insubstituível</h4><p>Os chás são ótimos aliados, mas a água pura continua sendo o principal combustível para a produção de leite. Mantenha sempre uma garrafinha ao seu lado.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Escute seu corpo e seu bebê</h4><p>Observe como você se sente e como o bebê reage após consumir um chá novo. Cada corpo é único.</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Você está fazendo um trabalho incrível. Aproveite o seu chá!</blockquote>
+      <div class="alert-box success" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Seguir no Instagram para mais dicas! <strong>@myrnnagurgel</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE EXTRA 18KG -->
+<div class="content-page" id="page-extra-18kg">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('kg-autora',this)">👋 Sobre a Myrnna</button>
+    <button class="pill" onclick="scrollSec('kg-prefacio',this)">📖 Prefácio</button>
+    <button class="pill" onclick="scrollSec('kg-promessa',this)">🌟 A Promessa</button>
+    <button class="pill" onclick="scrollSec('kg-primeiros',this)">🚀 Primeiros Passos</button>
+    <button class="pill" onclick="scrollSec('kg-desafios',this)">💪 Desafios</button>
+    <button class="pill" onclick="scrollSec('kg-nutricao',this)">🥗 Nutrição</button>
+    <button class="pill" onclick="scrollSec('kg-exercicios',this)">🏃 Exercícios</button>
+    <button class="pill" onclick="scrollSec('kg-estresse',this)">🧘 Estresse</button>
+    <button class="pill" onclick="scrollSec('kg-final',this)">✨ Finalização</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">📚 Material Extra</div>
+      <h1>Guia Como Secar -18kg Rápido Pós-Parto</h1>
+      <p>Com saúde e respeitando o seu corpo. Sem frustração, sem dietas malucas e sem cansaço desnecessário. Por Myrnna Gurgel.</p>
+    </div>
+
+    <div class="stat-cards">
+      <div class="stat-card"><span class="stat-icon">⚖️</span><h3>-18kg</h3><p>De forma saudável e sustentável</p></div>
+      <div class="stat-card"><span class="stat-icon">🤱</span><h3>Amamentando</h3><p>Sem comprometer o leite</p></div>
+      <div class="stat-card"><span class="stat-icon">💪</span><h3>Sem Dieta Maluca</h3><p>Método real que funcionou</p></div>
+    </div>
+
+    <!-- SOBRE A AUTORA -->
+    <div class="content-section" id="kg-autora">
+      <h2 class="section-title">👋 Sobre a Myrnna Gurgel</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Tenho 25 anos, casada com o Lucas Gregoh e mãe do Noah. Sou formada em design de interiores, porém não foi a área que me encantou tanto os olhos para atuar, mas empreender na internet me trouxe a oportunidade de ajudar mulheres a encontrar a sua melhor versão em várias áreas da vida.</p>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Desde a descoberta da minha gestação que, mesmo sendo planejada, veio junto a diversas questões que tive que aprender a lidar e uma delas foi o meu corpo. Algo que sempre prezei em conquistar era o "shape perfeito", porém tudo virou de cabeça para baixo nesse processo e eu me senti vulnerável e incapaz de alcançar aquilo que tanto almejava.</p>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Após a gestação me vi em um corpo que não me reconhecia, com 23kg a mais. Mas algo que eu sempre gostei foi de desafios, então resolvi encarar essa fase como "o desafio da minha vida" e busquei ajuda de profissionais (personal e nutricionista) para fazer isso de forma saudável porém rápida!</p>
+      <blockquote class="brand-quote">Hoje estou aqui para te mostrar que é possível ser ainda melhor do que você jamais foi e espero que a minha mensagem alcance centenas de mulheres.</blockquote>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-top:14px">Me vi perdida em um mar de informações conflitantes que mais prejudicavam do que ajudavam. Mas, ao adotar uma visão focada no bem-estar, consegui não apenas perder peso, mas também descobrir uma nova forma de viver. Cada página deste guia foi escrita pensando em você: uma mulher incrível, enfrentando o desafio de equilibrar maternidade, carreira e autocuidado.</p>
+    </div>
+
+    <!-- PREFÁCIO -->
+    <div class="content-section" id="kg-prefacio">
+      <h2 class="section-title">📖 Bem-vinda à sua Transformação</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:14px">Este guia transcende a simples noção de perda de peso. É um manifesto pelo amor próprio, pela saúde e pela felicidade genuína. Nele, você encontrará não apenas estratégias eficazes para perder peso após o parto, mas também um novo modo de enxergar a si mesma e ao seu corpo.</p>
+      <div class="highlight-card">
+        <span class="hc-icon">💡</span>
+        <div>
+          <strong>A virada de chave</strong>
+          <p>A primeira coisa que precisou mudar foi a mente: aceitar o processo e entender que resultados rápidos exigem saúde, não atalhos. Especialmente durante a amamentação. Eu não poderia seguir dietas malucas pois a amamentação exige muito do nosso corpo e precisamos ter energia e nutrientes para nós e nossos filhos.</p>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-top:14px;margin-bottom:14px">Durante os dois primeiros meses do Noah, eu não puder voltar aos treinos por questão de logística da nossa família. Porém eu já estava liberada para fazê-los após 30 dias (já que tive parto normal). Durante esses meses sem treinar, eu me frustrava cada dia mais, por me ver naquela nova forma. Mas essa experiência me ensinou que devemos respeitar nosso processo.</p>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:14px">A realidade é que o corpo de uma nova mãe precisa de tempo para se recuperar e de nutrição adequada para se reequilibrar. Dietas restritivas prometem resultados rápidos, mas ao custo da sua saúde e bem-estar. Além disso, não são sustentáveis e com o tempo você volta a comer o dobro por conta da restrição.</p>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">🥗</div><div><h4>Nutrição Inteligente</h4><p>Sem cortar grupos alimentares. Como comer de forma estratégica para queimar gordura sem afetar o leite materno.</p></div></div>
+        <div class="tip-item"><div class="tip-num">💪</div><div><h4>Exercício Físico Adaptado</h4><p>Treinos pensados para a realidade do pós-parto, respeitando o seu corpo e o seu tempo.</p></div></div>
+        <div class="tip-item"><div class="tip-num">🧘</div><div><h4>Gerenciamento do Estresse</h4><p>Como lidar com o estresse que sabota o emagrecimento e afeta a produção de leite.</p></div></div>
+        <div class="tip-item"><div class="tip-num">😴</div><div><h4>Descanso Reparador</h4><p>O papel do sono na queima de gordura e como otimizar o descanso mesmo com um bebê.</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Perder 18kg é apenas o começo. A verdadeira magia acontece quando você se reconecta com sua energia vital e aprende a nutrir corpo e mente com o amor que eles merecem.</blockquote>
+    </div>
+
+    <!-- A PROMESSA -->
+    <div class="content-section" id="kg-promessa">
+      <h2 class="section-title">🌟 A Promessa</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:14px">Este guia transcende a simples noção de perda de peso. Através do método que compartilho aqui, um método que eu mesma vivenciei e refinei, você descobrirá como é possível perder até 18kg de uma forma que não só é rápida, mas também saudável e sustentável. Este não é um caminho de restrições severas, mas uma jornada de equilíbrio e autodescoberta.</p>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:14px">A promessa deste guia é baseada em princípios comprovados, equilibrando nutrição adequada, atividade física direcionada, e um forte componente de bem-estar emocional. É um convite para olhar além da balança e ver a perda de peso como parte de um processo mais amplo de crescimento pessoal e renovação.</p>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>📖 Provérbios 31:17</h3>
+          <ul><li>"Ela cinge os seus lombos de força, e fortalece os seus braços."</li></ul>
+          <div class="prep-mode">Este versículo reflete a força que cada mulher possui para alcançar seus objetivos e transformar seu corpo e sua vida.</div>
+        </div>
+        <div class="option-card">
+          <h3>📖 Filipenses 4:13</h3>
+          <ul><li>"Tudo posso naquele que me fortalece."</li></ul>
+          <div class="prep-mode">Este guia busca fortalecer sua fé e convicção de que, com o apoio adequado, você pode superar qualquer desafio.</div>
+        </div>
+        <div class="option-card">
+          <h3>📖 1 Coríntios 6:19-20</h3>
+          <ul><li>"O vosso corpo é o templo do Espírito Santo... glorificai a Deus no vosso corpo."</li></ul>
+          <div class="prep-mode">Cuidar do corpo é um ato de gratidão e respeito pelo dom da vida.</div>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-top:14px">Entendo que a jornada de cada mulher é única. Este método é adaptável, permitindo que você encontre seu próprio caminho para a transformação. É um guia que respeita sua individualidade, seus desafios e suas aspirações. Independentemente de onde você está começando, a transformação é possível.</p>
+    </div>
+
+    <!-- PRIMEIROS PASSOS -->
+    <div class="content-section" id="kg-primeiros">
+      <h2 class="section-title">🚀 Primeiros Passos para a Transformação</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Embarcar nessa jornada pode parecer difícil, mas começar com ações simples pode estabelecer o tom para um sucesso duradouro.</p>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Hidratação Adequada</h4><p>Beber água suficiente ao longo do dia auxilia na regulação do apetite e na perda de peso. Manter uma garrafa sempre por perto transforma a hidratação em um hábito quase inconsciente.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Pequenas Atividades Físicas</h4><p>Caminhadas curtas com o carrinho do bebê ou sessões de alongamento em casa fazem grande diferença. Eu comecei com caminhadas no espaço de lazer do próprio condomínio.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Sono de Qualidade</h4><p>Adotar uma rotina relaxante antes de dormir, desligar dispositivos eletrônicos e aproveitar o momento da amamentação para se reconectar pode melhorar significativamente a qualidade do descanso.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Alimentação Balanceada</h4><p>Incluir mais vegetais nas refeições e reduzir o consumo de alimentos processados. A alimentação saudável não precisa ser complicada ou demorada. Receitinhas no Instagram ajudam bastante!</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Você já começou. No momento em que escolheu se abrir para esta mudança, a transformação já teve início.</blockquote>
+    </div>
+
+    <!-- DESAFIOS -->
+    <div class="content-section" id="kg-desafios">
+      <h2 class="section-title">💪 Identificando e Superando Desafios</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">As alterações hormonais do pós-parto fazem o metabolismo parecer que está em uma montanha-russa, impactando o apetite e a forma como a gordura é distribuída. O cansaço parece uma maratona sem medalha. E a pressão para "voltar ao normal" como se seu corpo precisasse obedecer a um cronograma da sociedade. Mas cada um desses desafios, embora intimidador, não é invencível!</p>
+
+      <div class="highlight-card">
+        <span class="hc-icon">🧠</span>
+        <div>
+          <strong>Saúde Mental é parte do processo</strong>
+          <p>Fatores emocionais e mentais, como a depressão pós-parto e a ansiedade, jogam um papel gigantesco no peso e na motivação. Se você está se sentindo sobrecarregada, lembre-se de que pedir ajuda é um sinal de força, não de fraqueza.</p>
+        </div>
+      </div>
+
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin:14px 0">Outro mito que merece ser desconstruído é a eficácia das dietas restritivas. Cortar grupos alimentares inteiros pode ser tentador, mas essas dietas não são sustentáveis a longo prazo e podem levar a deficiências nutricionais e a um ciclo vicioso de perda e ganho de peso. O que realmente funciona é uma alimentação balanceada que fornece todos os nutrientes necessários.</p>
+
+      <h3 style="font-family:Cormorant Garamond,serif;font-size:19px;color:var(--text);margin-bottom:12px">Checklist Prático para Começar</h3>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Rotina Diária Flexível</h4><p>Planeje seu dia com blocos de tempo para cuidados pessoais, atividade física e tempo com o bebê. A flexibilidade é essencial.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Atividades Físicas Divertidas</h4><p>Liste três atividades que você realmente gosta e encaixe-as na sua semana. O prazer é o que sustenta a constância.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Alimentação Simplificada</h4><p>Pratos de uma panela, refeições preparadas com antecedência e congeladas, lanches saudáveis à mão. Prepare uma grande quantidade no domingo e congele porções para a semana.</p></div></div>
+      </div>
+
+      <div class="alert-box info" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <div><strong>Para quem não tem rede de suporte:</strong> Explore aplicativos e recursos online de nutrição, exercícios e saúde mental. Muitos são gratuitos ou têm custo baixo. Você tem em si mesma uma força incrível e a capacidade de criar sua própria rede de apoio.</div>
+      </div>
+    </div>
+
+    <!-- NUTRIÇÃO -->
+    <div class="content-section" id="kg-nutricao">
+      <h2 class="section-title">🥗 Nutrição Equilibrada no Pós-Parto</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Não se trata apenas de contar calorias ou se despedir dos seus pratos favoritos. Falamos de nutrientes essenciais que otimizam a recuperação e a perda de peso, e ainda garantem energia suficiente para acompanhar o ritmo do bebê.</p>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🥩 Proteínas</h3>
+          <ul><li>Frango, peixe e ovos</li><li>Leguminosas (feijão, grão-de-bico)</li><li>Iogurte grego e cottage</li></ul>
+          <div class="prep-mode">Essenciais para recuperação muscular, saciedade e manutenção do leite materno.</div>
+        </div>
+        <div class="option-card">
+          <h3>🌾 Carboidratos Bons</h3>
+          <ul><li>Batata-doce e arroz integral</li><li>Aveia e quinoa</li><li>Pão integral e mandioca</li></ul>
+          <div class="prep-mode">Energia de longa duração sem picos de açúcar no sangue. NÃO corte os carboidratos!</div>
+        </div>
+        <div class="option-card">
+          <h3>🥦 Vegetais e Fibras</h3>
+          <ul><li>Brócolis, espinafre e couve</li><li>Cenoura, abobrinha e pepino</li><li>Saladas frescas variadas</li></ul>
+          <div class="prep-mode">Fibras que prolongam a saciedade e facilitam a digestão.</div>
+        </div>
+        <div class="option-card">
+          <h3>🫒 Gorduras Saudáveis</h3>
+          <ul><li>Azeite de oliva extra virgem</li><li>Abacate e oleaginosas</li><li>Sementes de chia e linhaça</li></ul>
+          <div class="prep-mode">Fundamentais para absorção de vitaminas e regulação hormonal.</div>
+        </div>
+      </div>
+      <div class="alert-box success" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div><strong>Dica prática:</strong> Comece pequeno. Adicione uma porção extra de vegetais no jantar, troque o lanche da tarde por algo rico em proteínas, ou prepare receitas em lote no fim de semana. Nutrição inteligente, não chef Michelin!</div>
+      </div>
+    </div>
+
+    <!-- EXERCÍCIOS -->
+    <div class="content-section" id="kg-exercicios">
+      <h2 class="section-title">🏃 Plano Prático de Exercícios</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:14px">Progressão segura e respeitosa com o seu corpo no pós-parto. Sempre com liberação médica antes de começar!</p>
+      <div class="tips-list">
+        <div class="tip-item">
+          <div class="tip-num" style="background:#059669;font-size:11px;min-width:46px">SEM. 1</div>
+          <div><h4>Caminhadas Leves</h4><p>10 a 15 minutos para sentir como seu corpo reage. Sem pressa, sem impacto. Pode ser no corredor de casa ou no condomínio.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#D97706;font-size:11px;min-width:46px">SEM. 2</div>
+          <div><h4>Fortalecimento do Core</h4><p>Nada de abdominais tradicionais. Pense em elevações de perna e inclinações pélvicas. Proteção ao períneo e à diástase.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#7C3AED;font-size:11px;min-width:46px">SEM. 3</div>
+          <div><h4>Flexibilidade</h4><p>Alongamentos suaves e yoga pós-parto para recuperar mobilidade e reduzir tensões acumuladas.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#DC2626;font-size:11px;min-width:46px">SEM. 4</div>
+          <div><h4>Consolidar e Progredir</h4><p>Consolide o ritmo e aumente levemente o tempo ou intensidade conforme orientação médica. Celebre esse marco!</p></div>
+        </div>
+      </div>
+      <div class="alert-box warning" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <div><strong>Liberação médica:</strong> Parto normal: aguarde pelo menos 30 dias. Cesárea: aguarde pelo menos 60 dias. Sempre consulte seu médico antes de retomar.</div>
+      </div>
+    </div>
+
+    <!-- ESTRESSE E DESCANSO -->
+    <div class="content-section" id="kg-estresse">
+      <h2 class="section-title">🧘 Gerenciamento do Estresse e Descanso</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">O estresse é um dos vilões mais astutos do emagrecimento pós-parto. Ele eleva o cortisol, que retém gordura. Para combatê-lo, crie um ambiente propício ao descanso: reduza a luz, use aromas relaxantes como lavanda e estabeleça uma hora fixa para ir para a cama.</p>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🌬️ Respiração Profunda</h3>
+          <ul><li>Inspire contando até 4</li><li>Segure por 4</li><li>Expire por 4</li></ul>
+          <div class="prep-mode">Botão de reset para o sistema nervoso. Pode fazer durante a amamentação.</div>
+        </div>
+        <div class="option-card">
+          <h3>🧘 Meditação</h3>
+          <ul><li>Apps: Headspace ou Calm</li><li>Sessões de 5 minutos já ajudam</li><li>Mindfulness durante a mamada</li></ul>
+          <div class="prep-mode">Sessões curtíssimas fazem diferença real no nível de estresse diário.</div>
+        </div>
+        <div class="option-card">
+          <h3>😴 Ambiente de Sono</h3>
+          <ul><li>Quarto escuro e fresco</li><li>Aromas relaxantes (lavanda)</li><li>Hora fixa para dormir</li></ul>
+          <div class="prep-mode">Consistência regula o relógio biológico e melhora a qualidade do sono.</div>
+        </div>
+        <div class="option-card">
+          <h3>💧 Hidratação</h3>
+          <ul><li>Garrafa sempre à mão</li><li>2 a 3 litros por dia</li><li>1 copo a cada mamada</li></ul>
+          <div class="prep-mode">Fundamental para o metabolismo e para a produção de leite.</div>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-top:14px">Ser flexível com o seu plano de ação é essencial. Seu corpo é único e vai reagir de forma única ao exercício, à nutrição e ao descanso. Haverá dias fáceis e dias difíceis. Nesses momentos, é perfeitamente aceitável ajustar o plano, simplificar os exercícios ou focar apenas no repouso necessário.</p>
+    </div>
+
+    <!-- FINALIZAÇÃO -->
+    <div class="content-section" id="kg-final">
+      <h2 class="section-title">✨ Construindo a Fundação</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">A transformação é mais uma maratona de dança do que uma corrida rápida. É uma jornada contínua onde cada fase traz novos desafios e conquistas. A saúde e o bem-estar são como plantinhas delicadas que precisam de cuidado, amor e, às vezes, um pouco de música!</p>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Celebre cada pequena vitória</h4><p>Um quilo perdido, uma noite de sono reparador, a escolha de uma maçã no lugar de um biscoito. Cada uma dessas vitórias compõe o caminho para uma versão mais saudável e feliz de você mesma.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>A transformação já começou</h4><p>No momento em que você escolheu se abrir para esta mudança, a jornada já teve início. Você já demonstrou uma força incrível e a capacidade de superar desafios.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Você tem tudo que precisa</h4><p>Dentro de você há uma reserva inesgotável de força, resiliência e capacidade de mudança. Seu potencial é tão vasto quanto o oceano.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Ação concreta todos os dias</h4><p>Cada pequena mudança conta. Substitua um lanche, mova-se um pouco mais do que ontem, beba mais água. Um passo de cada vez.</p></div></div>
+        <div class="tip-item"><div class="tip-num">5</div><div><h4>Continue revisitando este guia</h4><p>Cada vez que voltar, encontrará novas perspectivas. A jornada não termina ao fechar o guia, ela está apenas começando.</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">A transformação é uma jornada contínua, não um destino final. Cada dia traz uma nova oportunidade para ser uma versão melhor de você mesma. Abrace a mudança, ria na cara do desafio e dance rumo ao seu futuro brilhante e saudável!</blockquote>
+      <div class="alert-box success" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Acompanhe a jornada e inspire outras mães! <strong>@myrnnagurgel</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE EXTRA LISTA DE COMPRAS -->
+<div class="content-page" id="page-extra-lista">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('lc-proteinas',this)">🥩 Proteínas</button>
+    <button class="pill" onclick="scrollSec('lc-carbs',this)">🌾 Carboidratos</button>
+    <button class="pill" onclick="scrollSec('lc-legumes',this)">🥦 Legumes</button>
+    <button class="pill" onclick="scrollSec('lc-frutas',this)">🍎 Frutas</button>
+    <button class="pill" onclick="scrollSec('lc-gorduras',this)">🫒 Gorduras</button>
+    <button class="pill" onclick="scrollSec('lc-extras',this)">🧄 Extras</button>
+    <button class="pill" onclick="scrollSec('lc-dicas',this)">✨ Dicas</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">📚 Material Extra</div>
+      <h1>Sua Lista de Compras para Mães Lactantes</h1>
+      <p>Organize sua semana, economize tempo e facilite seu processo de emagrecimento com segurança.</p>
+    </div>
+
+    <div class="stat-cards">
+      <div class="stat-card"><span class="stat-icon">⏱️</span><h3>1 Dia</h3><p>Por semana para organizar tudo</p></div>
+      <div class="stat-card"><span class="stat-icon">🛒</span><h3>6 Grupos</h3><p>Alimentos organizados por categoria</p></div>
+      <div class="stat-card"><span class="stat-icon">💚</span><h3>Resultado</h3><p>Sem pular refeições, sem improvisos</p></div>
+    </div>
+
+    <!-- PROTEÍNAS -->
+    <div class="content-section" id="lc-proteinas">
+      <h2 class="section-title">🥩 Proteínas Base do seu resultado</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🍗 Carnes</h3>
+          <ul>
+            <li>Peito de frango (1 a 2kg)</li>
+            <li>Carne moída magra, patinho (500g a 1kg)</li>
+            <li>Peixe: tilápia ou merluza (500g a 1kg)</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>🥚 Ovos e Laticínios</h3>
+          <ul>
+            <li>Ovos (2 a 3 cartelas)</li>
+            <li>Atum em lata em água (2 a 4 unidades)</li>
+            <li>Iogurte natural ou desnatado (5 a 7 unidades)</li>
+            <li>Queijo branco, ricota ou cottage</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert-box success">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div><strong>Dica que salva a semana:</strong> Deixe frango já cozido e desfiado na geladeira. Isso evita improvisos e facilita a montagem das refeições a qualquer hora.</div>
+      </div>
+    </div>
+
+    <!-- CARBOIDRATOS -->
+    <div class="content-section" id="lc-carbs">
+      <h2 class="section-title">🌾 Carboidratos Energia para você e para o leite</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍚</span><span>Arroz integral</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍠</span><span>Batata-doce</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫓</span><span>Tapioca</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌾</span><span>Aveia em flocos</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍞</span><span>Pão integral</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌿</span><span>Quinoa (opcional)</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫘</span><span>Feijão</span></div>
+      </div>
+      <div class="alert-box success">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div><strong>Dica prática:</strong> Cozinhe arroz e feijão para 2 a 3 dias e deixe pronto na geladeira. Poupa tempo e garante que você sempre tenha uma base saudável disponível.</div>
+      </div>
+    </div>
+
+    <!-- LEGUMES -->
+    <div class="content-section" id="lc-legumes">
+      <h2 class="section-title">🥦 Legumes e Verduras Saciedade e saúde</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🥬 Folhas</h3>
+          <ul>
+            <li>Alface</li>
+            <li>Couve</li>
+            <li>Espinafre</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>🥕 Legumes</h3>
+          <ul>
+            <li>Tomate</li>
+            <li>Cenoura</li>
+            <li>Abobrinha</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>🥦 Outros</h3>
+          <ul>
+            <li>Brócolis</li>
+            <li>Abóbora</li>
+            <li>Chuchu</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRUTAS -->
+    <div class="content-section" id="lc-frutas">
+      <h2 class="section-title">🍎 Frutas Essenciais para energia e nutrientes</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🍓</span><span><strong>Morango</strong> Antioxidante poderoso</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍌</span><span><strong>Banana</strong> Prática e energética</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍎</span><span><strong>Maçã</strong> Fácil de carregar e prática</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍐</span><span><strong>Pera</strong> Rica em fibras</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍈</span><span><strong>Mamão</strong> Auxilia na digestão</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥑</span><span><strong>Abacate</strong> Gordura boa e saciedade</span></div>
+      </div>
+    </div>
+
+    <!-- GORDURAS -->
+    <div class="content-section" id="lc-gorduras">
+      <h2 class="section-title">🫒 Gorduras Boas Equilíbrio hormonal e saciedade</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🫒</span><span><strong>Azeite de oliva</strong> Base para temperar e cozinhar</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥜</span><span><strong>Pasta de amendoim</strong> Prática e nutritiva</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌱</span><span><strong>Chia</strong> Rica em ômega-3 e fibras</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌾</span><span><strong>Linhaça</strong> Excelente para equilíbrio hormonal</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌰</span><span><strong>Castanhas</strong> Caju, amêndoas e nozes</span></div>
+      </div>
+      <div class="alert-box warning">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <div><strong>Use com moderação:</strong> As gorduras boas são saudáveis, mas também são calóricas. Uma pequena porção já traz todos os benefícios.</div>
+      </div>
+    </div>
+
+    <!-- EXTRAS -->
+    <div class="content-section" id="lc-extras">
+      <h2 class="section-title">🧄 Itens Extras e Lanches Práticos</h2>
+      <div class="snack-grid">
+        <div class="snack-card"><span class="snack-emoji">🧄</span><span>Alho e cebola</span></div>
+        <div class="snack-card"><span class="snack-emoji">🧂</span><span>Sal (usar com moderação)</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌿</span><span>Temperos naturais: orégano, cúrcuma, páprica</span></div>
+        <div class="snack-card"><span class="snack-emoji">🍋</span><span>Limão</span></div>
+        <div class="snack-card"><span class="snack-emoji">🫘</span><span>Homus ou grão-de-bico para fazer</span></div>
+        <div class="snack-card"><span class="snack-emoji">🥛</span><span>Leite (ou vegetal)</span></div>
+        <div class="snack-card"><span class="snack-emoji">🌾</span><span>Granola sem açúcar</span></div>
+      </div>
+    </div>
+
+    <!-- DICAS -->
+    <div class="content-section" id="lc-dicas">
+      <h2 class="section-title">✨ Dicas Importantes para sua Rotina</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Escolha 1 dia da semana para organizar tudo</h4><p>Domingo ou segunda são ótimas opções. Reserve 2 horas e prepare tudo de uma vez.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Deixe proteínas já prontas</h4><p>Frango cozido e desfiado, carne refogada. Na geladeira, prontos para montar qualquer refeição rapidamente.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Lave e corte legumes antes</h4><p>Com os legumes já lavados e cortados, a montagem do prato leva menos de 5 minutos.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Tenha sempre opções rápidas à mão</h4><p>Ovo, fruta e iogurte. Esses três itens resolvem qualquer lanche de emergência sem sair do plano.</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Isso evita comer qualquer coisa, pular refeições e sair do plano. Não se esqueça da água: beba toda vez que amamentar!</blockquote>
+      <div class="alert-box info" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <div><strong>Lembre-se:</strong> A organização semanal é o que separa quem tem resultado de quem fica no "começar amanhã". Um dia de preparo garante 7 dias de consistência.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE EXTRA SUBSTITUIÇÕES -->
+<div class="content-page" id="page-extra-substituicoes">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('sub-proteinas',this)">🥩 Proteínas</button>
+    <button class="pill" onclick="scrollSec('sub-carbs',this)">🌾 Carboidratos</button>
+    <button class="pill" onclick="scrollSec('sub-lanches',this)">🍎 Lanches</button>
+    <button class="pill" onclick="scrollSec('sub-regra',this)">✅ Regra de Ouro</button>
+    <button class="pill" onclick="scrollSec('sub-cuidados',this)">⚠️ Cuidados</button>
+    <button class="pill" onclick="scrollSec('sub-dicas',this)">💡 Dicas</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">📚 Material Extra</div>
+      <h1>Guia de Substituições Inteligentes</h1>
+      <p>Adapte seu cardápio com facilidade, sem sair do plano e sem prejudicar seus resultados.</p>
+    </div>
+
+    <blockquote class="brand-quote">Se tem uma coisa que toda mãe precisa nesse momento é flexibilidade. Esse guia foi feito para você adaptar suas refeições com segurança, mantendo seu emagrecimento, sua energia e a qualidade do seu leite.</blockquote>
+
+    <!-- PROTEÍNAS -->
+    <div class="content-section" id="sub-proteinas">
+      <h2 class="section-title">🥩 Substituições de Proteína</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">📏</span>
+        <div>
+          <strong>Porção de referência</strong>
+          <p>Sempre que for trocar, mantenha uma porção parecida: 100 a 120g ou equivalente.</p>
+        </div>
+      </div>
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>🍗 Peito de Frango pode ser trocado por:</h3>
+          <ul>
+            <li>Carne magra (patinho)</li>
+            <li>Peixe (tilápia, merluza)</li>
+            <li>Atum em água</li>
+            <li>2 ovos (ou 1 ovo + 2 claras)</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>🥚 Outras opções equivalentes:</h3>
+          <ul>
+            <li>Carne, frango desfiado ou peixe</li>
+            <li>Atum em água</li>
+            <li>Ovo inteiro</li>
+            <li>Queijo branco ou cottage</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert-box success">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div><strong>Dica importante:</strong> Priorize sempre proteína em TODAS as refeições. Isso ajuda na saciedade e acelera o emagrecimento.</div>
+      </div>
+    </div>
+
+    <!-- CARBOIDRATOS -->
+    <div class="content-section" id="sub-carbs">
+      <h2 class="section-title">🌾 Substituições de Carboidratos</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">📏</span>
+        <div>
+          <strong>Porção de referência</strong>
+          <p>Mantenha a porção de referência: 1½ xícara ou equivalente.</p>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="sub-table">
+          <thead>
+            <tr><th>Substituir</th><th>Por</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Arroz integral</td><td>Batata-doce</td></tr>
+            <tr><td>Arroz integral</td><td>Macarrão integral</td></tr>
+            <tr><td>Arroz integral</td><td>Quinoa</td></tr>
+            <tr><td>Tapioca</td><td>Pão integral</td></tr>
+            <tr><td>Aveia em flocos</td><td>Flocos de milho sem açúcar ou Tapioca</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LANCHES -->
+    <div class="content-section" id="sub-lanches">
+      <h2 class="section-title">🍎 Substituições para Lanches Rápidos</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:14px">Se não tiver algo pronto, use estas combinações simples:</p>
+      <div style="overflow-x:auto">
+        <table class="sub-table">
+          <thead>
+            <tr><th>Se não tiver</th><th>Use</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Iogurte</td><td>Leite + fruta</td></tr>
+            <tr><td>Fruta + castanhas</td><td>Pão + queijo</td></tr>
+            <tr><td>Homus</td><td>Guacamole</td></tr>
+            <tr><td>Ovo cozido</td><td>Atum</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert-box info">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <div><strong>Dica:</strong> Tenha sempre algo simples à mão. Isso evita sair do plano nos momentos de pressa ou cansaço.</div>
+      </div>
+    </div>
+
+    <!-- REGRA DE OURO -->
+    <div class="content-section" id="sub-regra">
+      <h2 class="section-title">✅ Como Montar Qualquer Refeição</h2>
+      <div class="plate-builder">
+        <h4 style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:11px">Regra de Ouro Use sempre que estiver em dúvida</h4>
+        <div class="plate-grid">
+          <div class="plate-part"><h5>Proteína</h5><p>1 porção (100-120g)</p></div>
+          <div class="plate-part"><h5>Carboidrato</h5><p>1 porção (1½ xíc.)</p></div>
+          <div class="plate-part"><h5>Legumes</h5><p>À vontade!</p></div>
+          <div class="plate-part"><h5>Gordura Boa</h5><p>1 col. chá azeite</p></div>
+        </div>
+        <div class="plate-tip">🥚 Opção 1: Ovo + pão + tomate + pasta de amendoim</div>
+        <div class="plate-tip">🍗 Opção 2: Frango + arroz + salada + azeite</div>
+      </div>
+    </div>
+
+    <!-- CUIDADOS -->
+    <div class="content-section" id="sub-cuidados">
+      <h2 class="section-title">⚠️ Cuidados Importantes</h2>
+      <div class="errors-grid">
+        <div class="error-item">Alimentos ultraprocessados</div>
+        <div class="error-item">Substituições sem proteína</div>
+        <div class="error-item">Muitas horas sem comer</div>
+        <div class="error-item">Cortar o carboidrato completamente</div>
+      </div>
+      <div class="alert-box success" style="margin-top:4px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div><strong>O equilíbrio é o que traz resultado.</strong> Não existe perfeição, existe consistência.</div>
+      </div>
+    </div>
+
+    <!-- DICAS -->
+    <div class="content-section" id="sub-dicas">
+      <h2 class="section-title">💡 Dicas para Facilitar sua Vida</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num">1</div><div><h4>Use o que você já tem em casa</h4><p>Não precisa comprar ingredientes exóticos. O básico bem feito já é suficiente para ter resultado.</p></div></div>
+        <div class="tip-item"><div class="tip-num">2</div><div><h4>Não complique suas refeições</h4><p>Receitas simples de 3 ingredientes são tão eficazes quanto as elaboradas. O que importa é a combinação certa.</p></div></div>
+        <div class="tip-item"><div class="tip-num">3</div><div><h4>Varie durante a semana</h4><p>Use as substituições para não enjoar e manter a consistência ao longo dos dias.</p></div></div>
+        <div class="tip-item"><div class="tip-num">4</div><div><h4>Faça o básico bem feito</h4><p>Isso já é suficiente para ter resultado. Você não precisa de um cardápio perfeito. Você precisa de um plano que funcione na sua vida.</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Você não precisa de um cardápio perfeito. Você precisa de um plano que funcione na sua vida.</blockquote>
+      <div class="alert-box success" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Dúvidas e acompanhamento: <strong>@myrnnagurgel</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE EXTRA WHEY -->
+<div class="content-page" id="page-extra-whey">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('whey-intro',this)">✅ Pode?</button>
+    <button class="pill" onclick="scrollSec('whey-como',this)">🔍 Como Escolher</button>
+    <button class="pill" onclick="scrollSec('whey-lista',this)">🏆 Marcas Seguras</button>
+    <button class="pill" onclick="scrollSec('whey-receitas',this)">🥤 Receitas</button>
+    <button class="pill" onclick="scrollSec('whey-dicas',this)">💡 Dicas</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">📚 Material Extra</div>
+      <h1>Whey Protein na Amamentação</h1>
+      <p>Guia prático e receitas para secar com saúde sem comprometer a qualidade do leite materno.</p>
+    </div>
+
+    <!-- PODE? -->
+    <div class="content-section" id="whey-intro">
+      <h2 class="section-title">✅ Whey na Amamentação Pode?</h2>
+      <div class="highlight-card">
+        <span class="hc-icon">✅</span>
+        <div>
+          <strong>Sim, desde que seja o whey certo!</strong>
+          <p>O whey protein nada mais é do que a proteína do soro do leite isolada e concentrada. No pós-parto, a demanda por proteínas aumenta muito, pois o seu corpo gasta energia extra para produzir o leite e se recuperar do parto.</p>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7">Muitas mães sentem uma fome incontrolável nessa fase, o que dificulta o emagrecimento. O whey protein entra como um lanche super prático, que traz saciedade prolongada, ajuda a controlar a vontade de doces e garante os blocos de construção para um leite forte e nutritivo.</p>
+    </div>
+
+    <!-- COMO ESCOLHER -->
+    <div class="content-section" id="whey-como">
+      <h2 class="section-title">🔍 Como Escolher um Whey Seguro para Lactantes</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:14px">Nem todo whey do mercado é seguro para quem amamenta. O segredo está em ler o rótulo da lista de ingredientes. Siga estes 3 critérios de ouro:</p>
+      <div class="tips-list">
+        <div class="tip-item">
+          <div class="tip-num" style="background:#2B8436">1</div>
+          <div><h4>Clean Label (Rótulo Limpo)</h4><p>Prefira marcas puras, com o mínimo de ingredientes possível. Quanto mais curta a lista de ingredientes, melhor.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#DC2626">2</div>
+          <div><h4>ZERO Estimulantes e Fitoterápicos</h4><p>Evite qualquer whey que prometa "queimar gordura" e que contenha cafeína, taurina, chá verde, hibisco ou picolinato de cromo. Essas substâncias passam para o leite e podem fazer mal ao bebê.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#2B8436">3</div>
+          <div><h4>Adoçantes Naturais</h4><p>Fuja de adoçantes artificiais como sucralose, acessulfame-K e aspartame. Priorize fórmulas adoçadas com estévia, taumatina ou eritritol.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARCAS -->
+    <div class="content-section" id="whey-lista">
+      <h2 class="section-title">🏆 Marcas Recomendadas e Seguras</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:14px">Opções de mercado excelentes e limpas, focando na segurança do bebê e na praticidade da mãe:</p>
+      <div class="options-grid">
+        <div class="option-card" style="border-color:rgba(43,132,54,0.3)">
+          <h3 style="color:#2B8436">🥇 Dux Nutrition</h3>
+          <ul><li>Linha Clean e Fresh</li><li>Excelente pureza</li><li>Adoçado com opções naturais</li><li>Sabores leves e agradáveis</li></ul>
+        </div>
+        <div class="option-card" style="border-color:rgba(43,132,54,0.3)">
+          <h3 style="color:#2B8436">🥇 Essential Nutrition</h3>
+          <ul><li>Pure Whey ou Cacao Whey</li><li>Uma das marcas mais limpas do mercado</li><li>Livre de corantes, aromas e adoçantes artificiais</li></ul>
+        </div>
+        <div class="option-card" style="border-color:rgba(43,132,54,0.3)">
+          <h3 style="color:#2B8436">🥇 Growth Supplements</h3>
+          <ul><li>Whey Isolado, versão natural</li><li>Melhor custo-benefício do mercado</li><li>Versão sem sabor 100% pura, ideal para misturar com frutas</li></ul>
+        </div>
+        <div class="option-card" style="border-color:rgba(43,132,54,0.3)">
+          <h3 style="color:#2B8436">🥇 True Source</h3>
+          <ul><li>True Whey</li><li>Proteína de vacas criadas soltas (grass-fed)</li><li>Adoçado com estévia e taumatina</li><li>Super seguro para a lactação</li></ul>
+        </div>
+      </div>
+      <div class="alert-box warning">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <div><strong>Sempre verifique o rótulo!</strong> Formulas mudam. Mesmo marcas confiáveis podem lançar versões termogênicas. Leia a lista de ingredientes antes de cada compra.</div>
+      </div>
+    </div>
+
+    <!-- RECEITAS -->
+    <div class="content-section" id="whey-receitas">
+      <h2 class="section-title">🥤 Receitas Práticas para Nutrir e Saciar</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Combinamos o whey protein com galactogogos naturais (ingredientes que auxiliam na produção de leite) e alimentos que promovem a saciedade para te ajudar a emagrecer com segurança.</p>
+
+      <div class="recipe-card">
+        <h3>🌅 Smoothie Turbinador de Leite</h3>
+        <p style="font-size:12.5px;color:var(--primary-dark);margin-bottom:10px">Perfeito para o café da manhã. Sustenta a manhã inteira e estimula a produção de leite.</p>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul>
+            <li>1 scoop de whey de baunilha ou natural</li>
+            <li>1 col. sopa de aveia em flocos (galactogogo natural)</li>
+            <li>1 col. chá de linhaça ou chia (gorduras boas)</li>
+            <li>½ banana congelada (para cremosidade)</li>
+            <li>200ml de leite de amêndoas ou água de coco</li>
+          </ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Bata tudo no liquidificador com duas pedras de gelo até ficar bem homogêneo. Beba imediatamente.</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🌙 Mingau de Aveia Proteico da Tarde</h3>
+        <p style="font-size:12.5px;color:var(--primary-dark);margin-bottom:10px">Lanche quentinho e aconchegante para os dias em que o cansaço bate à tarde.</p>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul>
+            <li>2 col. sopa cheias de aveia em flocos</li>
+            <li>150ml de água ou leite desnatado</li>
+            <li>1 scoop de whey de chocolate ou cacau</li>
+            <li>1 pitada de canela em pó (antioxidante natural)</li>
+          </ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Cozinhe a aveia com a água em fogo baixo até engrossar. Desligue o fogo, <strong>espere amornar</strong> e misture o whey mexendo bem. Salpique canela por cima.</p><p style="font-size:12px;color:var(--primary-dark);margin-top:8px">Se colocar o whey com o mingau fervendo, ele pode empelotar!</p></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h3>🥥 Shake Hidratante de Coco</h3>
+        <p style="font-size:12.5px;color:var(--primary-dark);margin-bottom:10px">O coco fornece gorduras excelentes para a qualidade do leite. A água de coco garante a super-hidratação.</p>
+        <div class="recipe-cols">
+          <div class="recipe-col"><h5>Ingredientes</h5><ul>
+            <li>1 scoop de whey de baunilha, coco ou natural</li>
+            <li>200ml de água de coco bem gelada</li>
+            <li>1 col. sopa de coco ralado sem açúcar</li>
+            <li>3 morangos frescos picados</li>
+          </ul></div>
+          <div class="recipe-col"><h5>Preparo</h5><p>Bata a água de coco, o whey e o coco ralado no liquidificador. Sirva em um copo e misture os morangos picados para dar um toque fresco e mastigável.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DICAS -->
+    <div class="content-section" id="whey-dicas">
+      <h2 class="section-title">💡 Dicas para o Sucesso no Pós-Parto</h2>
+      <div class="tips-list">
+        <div class="tip-item"><div class="tip-num" style="background:#2B8436">1</div><div><h4>O whey não substitui refeições principais</h4><p>Use-o nos lanches intermediários ou naqueles momentos de correria em que você não conseguiria comer nada saudável.</p></div></div>
+        <div class="tip-item"><div class="tip-num" style="background:#2B8436">2</div><div><h4>Combine com os chás</h4><p>Tomar o seu shake proteico acompanhado ou intercalado com os chás de erva-doce ou funcho é o combo perfeito para manter hidratação, saciedade e estímulo à amamentação no topo!</p></div></div>
+      </div>
+      <blockquote class="brand-quote" style="margin-top:20px">Você está cuidando do seu bem mais precioso, mas não esqueça de cuidar de você.</blockquote>
+      <div class="alert-box success" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div>Dúvidas e mais dicas: <strong>@myrnnagurgel</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE UPSELL RITUAL NOTURNO -->
+<div class="content-page" id="page-upsell-ritual">
+  <div class="content-body" style="max-width:600px">
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,210,0,0.12);border:1px solid rgba(255,210,0,0.4);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:#B8860B;margin-bottom:14px">
+        🎉 Oferta Exclusiva para Alunas
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--text);line-height:1.2;margin-bottom:10px">Acorde 1kg Mais Leve!</h1>
+      <p style="font-size:15px;color:var(--text-muted);line-height:1.6">Assista o vídeo curto e descubra como secar -1kg toda noite enquanto você dorme</p>
+    </div>
+
+    <div class="video-section" style="margin-bottom:20px">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/KnhjMY9K4JA" title="Ritual Noturno Anti-Inchaço" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1A110A,#2E1A0C);border-radius:18px;padding:28px 22px;text-align:center;border:1px solid rgba(255,210,0,0.2)">
+      <p style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:20px">
+        Estou disponibilizando esse Material Secreto em comemoração a mais de <strong style="color:#FFD700">20 mil mães</strong> que são alunas do Cardápio Infalível! 🎉
+      </p>
+
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:6px">Ritual Noturno Anti-Inchaço</h2>
+      <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:18px">Acorde 1kg Mais Leve</p>
+
+      <div style="margin-bottom:20px">
+        <span style="font-size:14px;color:rgba(255,255,255,0.45);text-decoration:line-through">De R$197</span>
+        <div style="font-size:38px;font-weight:700;color:#FFD700;line-height:1.1;margin-top:4px">R$19</div>
+        <span style="font-size:12px;color:rgba(255,255,255,0.5)">pagamento único</span>
+      </div>
+
+      <a href="https://api.whatsapp.com/send?phone=5585992225227&text=Oii%20Myrnna,%20quero%20o%20Ritual%20Noturno%20Anti-Incha%C3%A7o!" target="_blank"
+        style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#FFD700,#FFC200);color:#1A110A;border-radius:12px;padding:16px 20px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(255,210,0,0.4);transition:all 0.2s;animation:pulse-upsell 2.2s infinite">
+        Quero Acordar 1kg Mais Leve 🌙
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- PAGE PLACEHOLDER -->
 <div class="content-page" id="page-placeholder">
   <div class="placeholder-section">
@@ -2080,12 +3268,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
 
   function toggleGroup(id) {
     var grp = document.getElementById(id);
-    var wasOpen = grp.classList.contains('open');
     grp.classList.toggle('open');
-    // Collapse copy-link block when any group is open, expand when all closed
-    var anyOpen = document.querySelectorAll('.nav-group.open').length > 0;
-    var block = document.querySelector('.copy-link-block');
-    if (block) block.classList.toggle('collapsed', anyOpen);
   }
 
   function scrollSec(sId, btn) {
@@ -2127,41 +3310,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   window.toggleGroup = toggleGroup;
   window.scrollSec = scrollSec;
   window.closeSidebar = closeSidebar;
-  window.copyLink = function() {
-    var url = 'https://myrnnac.pages.dev/';
-    var btn = document.getElementById('btnCopyLink');
-    var lbl = document.getElementById('lbl-copy');
-
-    function onSuccess() {
-      btn.classList.add('copied');
-      btn.style.transform = 'scale(1.04)';
-      lbl.textContent = '✅ Link Copiado!';
-      setTimeout(function() {
-        btn.style.transform = 'scale(1)';
-      }, 150);
-      setTimeout(function() {
-        btn.classList.remove('copied');
-        lbl.textContent = 'Copiar Link do App';
-      }, 3000);
-    }
-
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(url).then(onSuccess).catch(function() { fallback(); });
-    } else {
-      fallback();
-    }
-
-    function fallback() {
-      var ta = document.createElement('textarea');
-      ta.value = url;
-      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
-      document.body.appendChild(ta);
-      ta.focus(); ta.select();
-      try { document.execCommand('copy'); onSuccess(); } catch(e) { lbl.textContent = 'Copie: ' + url; }
-      document.body.removeChild(ta);
-    }
-  };
-
+  
   // Add PDF button next to badge (skip video pages)
   document.querySelectorAll('.content-body').forEach(function(el) {
     var page = el.closest('.content-page');
