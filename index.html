@@ -164,6 +164,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 }
 .btn-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
 .btn-instagram:hover { opacity: 0.88; }
+.btn-tutorial { background: #2563EB; color: #fff; font-family: 'DM Sans', sans-serif; }
+.btn-tutorial:hover { background: #1d4ed8; }
 
 
 
@@ -564,6 +566,10 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       <span id="lbl-btn-ig">Seguir no Instagram</span>
     </a>
+    <button onclick="showPage('tutorial-app')" class="btn-social btn-tutorial">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      Como Baixar App No Celular
+    </button>
   </div>
 </nav>
 
@@ -3375,6 +3381,107 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   </div>
 </div>
 
+<!-- PAGE TUTORIAL APP -->
+<div class="content-page" id="page-tutorial-app">
+  <div class="topic-pills">
+    <button class="pill active" onclick="scrollSec('tut-link',this)">🔗 Link do App</button>
+    <button class="pill" onclick="scrollSec('tut-android',this)">🤖 Android</button>
+    <button class="pill" onclick="scrollSec('tut-iphone',this)">🍎 iPhone</button>
+  </div>
+  <div class="content-body">
+    <div class="page-header">
+      <div class="page-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        Tutorial
+      </div>
+      <h1>Como Baixar o App no Celular</h1>
+      <p>Salve o Cardápio Infalível na tela inicial do seu celular e acesse com um toque, igual a um app de verdade!</p>
+    </div>
+
+    <!-- LINK DO APP -->
+    <div class="content-section" id="tut-link">
+      <h2 class="section-title">🔗 Primeiro: Copie o Link do App</h2>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Antes de seguir o tutorial, copie o link abaixo e abra no <strong>Chrome</strong> (Android) ou <strong>Safari</strong> (iPhone). Só assim o botão de instalar vai aparecer.</p>
+
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);font-weight:600;margin:0 0 10px">Link do App</p>
+        <div style="display:flex;align-items:center;gap:10px;background:#F5F5F5;border-radius:8px;padding:10px 14px;">
+          <span style="font-size:13px;color:#444;flex:1;word-break:break-all">https://myrnnac.pages.dev/</span>
+          <button id="btnCopyTutorial" onclick="copyAppLink()" style="display:inline-flex;align-items:center;gap:6px;background:#2563EB;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;font-family:'DM Sans',sans-serif">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span id="lblCopyTutorial">Copiar Link</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="alert-box info" style="margin-top:14px">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <div><strong>Importante:</strong> O app só pode ser instalado pelo <strong>Chrome no Android</strong> ou pelo <strong>Safari no iPhone</strong>. Se estiver em outro navegador, copie o link e abra no correto.</div>
+      </div>
+    </div>
+
+    <!-- ANDROID -->
+    <div class="content-section" id="tut-android">
+      <h2 class="section-title">🤖 Android (Chrome)</h2>
+      <div class="tips-list">
+        <div class="tip-item">
+          <div class="tip-num" style="background:#2563EB">1</div>
+          <div><h4>Abra o Chrome e cole o link</h4><p>Cole o link copiado acima na barra de endereços do Chrome e acesse o app.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#2563EB">2</div>
+          <div><h4>Toque nos 3 pontinhos</h4><p>No canto superior direito da tela, toque no ícone de 3 pontinhos (menu do Chrome).</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#2563EB">3</div>
+          <div><h4>Toque em "Adicionar à tela inicial"</h4><p>Procure a opção "Adicionar à tela inicial" ou "Instalar app" no menu que abrir.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#2563EB">4</div>
+          <div><h4>Confirme tocando em "Adicionar"</h4><p>Uma janela vai aparecer com o nome do app. Toque em "Adicionar" para confirmar.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#059669">5</div>
+          <div><h4>Pronto! O ícone aparece na sua tela</h4><p>O Cardápio Infalível vai aparecer na sua tela inicial igual a um app. É só tocar para abrir!</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IPHONE -->
+    <div class="content-section" id="tut-iphone">
+      <h2 class="section-title">🍎 iPhone (Safari)</h2>
+      <div class="alert-box warning">
+        <span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <div><strong>Use o Safari!</strong> No iPhone, essa função só funciona pelo navegador Safari. Se estiver usando Chrome ou outro app, copie o link e abra no Safari.</div>
+      </div>
+      <div class="tips-list" style="margin-top:14px">
+        <div class="tip-item">
+          <div class="tip-num" style="background:#1C1C1E">1</div>
+          <div><h4>Abra o Safari e cole o link</h4><p>Cole o link copiado acima na barra de endereços do Safari e acesse o app.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#1C1C1E">2</div>
+          <div><h4>Toque no ícone de compartilhar</h4><p>Na barra inferior do Safari, toque no ícone de compartilhar (quadrado com uma seta para cima).</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#1C1C1E">3</div>
+          <div><h4>Role para baixo e toque em "Adicionar à Tela de Início"</h4><p>No menu de compartilhamento, role as opções para baixo até encontrar "Adicionar à Tela de Início".</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#1C1C1E">4</div>
+          <div><h4>Toque em "Adicionar" no canto superior direito</h4><p>Uma tela vai aparecer com o nome do app. Confirme tocando em "Adicionar" no canto superior direito.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num" style="background:#059669">5</div>
+          <div><h4>Pronto! O ícone aparece na sua tela</h4><p>O Cardápio Infalível vai aparecer na sua tela inicial com o ícone da Myrnna. É só tocar para abrir!</p></div>
+        </div>
+      </div>
+
+      <blockquote class="brand-quote" style="margin-top:20px">Agora você tem o Cardápio Infalível sempre pertinho, com um toque na tela! 💛</blockquote>
+    </div>
+  </div>
+</div>
+
 <!-- PAGE PLACEHOLDER -->
 <div class="content-page" id="page-placeholder">
   <div class="placeholder-section">
@@ -3462,7 +3569,29 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
   })();
 
   window.setLang = setLang;
-  window.showPage = showPage;
+  window.copyAppLink = function() {
+    var url = 'https://myrnnac.pages.dev/';
+    var btn = document.getElementById('btnCopyTutorial');
+    var lbl = document.getElementById('lblCopyTutorial');
+    function onSuccess() {
+      btn.style.background = '#059669';
+      lbl.textContent = '✅ Copiado!';
+      setTimeout(function() {
+        btn.style.background = '#2563EB';
+        lbl.textContent = 'Copiar Link';
+      }, 3000);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(onSuccess).catch(fallback);
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = url; ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try { document.execCommand('copy'); onSuccess(); } catch(e) { lbl.textContent = 'Copie: ' + url; }
+      document.body.removeChild(ta);
+    }
+  };
   window.toggleGroup = toggleGroup;
   window.scrollSec = scrollSec;
   window.closeSidebar = closeSidebar;
