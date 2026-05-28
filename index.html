@@ -3568,8 +3568,7 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
     }
   })();
 
-  window.setLang = setLang;
-  window.copyAppLink = function() {
+  function copyAppLink() {
     var url = 'https://myrnnac.pages.dev/';
     var btn = document.getElementById('btnCopyTutorial');
     var lbl = document.getElementById('lblCopyTutorial');
@@ -3591,7 +3590,11 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
       try { document.execCommand('copy'); onSuccess(); } catch(e) { lbl.textContent = 'Copie: ' + url; }
       document.body.removeChild(ta);
     }
-  };
+  }
+
+  window.setLang = setLang;
+  window.copyAppLink = copyAppLink;
+  window.showPage = showPage;
   window.toggleGroup = toggleGroup;
   window.scrollSec = scrollSec;
   window.closeSidebar = closeSidebar;
