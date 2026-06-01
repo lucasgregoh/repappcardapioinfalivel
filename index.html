@@ -291,6 +291,20 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
 
 .placeholder-section { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 70px 30px; text-align: center; background: var(--bg-card); border-radius: var(--radius); border: 2px dashed rgba(239,124,7,0.22); margin: 24px 18px; }
 .placeholder-icon { font-size: 44px; margin-bottom: 14px; }
+.banner-mentoria-live {
+  display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 1.5px solid #86efac; border-radius: 12px;
+  padding: 12px 14px; margin-bottom: 18px; text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.banner-mentoria-live:hover { border-color: #4ade80; box-shadow: 0 2px 12px rgba(74,222,128,0.2); }
+.banner-live-dot { width: 9px; height: 9px; border-radius: 50%; background: #16a34a; flex-shrink: 0; animation: pulse-live 1.8s infinite; }
+@keyframes pulse-live { 0%, 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); } 50% { box-shadow: 0 0 0 5px rgba(22,163,74,0); } }
+.banner-mentoria-text { flex: 1; }
+.banner-mentoria-text strong { display: block; font-size: 13px; color: #15803d; font-weight: 600; margin-bottom: 2px; }
+.banner-mentoria-text span { font-size: 12px; color: #166534; line-height: 1.4; display: block; }
+.banner-cta { display: inline-block !important; margin-top: 5px; font-size: 11.5px; font-weight: 700; color: #15803d; background: rgba(22,163,74,0.12); border: 1px solid rgba(22,163,74,0.3); border-radius: 20px; padding: 3px 10px; }
 .page-footer { text-align: center; padding: 24px 18px 40px; font-size: 12px; color: var(--text-muted); opacity: 0.5; letter-spacing: 0.03em; }
 
 .btn-pdf {
@@ -630,6 +644,16 @@ blockquote.brand-quote { border-left: 3px solid var(--primary); padding: 12px 16
     <button class="pill" onclick="scrollSec('dicas',this)">✨ Dicas</button>
   </div>
   <div class="content-body">
+    <a href="https://www.myrnnagurgel.com.br/wpp-cardapio" target="_blank" class="banner-mentoria-live">
+      <span class="banner-live-dot"></span>
+      <div class="banner-mentoria-text">
+        <strong>Mentoria ao vivo com convidada especial! 🎉</strong>
+        <span>Exclusivo para alunas — Entre no grupo silencioso e receba o convite.</span>
+        <span class="banner-cta">Clique aqui</span>
+      </div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" style="flex-shrink:0;opacity:.7"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    
     <div class="page-header">
       <div class="page-badge"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg> Cardápio Principal</div>
       <h1>Cardápio Infalível para Mães Lactantes</h1>
